@@ -1,0 +1,318 @@
+/* ------------------------Titles and captions' Extra Design------------------------ */
+.indicator:nth-of-type(2) .indicatorValue {
+    color: #00BF63;
+}
+
+.indicator:nth-of-type(3) .indicatorValue {
+    color: #FF5A00;
+}
+
+.indicator:nth-of-type(4) {
+    justify-content: left;
+}
+
+/* ------------------------Check Box Courses selection by the User------------------------ */
+#userInput {
+    width: 300px;
+    padding: 20px;
+    font-size: 12px;
+    margin-bottom: 20px;
+}
+
+.btnSelect {
+    background-color: #FFFFFF;
+    color: #000000;
+    font-family: 'Fredoka', Serif, serif;
+    font-size: 12px;
+    line-height: 2;
+    font-weight: 300;
+    display: flex;
+    align-items: center;
+    border: 0.5px solid #7E7E7E;
+    border-radius: 2px;
+    padding-right: 10px;
+    margin: 5px 0 0 10px;
+    position: relative;
+    cursor: default;
+}
+
+.selectIcon {
+    width: 10px;
+    height: 10px;
+    padding-right: 5px;
+    position: absolute;
+    left: 5px;
+    transition: fill 0.3s ease;
+}
+
+.hiddenList {
+    display: none;
+}
+
+.openList {
+    display: block;
+}
+
+.coursesList {
+    position: absolute;
+    background-color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    list-style-type: none;
+    border-radius: 4px;
+    border: 0.5px solid #7E7E7E;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    max-height: 200px;
+    overflow-y: auto;
+    padding: 5px 15px 5px 0;
+    width: 300px;
+    margin: 0 0 10px 10px;
+    z-index: 997;
+}
+
+.coursesList li.courseItem {
+    font-family: 'Fredoka', Serif, serif;
+    display: grid;
+    grid-template-columns: 20px 300px;
+    grid-column-gap: 5px;
+    font-size: 11px;
+    font-weight: 300;
+    direction: rtl;
+}
+
+.coursesList li.courseItem:hover {
+    color: #F7aF18;
+    cursor: default;
+}
+
+.checkbox {
+    width: 10px;
+    height: 10px;
+    border: 0.5px #CCCCCC solid;
+    align-self: center;
+}
+
+.active {
+    background-color: #EEEEEE;
+}
+
+.notChosen {
+    background-color: #FFFFFF;
+}
+
+.vIcon {
+    width: 10px;
+    height: 10px;
+}
+
+.vIconHidden {
+    display: none;
+}
+
+/* rangeSlider Section */
+#simulationContainer {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-start;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 20px;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.rangeSliderSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 150px;
+    gap: 20px;
+}
+
+.rangeSlider {
+    font-family: 'Fredoka', Serif, serif;
+    font-weight: 300;
+    font-size: 12px;
+    height: 200px;
+    width: 100%;
+    position: relative;
+}
+
+.gradesRange {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.value {
+    font-size: 14px;
+    font-weight: 300;
+    color: #000000;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.value.down {
+    margin-top: auto;
+}
+
+.value.top {
+    margin-bottom: auto;
+}
+
+.gradesRange input { /* the bar */
+    -webkit-appearance: none;
+    height: 7px;
+    background: linear-gradient(90deg, #FFCB5F 0%, #F7aF18 100%);
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    outline: none;
+    transition: background 0.3s ease-in-out;
+}
+
+input[type="range"] {
+    -webkit-appearance: none;
+    width: 150px;
+    height: 7px;
+    background: linear-gradient(90deg, #FFCB5F 0%, #F7aF18 100%);
+    border-radius: 5px;
+    outline: none;
+    transition: background 0.3s ease-in-out;
+    transform: rotate(-90deg);
+    direction: ltr;
+}
+
+.gradesRange input::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    background: radial-gradient(circle at 30% 30%, #FFE08A, #F7aF18);
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: inset -3px -3px 5px rgba(0, 0, 0, 0.2),
+    0 1px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.sliderValue {
+    position: fixed;
+    color: #000000;
+    font-family: 'Fredoka', Serif, serif;
+    font-size: 12px;
+    font-weight: 300;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: 999;
+    border-radius: 50%;
+    overflow: visible;
+    /* font-size: 0.7rem; */
+}
+
+.chosenCourse {
+    position: static;
+    color: #000000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 12px;
+    font-weight: 300;
+    padding-bottom: 10px;
+    border-top: 0.8px solid #000000;
+    margin-bottom: 10px;
+}
+
+.courseTheGradeSpan {
+    padding-top: 5px;
+    font-weight: 400;
+}
+
+.courseGradeSpan {
+    padding-top: 1px;
+    font-size: 25px;
+    font-weight: 500;
+    color: #00BF63;
+}
+
+/* ------------------------Media Query------------------------ */
+@media screen and (max-width: 768px) {
+    /* For tablet screens */
+    main {
+        margin-right: 10px;
+        margin-left: 10px;
+    }
+
+    .indicatorsContainer {
+        margin: 0 auto;
+        gap: 5px;
+    }
+
+    .indicator {
+        width: 100px;
+    }
+
+    .indicator:nth-of-type(2), .indicator:nth-of-type(4) {
+        width: 125px;
+    }
+}
+
+@media screen and (max-width: 504px) {
+    h4 {
+        font-size: 13px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    /* For small screens */
+    .pageTitle {
+        font-size: 25px;
+    }
+
+    .indicatorsContainer {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        justify-items: center;
+        column-gap: 1px;
+        padding-bottom: 10px;
+        margin: 0 auto;
+    }
+
+    .indicator {
+        width: 125px;
+    }
+
+    h4 {
+        font-size: 14px;
+    }
+
+    #simulationContainer {
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width: 388px) {
+    .pageTitle {
+        font-size: 24px;
+    }
+}
+
+@media screen and (max-width: 380px) {
+    /* For mobile devices */
+    .pageTitle {
+        font-size: 20px;
+    }
+}
+
+
+
+

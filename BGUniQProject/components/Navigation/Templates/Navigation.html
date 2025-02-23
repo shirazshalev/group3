@@ -1,0 +1,37 @@
+<link rel="stylesheet" href="{{ url_for('static', filename='CSS/Navigation.css') }}">
+
+<div class="headerContent">
+    <p class="bgu">Ben-Gurion University of the Negev</p>
+</div>
+<nav class="navigationBar">
+    <div class="logo">
+        <img src="{{url_for('static', filename='Images/AgudaLOGO.png')}}" alt="Student Union Ben-Gurion Logo">
+    </div>
+    <div class="navButtons">
+        <button class="languageButton">
+            <img src="{{url_for('static', filename='SVG/angle-up.svg')}}" alt="Language Button" class="languageIcon">
+            <span class="languageText">HE</span>
+        </button>
+        <button class="searchButton">
+            <img src="{{url_for('static', filename='SVG/search.svg')}}" alt="Search-Button" class="searchIcon">
+        </button>
+        <div id="searchFormContainer" class="searchFormContainer">
+            <button class="closeButton">
+                <img src="{{url_for('static', filename='SVG/x.svg')}}" alt="Close" class="closeIcon">
+            </button>
+            <form id="searchForm" action="searchResults.html" method="GET">
+                <input type="text" name="query" placeholder="חיפוש" required>
+            </form>
+        </div>
+        <div class="hamburgerMenu">
+            <button class="menuButton">
+                <span class="menuText">תפריט</span>
+                <svg class="menuIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M3 6h18M3 12h18M3 18h18" fill="none" stroke="#00000" stroke-width="2"
+                          stroke-linecap="round"/>
+                </svg>
+            </button>
+            <div class="popupMenu" id="popupMenu"></div>
+        </div>
+    </div>
+</nav>

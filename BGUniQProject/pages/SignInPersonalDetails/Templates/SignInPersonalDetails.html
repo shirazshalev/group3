@@ -1,0 +1,50 @@
+{% extends ('Base.html') %}
+
+{# head >> metaTags #}
+{% block metaTags %}
+    התחברות, אגודת הסטודנטים, אוניברסיטת בן גוריון, סטודנטים, מידע אקדמי
+{% endblock %}
+{# title #}
+{% block title %}יצירת חשבון{% endblock %}
+{# CSS links #}
+{% block extraStyles %}
+    <link rel="stylesheet" href="{{ url_for('SignIn.static', filename='CSS/SignIn.css') }}">
+{% endblock %}
+
+{# <body> #}
+{# main - Navigation & Footer are included in Base.html #}
+{% block mainContent %}
+    <section class="mainSection">
+        <section class="welcomeSection">
+            <div class="welcomeText">
+                <h1 class="pageTitle">בואו נתחיל</h1>
+                <p class="secondPageTitle">אנא הזינו את הפרטים הבאים</p>
+            </div>
+        </section>
+        <section class="help">
+            <div></div>
+        </section>
+
+        <section class="userInput">
+            <form class="formStyle" action="" method="GET">
+                <input class="textBoxInput" type="email" name="Email" placeholder="כתובת מייל אוניברסיטאית*"
+                       required> </br>
+                <input class="textBoxInput" type="text" name="StudentID" placeholder="תעודת זהות*" required> </br>
+                <input class="textBoxInput" type="text" name="fullName" placeholder="שם מלא*" required> </br>
+                <input class="textBoxInput" type="text" name="userName" placeholder="בחר.י שם משתמש*" required> </br>
+                <input class="textBoxInput" type="password" name="Password" placeholder="בחר.י סיסמה*" required> </br>
+                </br></br>
+                <input class="mainButton" type="submit" name="Login" value="המשך">
+            </form>
+        </section>
+    </section>
+{% endblock %}
+
+{% block btnHome %}
+{% endblock %}
+
+{# JS links #}
+{% block extraScripts %}
+    <script src="{{ url_for('SignInPersonalDetails.static', filename='JS/SignInPersonalDetails.js') }}"></script>
+{% endblock %}
+{# </body> #}

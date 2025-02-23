@@ -1,0 +1,93 @@
+{% extends ('Base.html') %}
+
+{# head >> metaTags #}
+{% block metaTags %}
+    מחשבון נקודות זכות, ממוצע תואר, סטודנטים, אוניברסיטת בן גוריון, אגודת הסטודנטים, מחשבון סימולציה, ציון קורס
+{% endblock %}
+{# title #}
+{% block title %}מחשבון סימולציה סמסטר עתידי{% endblock %}
+{# CSS links #}
+{% block extraStyles %}
+    <link rel="stylesheet" href="{{ url_for('FutureSemesterCalculator.static', filename='CSS/FutureSemesterCalculator.css') }}">
+{% endblock %}
+
+{# <body> #}
+{% block alertWindow %}
+{% endblock %}
+{# main - Navigation & Footer are included in Base.html #}
+{% block mainContent %}
+    <section class="welcomeSection">
+        <div class="welcomeText">
+            <h1 class="pageTitle">מחשבון סימולציה סמסטר עתידי</h1>
+            <p class="secondPageTitle">What if calculator - Future Courses' Grades</p>
+        </div>
+    </section>
+    <section class="indicatorsSection">
+        <div class="indicatorsContainer">
+            <div class="indicator">
+                <h4>ממוצע תואר</h4>
+                <h3 class="indicatorValue">84.20</h3>
+            </div>
+            <div class="indicator">
+                <h4>ממוצע תואר עתידי</h4>
+                <h3 class="indicatorValue">84.92</h3>
+            </div>
+            <div class="indicator">
+                <h4>ממוצע היעד</h4>
+                <h3 class="indicatorValue">85.00</h3>
+            </div>
+            <div class="indicator">
+                <h4>ממוצע סמסטר עתידי</h4>
+                <h3 class="indicatorValue">89.00</h3>
+            </div>
+        </div>
+    </section>
+    <section id="userInput">
+        <p>בחר.י קורס מתוך הרשימה</p>
+        <div class="btnSelect">
+            <span>קורסים</span>
+            <img src="{{url_for('static', filename='SVG/triangle-down.svg')}}" class="selectIcon">
+        </div>
+        <div class="popupCoursesList hiddenList">
+            <ul class="coursesList">
+                <li class="courseItem">
+                    <span class="checkbox"></span>
+                    יסודות המימון לתעו״נ
+                </li>
+                <li class="courseItem">
+                    <span class="checkbox"></span>
+                    אוטומציה
+                </li>
+                <li class="courseItem">
+                    <span class="checkbox"></span>
+                    תשתית טכנולוגיות מידע
+                </li>
+                <li class="courseItem">
+                    <span class="checkbox"></span>
+                    ניהול פרוייקטים
+                </li>
+                <li class="courseItem">
+                    <span class="checkbox"></span>
+                    מערכות בינה עסקית (BI)
+                </li>
+                <li class="courseItem">
+                    <span class="checkbox"></span>
+                    הנדסת איכות
+                </li>
+                <li class="courseItem">
+                    <span class="checkbox"></span>
+                    בניית מערכות ממוחשבות מבוססות אינטרנט (WEB)
+                </li>
+            </ul>
+        </div>
+    </section>
+    <section id="simulationContainer">
+        <!--Sliders-->
+    </section>
+{% endblock %}
+
+{# JS links #}
+{% block extraScripts %}
+    <script src="{{ url_for('FutureSemesterCalculator.static', filename='JS/FutureSemesterCalculator.js') }}"></script>
+{% endblock %}
+{# </body> #}

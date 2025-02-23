@@ -1,0 +1,249 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+header {
+    width: 100%;
+    position: relative;
+    z-index: 1000;
+}
+
+.headerContent {
+    background-color: #fefdf5;
+}
+
+button {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    align-items: center;
+    display: flex;
+    cursor: pointer;
+    outline: none;
+    box-shadow: none;
+}
+
+p.bgu {
+    justify-self: left;
+    padding-left: 20px;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    color: #000000;
+    font-size: 12px;
+    font-family: 'Fredoka', Serif, serif;
+    font-weight: 300;
+}
+
+.navigationBar {
+    background-color: #FFFFFF;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    flex-wrap: wrap;
+    position: relative;
+    transition: top 0.3s ease-in-out;
+    z-index: 1000;
+    box-sizing: border-box;
+}
+
+.navigationBar.sticky {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navButtons {
+    align-items: center;
+    display: flex;
+    gap: 40px;
+}
+
+.logo img {
+    height: 60px;
+    max-width: 100%;
+    object-fit: contain;
+    display: inline-block;
+}
+
+.menuButton {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: #000000;
+    font-size: 16px;
+    transition: transform 0.3s;
+}
+
+.menuIcon {
+    width: 50px;
+    height: 50px;
+    font-family: 'Fredoka', Serif, serif;
+}
+
+.menuIcon path {
+    stroke: #F7aF18;
+    stroke-width: 2;
+}
+
+.menuText {
+    font-family: 'Fredoka', Serif, serif;
+    font-weight: 300;
+    font-size: 14px;
+}
+
+.searchIcon {
+    width: 20px;
+    height: 20px;
+}
+
+.languageButton {
+    align-items: center;
+    gap: 10px;
+}
+
+.languageText {
+    color: #000000;
+    font-size: 14px;
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 300;
+}
+
+.languageIcon {
+    width: 15px;
+    height: 15px;
+}
+
+.searchFormContainer {
+    display: none;
+    position: absolute;
+    top: 10%;
+    right: 50%;
+    transform: translateX(50%);
+    width: 80%;
+    background-color: #FFFFFF;
+    border: none;
+    border-radius: 5px;
+    padding: 20px 10px 10px 10px;
+    z-index: 1000;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    justify-content: center;
+    align-items: center;
+}
+
+.searchFormContainer input {
+    width: 90%;
+    padding: 10px;
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 300;
+    font-size: 12px;
+    border: 1px solid #CCC;
+    border-radius: 25px;
+}
+
+.searchFormContainer input:focus {
+    outline: none;
+    border-color: #f7af18;
+}
+
+.closeButton {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.closeIcon {
+    width: 10px;
+    height: 10px;
+}
+
+.closeMenuIcon {
+    width: 50px;
+    height: 50px;
+    font-family: 'Fredoka', Serif, serif;
+}
+
+.popupMenu {
+    background-color: #FFE2B2;
+    display: none;
+    position: fixed;
+    left: 0;
+    box-shadow: 1px 0 5px rgba(0, 0, 0, 0.1);
+    height: 100%;
+    width: 480px;
+    z-index: 999;
+    overflow-y: auto;
+    padding-top: 20px;
+}
+
+.popupMenu.close {
+    display: none;
+}
+
+.popupMenu.open {
+    display: block;
+}
+
+.menuItems li {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    list-style-type: none;
+    margin-bottom: 10px;
+    padding-right: 20px;
+}
+
+.menuItems li a {
+    text-decoration: none;
+    color: #000000;
+    font-size: 20px;
+    font-family: 'Fredoka', Serif, serif;
+    font-weight: 500;
+    align-items: center;
+    display: block; /* full line for each Item list */
+    padding: 10px;
+}
+
+.menuItems li a:hover {
+    text-decoration: underline;
+}
+
+/* Media Query */
+@media screen and (max-width: 768px) {
+    /* For tablet screens */
+    .popupMenu {
+    }
+}
+
+@media screen and (max-width: 480px) {
+    /* For small screens */
+    .popupMenu {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 380px) {
+    /* For mobile devices */
+    .menuItems li a {
+        font-size: 18px;
+    }
+}
+
+
+
+
+
+

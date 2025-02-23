@@ -1,0 +1,199 @@
+/* ------------------------Titles and captions' Extra Design------------------------ */
+.indicator:nth-of-type(2) .indicatorValue {
+    color: #00BF63;
+}
+
+.recommendation {
+    font-size: 10px;
+    font-weight: 300;
+    color: #333333;
+    padding-top: 5px;
+}
+
+/* ------------------------ACADEMIC RECORD Table------------------------ */
+.academicRecordView {
+    background-color: #FFE2B2;
+    padding: 20px;
+    cursor: default;
+}
+
+#academicRecordTable {
+    margin: 0;
+    width: 60%;
+    max-width: 800px;
+    min-width: 445px;
+    direction: rtl;
+    border-spacing: 5px;
+    table-layout: fixed;
+}
+
+#academicRecordTable th, #academicRecordTable td {
+    border: none;
+    background-color: #FFFFFF;
+    text-align: center;
+    padding: 5px;
+    font-family: 'Fredoka', Serif, serif;
+    font-weight: 300;
+}
+
+#academicRecordTable th {
+    background-color: #FFE2B2;
+    color: #000000;
+    border: none;
+    font-weight: 500;
+    font-size: 16px;
+    text-align: right;
+    vertical-align: middle;
+    padding: 5px;
+}
+
+#academicRecordTable td:not(.emptyCell) {
+    background-color: #FFFFFF;
+    color: #000000;
+    border: none;
+    font-size: 12px;
+    text-align: right;
+}
+
+#academicRecordTable td.emptyCell {
+    background-color: transparent;
+    padding-right: 0;
+}
+
+#academicRecordTable colgroup col.yearCol {
+    width: 5%;
+    min-width: 5px;
+    max-width: 10px;
+}
+
+#academicRecordTable colgroup col.courseCol {
+    width: 63%;
+    min-width: 200px;
+}
+
+#academicRecordTable colgroup col.creditCol {
+    width: 16%;
+    min-width: 50px;
+}
+
+#academicRecordTable colgroup col.gradeCol {
+    width: 16%;
+    min-width: 50px;
+}
+
+#academicRecordTable th.yearHeader {
+    visibility: hidden;
+}
+
+#academicRecordTable td:nth-child(3), #academicRecordTable td:nth-child(4) {
+    text-align: center;
+    cursor: default;
+}
+
+.checkbox {
+    width: 20px;
+    height: 20px;
+    color: #FFFFFF;
+    border: 0.5px #000000 solid;
+    align-self: center;
+    background-color: #FFFFFF;
+    cursor: pointer;
+}
+
+.checkbox:hover {
+    border: 0.5px #FF5A00 solid;
+}
+
+.vIcon:hover {
+    filter: brightness(0) saturate(100%) invert(42%) sepia(89%) saturate(1914%) hue-rotate(2deg) brightness(105%) contrast(105%);
+}
+
+.active {
+}
+
+.notChosen {
+    background-color: #FFFFFF;
+}
+
+.vIcon {
+    width: 20px;
+    height: 20px;
+}
+
+.vIconHidden {
+    display: none;
+}
+
+.detailsWindow {
+    position: absolute;
+    bottom: 35%;
+    background-color: rgba(51, 51, 51, 0.92);
+    color: #FFFFFF;
+    width: 150px;
+    height: 30px;
+    line-height: 1.5;
+    font-size: 11px;
+    font-weight: 300;
+    text-align: right;
+    border-radius: 4px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    white-space: pre-line;
+    z-index: 1000;
+    overflow: visible;
+    pointer-events: none;
+    padding: 5px;
+}
+
+/* ------------------------Media Query------------------------ */
+@media screen and (max-width: 768px) {
+    /* For tablet screens */
+    main {
+        margin-right: 10px;
+        margin-left: 10px;
+    }
+
+    .academicRecordView {
+        padding: 20px 5px 20px 10px;
+    }
+
+    #academicRecordTable {
+        width: 445px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    /* For small screens */
+    #academicRecordTable {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .academicRecordView {
+        padding-right: 1px;
+    }
+}
+
+@media screen and (max-width: 432px) {
+    .pageTitle {
+        font-size: 25px;
+    }
+
+    .checkbox {
+        width: 19px;
+        height: 19px;
+    }
+}
+
+@media screen and (max-width: 380px) {
+    /* For mobile devices */
+    .pageTitle {
+        font-size: 20px;
+    }
+
+    .checkbox {
+        width: 18px;
+        height: 18px;
+    }
+}

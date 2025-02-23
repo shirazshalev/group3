@@ -1,0 +1,56 @@
+{% extends ('Base.html') %}
+
+{# head >> metaTags #}
+{% block metaTags %}
+    יעדים אישיים, ממוצע תואר, סטודנטים, אוניברסיטת בן גוריון, אגודת הסטודנטים, ציון קורס
+{% endblock %}
+{# title #}
+{% block title %}יעדים אישיים{% endblock %}
+{# CSS links #}
+{% block extraStyles %}
+    <link rel="stylesheet" href="{{ url_for('SettingPersonalGoals.static', filename='CSS/SettingPersonalGoals.css') }}">
+{% endblock %}
+
+{# <body> #}
+{% block alertWindow %}
+{% endblock %}
+{# main - Navigation & Footer are included in Base.html #}
+{% block mainContent %}
+
+    <section class="welcomeSection">
+        <div class="welcomeText">
+            <h1 class="pageTitle">איזה כיף שאתם כאן!</br> זה המקום שלכם להגדיר יעדים אישיים
+                <img src="{{url_for('static', filename='SVG/happy-face.svg')}}" class="happyIcon">
+            </h1>
+            <p class="secondPageTitle">לחץ.י על הפלוס להצבת יעד חדש</p>
+        </div>
+    </section>
+    <section class="goalsSection">
+        <div class="goalsContainer">
+            <div class="goals">
+                <img src="{{url_for('static', filename='SVG/plus.svg')}}" alt=`plus` class="plusIcon">
+            </div>
+            <div class="goals">
+                <img src="{{url_for('static', filename='SVG/plus.svg')}}" alt=`plus` class="plusIcon">
+            </div>
+            <div class="goals">
+                <img src="{{url_for('static', filename='SVG/plus.svg')}}" alt=`plus` class="plusIcon">
+            </div>
+            <div class="goals">
+                <img src="{{url_for('static', filename='SVG/plus.svg')}}" alt=`plus` class="plusIcon">
+            </div>
+            <div class="goals">
+                <img src="{{url_for('static', filename='SVG/plus.svg')}}" alt=`plus` class="plusIcon">
+            </div>
+            <div class="goals">
+                <img src="{{url_for('static', filename='SVG/plus.svg')}}" alt=`plus` class="plusIcon">
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{# JS links #}
+{% block extraScripts %}
+    <script src="{{ url_for('SettingPersonalGoals.static', filename='JS/SettingPersonalGoals.js') }}"></script>
+{% endblock %}
+{# </body> #}

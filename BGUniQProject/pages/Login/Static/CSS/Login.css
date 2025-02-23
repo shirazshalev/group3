@@ -1,0 +1,145 @@
+* {
+    padding: 0;
+    margin: 0;
+    background-color: #fefdf5;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+}
+
+#nav {
+    justify-self: left;
+    padding-left: 20px;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    color: #000000;
+    font-size: 12px;
+    font-family: 'Fredoka', Serif, serif;
+    font-weight: 300;
+}
+
+main {
+    min-height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loginStyle {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+}
+
+.mainTitle {
+    color: #000000;
+    font-size: 20px;
+    font-weight: 500;
+    font-family: 'Fredoka', Serif, serif;
+    text-align: right;
+    padding-bottom: 5px;
+}
+
+.textStyle {
+    color: #000000;
+    font-size: 14px;
+    font-family: 'Fredoka', Serif, serif;
+    text-align: right;
+    line-height: 1.5;
+    padding-bottom: 20px;
+    font-weight: 400;
+}
+
+.textBoxInput {
+    color: #7E7E7E;
+    background-color: #FFFFFF;
+    font-family: 'Fredoka', Serif, serif;
+    font-size: 12px;
+    font-weight: 300;
+    line-height: 1.2em;
+    text-align: right;
+    width: 100%;
+    height: 50px;
+    min-width: 64px;
+    max-width: 400px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border: 1px solid #f7af18;
+    box-sizing: border-box;
+    box-shadow: none;
+    padding-right: 5px;
+}
+
+/* orange button */
+.mainButton {
+    color: #FFFFFF;
+    background-color: #f7af18;
+    font-family: 'Fredoka', Serif, serif;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.2em;
+    text-align: center;
+    padding: 10px 20px;
+    border: none;
+    width: 100%;
+    height: 50px;
+    min-width: 64px;
+    max-width: 400px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s;
+}
+
+.mainButton:hover {
+    background-color: #ffe2b2;
+}
+
+footer {
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+footer div{
+    justify-self: left;
+}
+
+#logo {
+    height: 80px;
+    width: auto;
+    padding-left: 20px;
+    padding-top: 20px;
+}
+
+header {
+    justify-self: left;
+    padding-left: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    color: #000000;
+    font-size: 12px;
+    font-family: 'Fredoka', Serif, serif;
+}
+
+.loginStyle .extraActions {
+    display: flex;
+    justify-content: space-between;
+    color: #000000;
+    font-size: 12px;
+    font-family: 'Fredoka', Serif, serif;
+    margin: -15px 0 15px;
+}
+
+.loginStyle a {
+    text-decoration: none;
+    color: #000000;
+}
+
+.loginStyle a:hover {
+    text-decoration: underline;
+}
+
+/* Media Query - not needed */

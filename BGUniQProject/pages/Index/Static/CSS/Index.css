@@ -1,0 +1,175 @@
+/* ------------------------Titles and captions' Extra Design------------------------ */
+.pageContent {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    align-items: center;
+    gap: 20px;
+}
+
+.welcomeSection {
+    background-color: #FEFDF5;
+    padding: 20px 40px 20px 20px;
+    text-align: right;
+}
+
+.indicatorsSection {
+    background-color: #FEFDF5;
+}
+
+.pageTitle {
+    font-size: 25px;
+    padding-bottom: 5px;
+}
+
+.p2 {
+    font-size: 12px;
+    font-weight: 300;
+    padding-bottom: 20px;
+}
+
+.mainTitleBGUniQ {
+    font-size: 33px;
+    font-weight: 600;
+    padding-bottom: 5px;
+}
+
+.secondTitleBGUniQ {
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.indicatorsContainer {
+    background-color: #FEF4CB;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-rows: auto;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+    align-content: center;
+    padding: 20px;
+    margin: 30px 30px 30px 0;
+    gap: 5px;
+}
+
+.indicator {
+    font-size: 16px;
+    text-align: center;
+    min-width: 76px;
+    min-height: 76px;
+}
+
+.indicator:nth-of-type(3) .indicatorValue {
+    color: #FF5A00;
+}
+
+.indicator:nth-of-type(1) .indicatorValue {
+    color: #00BF63;
+}
+
+h4 {
+    font-size: 14px;
+}
+
+.serviceText {
+    padding: 20px 40px 20px 0;
+}
+
+.serviceButtons {
+    background-color: #FFFFFF;
+    display: grid;
+    grid-template-columns: 150px 150px 150px 150px;
+    justify-content: right;
+    padding: 20px;
+}
+
+#btnAcademicRecord, #btnCreditCalculator, #btnWhatIfCalculator, #btnSetGoals {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding: 10px;
+    text-align: center;
+}
+
+.btnIcon {
+    height: 70px;
+    width: 70px;
+    padding-bottom: 5px;
+}
+
+.btnText {
+    padding-top: 10px;
+    font-family: 'Fredoka', Serif, serif;
+    font-weight: 400;
+    font-size: 12px;
+    border-top: 0.8px solid #f7af18;
+    color: #f7af18;
+}
+
+/* ------------------------Media Query------------------------ */
+@media screen and (max-width: 768px) {
+    /* For tablet screens */
+    .welcomeSection {
+        padding-left: 10px;
+    }
+
+    .indicatorsContainer {
+        margin-right: 5px;
+    }
+}
+
+@media screen and (max-width: 620px) {
+    .mainTitleBGUniQ {
+        font-size: 20px;
+    }
+
+    .secondTitleBGUniQ {
+        font-size: 12px;
+    }
+
+    .serviceButtons {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+
+    .serviceText {
+        padding: 20px 0 20px 0;
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    /* For small screens */
+    .pageContent {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 5px;
+    }
+
+    .indicatorsContainer {
+        margin: 0 auto;
+        width: 90%;
+    }
+
+    .serviceSection {
+        margin: 20px;
+    }
+}
+
+@media screen and (max-width: 380px) {
+    /* For mobile devices */
+    .serviceButtons {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+}
+
+@media screen and (max-width: 375px) {
+    .secondTitleBGUniQ {
+        font-size: 12px;
+    }
+}

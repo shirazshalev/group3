@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="{% block metaTags %}{% endblock %}">
+    <meta name="description" content="{% block metaDescription %}מערכת לניהול ובקרת ביצועים אקדמיים המאפשרת לסטודנטים לעקוב אחר ממוצע התואר, ציוני הקורסים ונקודות הזכות{% endblock %}">
+    <title>{% block title %}Page Title{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/Fonts.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/Base.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/Navigation.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/Footer.css') }}">
+    {% block extraStyles %}{% endblock %}
+</head>
+
+<body>
+
+<header>
+    {% block nav %}
+        {% include 'Navigation.html' %}
+    {% endblock %}
+</header>
+
+{% block alertWindow %}
+    <div id="Alert" class="hidden">
+        <div id="customAlert">
+            <div class="customAlertBox">
+                <p id="alertMessage"></p>
+                <div class="customAlertFooter">
+                    <button id="alertCloseButton">אישור</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+<main>
+    {% block mainContent %}
+    {% endblock %}
+</main>
+
+{% block btnHome %}
+    <div class="homePosition">
+        <button id="btnHomePage">חזרה למסך הבית</button>
+    </div>
+{% endblock %}
+
+<footer>
+    {% block footer %}
+        {% include 'Footer.html' %}
+    {% endblock %}
+</footer>
+
+<script src="{{ url_for('static', filename='JS/Menu.js') }}"></script>
+<script src="{{ url_for('static', filename='JS/Navigation.js') }}"></script>
+<script src="{{ url_for('static', filename='JS/Base.js') }}"></script>
+{% block extraScripts %}{% endblock %}
+</body>
+
+</html>

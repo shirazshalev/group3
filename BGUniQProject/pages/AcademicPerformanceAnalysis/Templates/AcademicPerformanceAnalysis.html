@@ -1,0 +1,221 @@
+{% extends ('Base.html') %}
+
+{# head >> metaTags #}
+{% block metaTags %}
+   ניתוחים אנליטיים, ממוצע תואר, אוניברסיטת בן גוריון, סטודנטים, אגודת הסטודנטים, ביצועים אקדמיים
+{% endblock %}
+{# title #}
+{% block title %}ניתוח ביצועים אקדמיים{% endblock %}
+{# CSS links #}
+{% block extraStyles %}
+    <link rel="stylesheet" href="{{ url_for('AcademicPerformanceAnalysis.static', filename='CSS/AcademicPerformanceAnalysis.css') }}">
+{% endblock %}
+
+{# <body> #}
+{% block alertWindow %}
+{% endblock %}
+
+{# main - Navigation & Footer are included in Base.html #}
+{% block mainContent %}
+    <section class="welcomeSection">
+        <div class="welcomeText">
+            <h1 class="pageTitle">ניתוח ביצועים אקדמיים</h1>
+            <p class="secondPageTitle">בעמוד זה תוכלו לצפות בצורה ויזואלית בביצועים שלכם :)</p>
+        </div>
+    </section>
+    <section class="indicatorsSection">
+        <div class="indicatorsContainer">
+            <div class="indicator">
+                <h4>ממוצע תואר</h4>
+                <h3 class="indicatorValue">84.92</h3>
+            </div>
+            <div class="indicator">
+                <h4>נק״ז מצטבר</h4>
+                <h3 class="indicatorValue">127</h3>
+                <h5>מתוך 162.5</h5>
+            </div>
+            <div class="indicator">
+                <h4>מס׳ קורסים</h4>
+                <h3 class="indicatorValue">38</h3>
+            </div>
+            <div class="indicator">
+                <h4>ממוצע היעד</h4>
+                <h3 class="indicatorValue">85.00</h3>
+            </div>
+        </div>
+    </section>
+
+
+    <div class="PerformanceGraphsContainer">
+        <section class="YearsAnalysis">
+            <p id="YearsTitle" class="GraphTitle">ממוצע שנת לימודים</p>
+            <div id="YearAverageGraph" class="ChartContainer">
+                <h2 class="ChartTitle">שנת לימודים</h2>
+                <div class="Chart">
+                    <div class="Scale">
+                        <div>100</div>
+                        <div>80</div>
+                        <div>60</div>
+                        <div>40</div>
+                        <div>20</div>
+                        <div>0</div>
+                    </div>
+                    <div class="Bar yearBar" data-value="77">
+                        <span class="text DetailsWindow">
+                            שנה ג׳ <br>
+                            סך סמסטרים: 2<br>
+                            סך קורסים: 9<br>
+                            מס׳ ציונים מעל היעד: 4
+                        </span>
+                        <span class="BarValue">77</span>
+                        <span class="BarLabel">שנה ג</span>
+                    </div>
+                    <div class="Bar yearBar" data-value="82">
+                        <span class="text DetailsWindow">
+                            שנה ב׳ <br>
+                            סך סמסטרים: 2<br>
+                            סך קורסים: 13<br>
+                            מס׳ ציונים מעל היעד: 5
+                        </span>
+                        <span class="BarValue">82</span>
+                        <span class="BarLabel">שנה ב</span>
+                    </div>
+                    <div class="Bar yearBar" data-value="75">
+                        <span class="text DetailsWindow">
+                            שנה א׳ <br>
+                            סך סמסטרים: 3<br>
+                            סך קורסים: 16<br>
+                            מס׳ ציונים מעל היעד: 7
+                        </span>
+                        <span class="BarValue">75</span>
+                        <span class="BarLabel">שנה א</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="SemestersAnalysis">
+            <p id="SemestersTitle" class="GraphTitle">ממוצע סמסטריאלי בשנה הנבחרת</p>
+            <div id="SemesterAverageGraph" class="Hidden ChartContainer">
+                <h2 class="ChartTitle">שם סמסטר</h2>
+                <div class="Chart">
+                    <div class="Scale">
+                        <div>100</div>
+                        <div>80</div>
+                        <div>60</div>
+                        <div>40</div>
+                        <div>20</div>
+                        <div>0</div>
+                    </div>
+                    <div class="Orange Bar" data-value="75">
+                        <span class="text DetailsWindow">
+                            סמסטר א׳ <br>
+                            סך קורסים: 5<br>
+                            מס׳ ציונים מעל היעד: 2
+                        </span>
+                        <span class="BarValue">75</span>
+                        <span class="BarLabel">סמסטר א</span>
+                    </div>
+                    <div class="Orange Bar" data-value="82">
+                        <span class="text DetailsWindow">
+                            סמסטר ב׳ <br>
+                            סך קורסים: 7<br>
+                            מס׳ ציונים מעל היעד: 3
+                        </span>
+                        <span class="BarValue">82</span>
+                        <span class="BarLabel">סמסטר ב</span>
+                    </div>
+                    <div class="Orange Bar" data-value="80">
+                        <span class="text DetailsWindow">
+                            סמסטר ג׳ <br>
+                            סך קורסים: 6<br>
+                            מס׳ ציונים מעל היעד: 1
+                        </span>
+                        <span class="BarValue">80</span>
+                        <span class="BarLabel">סמסטר קיץ</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="CoursesAnalysis">
+            <p id="CoursesTitle" class="GraphTitle">ציוני קורסים בסמסטר הנבחר</p>
+            <div id="CoursesGradesGraph" class="Hidden ChartContainer">
+                <h2 class="ChartTitle">שם הקורס</h2>
+                <div class="LightOrange Chart">
+                    <div class="Scale">
+                        <div>100</div>
+                        <div>80</div>
+                        <div>60</div>
+                        <div>40</div>
+                        <div>20</div>
+                        <div>0</div>
+                    </div>
+                    <div class="Bar CourseBar" data-value="86">
+                        <span class="text DetailsWindow">
+                            מערכות בינה עסקית <br>
+                            תרגילי בית 10%: 100<br>
+                            מבחן סופי 90%: 76
+                        </span>
+                        <span class="BarValue">86</span>
+                        <span class="BarLabel">מערכות בינה עסקית</span>
+                    </div>
+                    <div class="Bar CourseBar" data-value="87">
+                        <span class="text DetailsWindow">
+                            תשתית וטכנולוגיית מידע <br>
+                            תרגילי בית 10%: 87<br>
+                            מבחן סופי 90%: 87
+                        </span>
+                        <span class="BarValue">87</span>
+                        <span class="BarLabel">תשתית וטכנולוגיית מידע</span>
+                    </div>
+                    <div class="Bar CourseBar" data-value="94">
+                        <span class="text DetailsWindow">
+                            יסודות המימון <br>
+                            תרגילי בית 10%: 100<br>
+                            מבחן סופי 90%: 94
+                        </span>
+                        <span class="BarValue">94</span>
+                        <span class="BarLabel">יסודות המימון</span>
+                    </div>
+                    <div class="Bar CourseBar" data-value="80">
+                        <span class="text DetailsWindow">
+                            אוטומציה <br>
+                            תרגילי בית 10%: 80<br>
+                            מבחן סופי 90%: 80
+                        </span>
+                        <span class="BarValue">80</span>
+                        <span class="BarLabel">אוטומציה</span>
+                    </div>
+                    <div class="Bar CourseBar" data-value="95">
+                        <span class="text DetailsWindow">
+                            ניהול פרויקטים <br>
+                            תרגילי בית 10%: 95<br>
+                            מבחן סופי 90%: 95
+                        </span>
+                        <span class="BarValue">95</span>
+                        <span class="BarLabel">ניהול פרויקטים</span>
+                    </div>
+                    <div class="Bar CourseBar" data-value="94">
+                        <span class="text DetailsWindow">
+                            הנדסת איכות <br>
+                            תרגילי בית 10%: 94<br>
+                            מבחן סופי 90%: 94
+                        </span>
+                        <span class="BarValue">94</span>
+                        <span class="BarLabel">הנדסת איכות</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="BackButtonContainer">
+        <button id="BackButton" class="BackIcon">
+            <img src="{{url_for('static', filename='SVG/backBtn.svg')}}" alt="חזור" class="backBtn">
+        </button>
+    </div>
+{% endblock %}
+
+{# JS links #}
+{% block extraScripts %}
+    <script src="{{ url_for('AcademicPerformanceAnalysis.static', filename='JS/AcademicPerformanceAnalysis.js') }}"></script>
+{% endblock %}
+{# </body> #}

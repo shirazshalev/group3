@@ -1,0 +1,70 @@
+{% extends ('Base.html') %}
+
+{# head >> metaTags #}
+{% block metaTags %}
+    מחשבון נקודות זכות, ממוצע תואר, סטודנטים, אוניברסיטת בן גוריון, אגודת הסטודנטים
+{% endblock %}
+{# title #}
+{% block title %}הזנת פרטי תואר{% endblock %}
+{# CSS links #}
+{% block extraStyles %}
+    <link rel="stylesheet"
+          href="{{ url_for('YearSemesterSelection.static', filename='CSS/YearSemesterSelection.css') }}">
+{% endblock %}
+
+{# <body> #}
+{# alertWindow #}
+
+{# main - Navigation & Footer are included in Base.html #}
+{% block mainContent %}
+    <section id="YearSemesterSection">
+        <H3 class="pageTitle">בחרו את שנת הלימוד והסמסטר הנוכחיים</H3>
+        <p class="TextStyle">לפני שתעברו לשלב הזנת הציונים</p>
+        <table>
+            <tbody>
+            <tr>
+                <td>
+                    <button class="SemesterYearButton"> שנה א׳</button>
+                </td>
+                <td>
+                    <button class="SemesterYearButton"> שנה ב׳</button>
+                </td>
+                <td>
+                    <button class="SemesterYearButton"> שנה ג׳</button>
+                </td>
+                <td>
+                    <button class="SemesterYearButton"> שנה ד׳</button>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button class="SemesterYearButton"> סמסטר א׳</button>
+                </td>
+                <td>
+                    <button class="SemesterYearButton"> סמסטר ב׳</button>
+                </td>
+                <td>
+                    <button class="SemesterYearButton"> סמסטר קיץ</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section id="ContinueSection">
+        <p class="NotesTextStyle">לחצו המשך להזנת ציוני הקורסים</p>
+        <p class="NotesTextStyle"> *במידת הצורך ניתן לעדכן את מספר נקודות הזכות </p>
+        <div class="ContinueButtonContainer">
+            <button class="ContinueButton" id="ContinueBTN">המשך</button>
+        </div>
+    </section>
+{% endblock %}
+
+{% block btnHome %}
+{% endblock %}
+
+{# JS links #}
+{% block extraScripts %}
+    <script src="{{ url_for('YearSemesterSelection.static', filename='JS/YearSemesterSelection.js') }}"></script>
+{% endblock %}
+{# </body> #}

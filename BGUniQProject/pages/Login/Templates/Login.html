@@ -1,0 +1,58 @@
+{% extends ('Base.html') %}
+
+{# head >> metaTags #}
+{% block metaTags %}
+    התחברות, אגודת הסטודנטים, אוניברסיטת בן גוריון, סטודנטים, מידע אקדמי
+{% endblock %}
+{% block metaDescription %}
+    מחשבון נקודות זכות לסטודנטים חברי האגודה באוניברסיטת בן גוריון בנגב
+{% endblock %}
+{# title #}
+{% block title %}התחברות{% endblock %}
+{# CSS links #}
+{% block extraStyles %}
+    <link rel="stylesheet" href="{{ url_for('Login.static', filename='CSS/Login.css') }}">
+{% endblock %}
+
+{# <body> #}
+{% block nav %}
+    <p id="nav">Ben-Gurion University of the Negev</p>
+{% endblock %}
+{# alertWindow #}
+
+{# main - Navigation & Footer are included in Base.html #}
+{% block mainContent %}
+        <section class="loginSection">
+        <div class="loginStyle">
+            <H3 class="mainTitle">ברוכים הבאים וברוכות הבאות ל- BGUniQ</H3>
+            <p class="textStyle"> כל מה שאתם צריכים כדי להיות במעקב ובבקרה על </br>
+                הביצועים האקדמיים שלכם ולתכנן את הדרך להצלחה</p>
+            <form class="formStyle" action="" method="GET">
+                <input class="textBoxInput" type="email" name="Email" placeholder="כתובת מייל*" required> </br>
+                <input class="textBoxInput" type="password" name="Password" placeholder="סיסמה*" required> </br>
+                <input class="textBoxInput" type="text" name="StudentID" placeholder="תעודת זהות*" required> </br>
+                <input class="mainButton" type="submit" name="Login" value="התחברות"> </br> </br>
+            </form>
+            <div class="extraActions">
+                <a href="Sign%20In.html">שכחתי סיסמה</a>
+                <a href="/signin-personal">צור חשבון</a>
+                <!--    <i class='bx bx-user' ></i>-->
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block btnHome %}
+{% endblock %}
+
+{% block footer %}
+    <div>
+        <img src="{{url_for('static', filename='Images/AgudaLOGO.png')}}" alt="Student Union Ben-Gurion Logo" id="logo">
+    </div>
+{% endblock %}
+
+{# JS links #}
+{% block extraScripts %}
+    <script src="{{ url_for('Login.static', filename='JS/Login.js') }}"></script>
+{% endblock %}
+{# </body> #}

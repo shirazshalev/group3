@@ -1,0 +1,85 @@
+{% extends ('Base.html') %}
+
+{# head >> metaTags #}
+{% block metaTags %}
+    עמוד הבית, ממוצע תואר, סטודנטים, אוניברסיטת בן גוריון, אגודת הסטודנטים, מחשבון סימולציה, ציונים
+{% endblock %}
+{# title #}
+{% block title %}עמוד הבית{% endblock %}
+{# CSS links #}
+{% block extraStyles %}
+    <link rel="stylesheet" href="{{ url_for('Index.static', filename='CSS/Index.css') }}">
+{% endblock %}
+
+{# <body> #}
+{% block alertWindow %}
+{% endblock %}
+
+{# main - Navigation & Footer are included in Base.html #}
+{% block mainContent %}
+    <div class="pageContent">
+        <section class="welcomeSection">
+            <div class="welcomeText">
+                <h1 class="pageTitle" id="welcomeUser">שלום</h1>
+                <p class="p2">איזה כיף שחזרת אלינו :)</p>
+                <p class="mainTitleBGUniQ">BGUniQ עושה לכם סדר</p>
+                <p class="secondTitleBGUniQ">בכל מה שחשוב למעקב, ניתוח ובקרה על ההישגים שלכם</p>
+            </div>
+        </section>
+
+        <section class="indicatorsSection">
+            <div class="indicatorsContainer">
+                <div class="indicator">
+                    <h4>ממוצע תואר</h4>
+                    <h3 class="indicatorValue">84.92</h3>
+                </div>
+                <div class="indicator">
+                    <h4>נק״ז מצטבר</h4>
+                    <h3 class="indicatorValue">127</h3>
+                </div>
+                <div class="indicator">
+                    <h4>ממוצע היעד</h4>
+                    <h3 class="indicatorValue">85.00</h3>
+                </div>
+                <div class="indicator">
+                    <h4>מס׳ קורסים</h4>
+                    <h3 class="indicatorValue">38</h3>
+                </div>
+            </div>
+        </section>
+    </div>
+
+
+    <section class="serviceSection">
+        <div class="serviceText">
+            <h2 class="pageTitle">שירותים בקליק</h2>
+        </div>
+        <div class="serviceButtons">
+            <button id="btnCreditCalculator">
+                <img src="{{url_for('static', filename='SVG/calculator-2.svg')}}" class="btnIcon">
+                <span class="btnText">מחשבון נק״ז</span>
+            </button>
+            <button id="btnAcademicRecord">
+                <img src="{{url_for('static', filename='SVG/academic-research.svg')}}" class="btnIcon">
+                <span class="btnText">גיליון ציונים</span>
+            </button>
+            <button id="btnWhatIfCalculator">
+                <img src="{{url_for('static', filename='SVG/simulation.svg')}}" class="btnIcon">
+                <span class="btnText">מחשבון סימולציה</span>
+            </button>
+            <button id="btnSetGoals">
+                <img src="{{url_for('static', filename='SVG/goal.svg')}}" class="btnIcon">
+                <span class="btnText">הצבת יעדים</span>
+            </button>
+        </div>
+    </section>
+{% endblock %}
+
+{% block btnHome %}
+{% endblock %}
+
+{# JS links #}
+{% block extraScripts %}
+    <script src="{{ url_for('Index.static', filename='JS/Index.js') }}"></script>
+{% endblock %}
+{# </body> #}

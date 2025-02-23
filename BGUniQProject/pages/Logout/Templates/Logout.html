@@ -1,0 +1,32 @@
+{% extends ('Base.html') %}
+
+{# head >> metaTags #}
+{% block metaTags %}
+    עמוד הבית, ממוצע תואר, סטודנטים, אוניברסיטת בן גוריון, אגודת הסטודנטים, מחשבון סימולציה, ציונים
+{% endblock %}
+{# title #}
+{% block title %}עמוד הבית{% endblock %}
+{# CSS links #}
+{% block extraStyles %}
+    <link rel="stylesheet" href="{{ url_for('Index.static', filename='CSS/Index.css') }}">
+{% endblock %}
+
+{# <body> #}
+{% block alertWindow %}
+{% endblock %}
+{# main - Navigation & Footer are included in Base.html #}
+{% block mainContent %}
+
+{% endblock %}
+
+{% block btnHome %}
+{% endblock %}
+
+{# JS links #}
+{% block extraScripts %}
+    <script src="{{ url_for('Index.static', filename='JS/Index.js') }}"></script>
+{% endblock %}
+{# </body> #}
+
+{# --------------------------Icons-------------------- #}
+<img src="{{url_for('static', filename='SVG/angle-down.svg')}}" class="collapseIcon">

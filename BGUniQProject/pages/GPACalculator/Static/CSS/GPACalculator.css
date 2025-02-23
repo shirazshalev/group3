@@ -1,0 +1,630 @@
+/* ------------------------Titles and captions' Extra Design------------------------ */
+.TextStyle {
+    color: #000000;
+    font-size: 14px;
+    font-weight: 300;
+    /*text-align: right;*/
+    padding-bottom: 20px;
+    /*line-height: 1.5;*/
+}
+
+button {
+    font-family: 'Fredoka', Serif, serif;
+}
+
+/* ------------------------Year-Semester------------------------ */
+.SemesterYearButton {
+    color: #000000;
+    background-color: #f7af18;
+    flex-wrap: nowrap;
+    font-size: 1rem;
+    font-weight: 350;
+    line-height: 1em;
+    text-align: center;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    border: none;
+    width: 100%;
+    height: 40px;
+    min-width: 120px;
+    max-width: 150px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.SemesterYearButton:hover {
+    background-color: #ffe2b2;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.SemesterYearButton.active {
+    background-color: #FFE2B2;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease;
+}
+
+table {
+    border-spacing: 10px 2.5px;
+    margin-right: -10px;
+}
+
+.ContinueButton {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    padding: 10px 20px;
+    z-index: 10;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    align-items: center;
+    cursor: pointer;
+    color: #f7af18;
+    border: 1px #f7af18 solid;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.2em;
+    height: 40px;
+    width: 120px;
+    max-width: 150px;
+    border-radius: 20px;
+}
+
+.ContinueButton:hover {
+    background-color: #f7af18;
+    color: #FFFFFF;
+}
+
+/* ------------------------Calculator Table Design------------------------ */
+#CalculatorInputContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    border-radius: 40px;
+    background-color: #FFE2B2;
+    width: 90%;
+    min-height: 50vh;
+    position: relative;
+    padding: 20px;
+}
+
+#CoursesTable {
+    width: 100%;
+    position: relative;
+    text-align: center;
+    border-spacing: 20px 15px;
+    table-layout: auto;
+    margin-bottom: 30px;
+}
+
+.tdInput {
+    height: 30px;
+    width: auto;
+    position: relative;
+    vertical-align: middle;
+    text-align: center;
+}
+
+table input[type="number"] {
+    width: 100%;
+    min-width: 50px;
+    padding: 5px;
+    height: 30px;
+    font-size: 0.9rem;
+    font-weight: 300;
+    border: none;
+    text-align: center;
+    background-color: #FFFFFF;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+#CoursesTable input[list] {
+    margin: 0;
+    direction: rtl;
+    width: 100%;
+    min-width: 120px;
+    height: 30px;
+    font-weight: 300;
+    border: none;
+    text-align: right;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+    padding: 5px;
+}
+
+.ThickTd {
+    width: 250px;
+}
+
+.GPAButton {
+    color: #FFFFFF;
+    background-color: #f7af18;
+    flex-wrap: nowrap;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1em;
+    text-align: center;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    border: none;
+    width: 100%;
+    height: 40px;
+    min-width: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.GPAButton:hover {
+    background-color: #FF5A00;
+}
+
+#CoursesTable td {
+    text-align: start;
+    position: relative;
+    /*width: fit-content;*/
+}
+
+#CoursesTable tr {
+    height: 40px;
+}
+
+#CoursesTable thead {
+    font-size: 1.2rem;
+    font-weight: 400;
+}
+
+input[list]::-webkit-calendar-picker-indicator {
+    color: transparent;
+    background: transparent;
+    -webkit-appearance: none;
+}
+
+input[list]:focus, table input[type="number"]:focus {
+    outline: none;
+}
+
+.InputCourseContainer {
+    position: relative;
+}
+
+#SaveButton {
+    color: #000000;
+    background-color: #f7af18;
+    position: absolute;
+    bottom: 20px;
+    align-self: flex-start;
+    right: 200px;
+    flex-wrap: nowrap;
+    text-align: center;
+    border: none;
+    width: 100%;
+    height: 30px;
+    max-width: 160px;
+    margin: 7px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1em;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+#SaveButton:hover {
+    border: 1px solid black;
+}
+
+.NotesTextStyle {
+    color: #000000;
+    font-size: 0.7rem;
+    font-family: 'Fredoka', Serif, serif;
+    text-align: right;
+    line-height: 1.5;
+    padding: 10px 0;
+}
+
+#AddCourseButton {
+    color: #000000;
+    background-color: #f7af18;
+    font-family: 'Fredoka', Serif, serif;
+    flex-wrap: nowrap;
+    text-align: center;
+    border: none;
+    width: 100%;
+    height: 30px;
+    max-width: 160px;
+    margin: 7px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1em;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    position: absolute;
+    bottom: 20px;
+    align-self: flex-start;
+}
+
+#AddCourseButton:hover {
+    border: 1px solid black;
+}
+
+.ArrowIcon {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    top: 30%;
+    left: 8%;
+    pointer-events: none;
+}
+
+.PopupMenuContainer {
+    position: relative;
+    bottom: 12px;
+    display: inline-block;
+    width: 20px;
+    height: 30px;
+}
+
+.ExtraActionsButton {
+    font-size: 2rem;
+    color: #FF5A00;
+    font-family: 'Fredoka', Serif, serif;
+    font-weight: lighter;
+}
+
+.PopupActionsMenu {
+    display: none;
+    position: absolute;
+    top: 110%;
+    right: 0;
+    background-color: rgba(230, 230, 230, 0.8);
+    border: 0.01px solid #000000;
+    border-radius: 5px;
+    z-index: 998;
+    min-width: 85px;
+    font-family: 'Fredoka', Serif, serif;
+    font-size: 0.6rem;
+}
+
+.PopupActionsMenu .menu-item {
+    padding: 5px;
+    color: #000;
+    cursor: pointer;
+    text-align: right;
+}
+
+.PopupActionsMenu .menu-item:hover {
+    color: #FF5A00;
+}
+
+.hidden {
+    display: none;
+}
+
+input[readonly] {
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    pointer-events: none;
+}
+
+.error-message {
+    font-family: 'Fredoka', Serif, serif;
+    color: red;
+    font-size: 0.6rem;
+    text-align: right;
+    position: absolute;
+    display: grid;
+    justify-self: end;
+    align-self: start;
+    padding: 1px;
+    pointer-events: none;
+    white-space: nowrap;
+}
+
+/* ------------------------------- Styling Grade By Components Popup Window ------------------------------- */
+/* Popup styles */
+.ComponentPopupHidden {
+    position: absolute;
+    top: 30px;
+    left: -100px;
+    background-color: #ffe0b3;
+    border: 1px solid black;
+    border-radius: 30px;
+    padding: 15px;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
+    z-index: 997;
+    width: 400px;
+    display: none; /* Hidden by default */
+}
+
+.ComponentPopupHidden.show {
+    display: block;
+}
+
+.PopupHeader {
+    flex: 1;
+    margin-bottom: 10px;
+}
+
+.PopupHeader label {
+    font-family: 'Fredoka', Serif, serif;
+    font-weight: 500;
+    font-size: 0.8rem;
+    color: #333;
+    /*text-wrap: nowrap;*/
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.PopupTitle {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #333;
+}
+
+.PopupHeader .titels {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+/* Close Popup Window Button Style */
+.PopupHeader button {
+    border: none;
+    background: none;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.PopupBody {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /*between the rows*/
+}
+
+.GradeComponentRow {
+    display: flex;
+    align-items: center;
+    gap: 10px; /*between the columns inside the row*/
+    margin-bottom: 10px;
+}
+
+.ComponentInRow {
+    flex: 1; /* Ensure equal width for all columns */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px; /*between the title row to the input cell*/
+}
+
+/* Specific width for the "מרכיב ציון" column */
+.ComponentInRow:first-child {
+    flex: 1.5; /* Give more space to the first column */
+}
+
+.ComponentInRow input[type="number"] {
+    padding: 10px;
+    height: 30px;
+    width: 100%;
+    font-family: 'Fredoka', Serif, serif;
+    font-size: 0.7rem;
+    border: 1px solid #000000;
+    text-align: right;
+    min-width: 40px;
+}
+
+.ComponentInRow select {
+    padding: 5px;
+    width: 100%;
+    height: 30px;
+    font-family: 'Fredoka', Serif, serif;
+    font-size: 0.7rem;
+    border: 1px solid #000000;
+    min-width: 40px;
+}
+
+.PopupFooter {
+    display: flex;
+    justify-content: flex-start;
+    gap: 5px;
+}
+
+.ActionButton {
+    padding: 5px 10px;
+    margin-top: 10px;
+    background-color: #F7aF18;
+    font-family: 'Fredoka', Serif, serif;
+    color: white;
+    font-size: 0.7rem;
+    font-weight: normal;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    min-width: 40px;
+}
+
+.ActionButton:hover {
+    border: 0.8px solid #000000;
+}
+
+/* ------------------------Media Query------------------------ */
+@media (max-width: 768px) {
+    main {
+        margin-right: 10px;
+        margin-left: 10px;
+    }
+
+    #CalculatorInputContainer {
+        padding: 10px;
+        border-radius: 40px;
+        width: 100%;
+        min-height: 50vh;
+    }
+
+    .ComponentPopupHidden {
+        top: 45px;
+    }
+
+    .ActionButton {
+        min-width: 20%;
+    }
+
+    .SemesterYearButton {
+        min-width: 100px;
+    }
+
+    #CoursesTable input[list] {
+        font-size: 12px;
+    }
+
+    .GPAButton {
+        font-size: 14px;
+    }
+
+    #CoursesTable thead {
+        font-size: 16px;
+        font-weight: 400;
+        margin: 0;
+    }
+
+}
+
+@media (max-width: 480px) {
+    .MainTitle {
+        font-size: 22px;
+    }
+
+    #CoursesTable tbody tr td:nth-last-child(-n+2) {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+        width: 100%;
+        height: 20px;
+        padding-bottom: 1px;
+    }
+
+    #CoursesTable tbody tr {
+        height: 50px;
+    }
+
+    .tdInput {
+        justify-content: start;
+        align-content: start;
+    }
+
+    #CoursesTable tbody .GPAButton {
+        font-size: 10px;
+        height: 100%;
+    }
+
+    #CoursesTable tr input[list] {
+        height: 40px;
+    }
+
+    tbody td input[list] {
+        height: 40px;
+    }
+
+    #CoursesTable input[type="number"] {
+        height: 40px;
+    }
+
+    #CoursesTable thead {
+        font-size: 14px;
+        text-align: right;
+        margin: 0;
+    }
+
+    .ComponentPopupHidden {
+        top: 25px;
+        left: 0;
+        width: 350px;
+    }
+
+    .SemesterYearButton {
+        line-height: 1em;
+        height: 30px;
+        min-width: 83px;
+        max-width: 150px;
+        font-size: 14px;
+    }
+
+    #AddCourseButton {
+        width: 100px;
+        font-size: 14px;
+        right: 10px;
+    }
+
+    #SaveButton {
+        width: 100px;
+        font-size: 14px;
+        right: 120px;
+    }
+
+    .PopupMenuContainer {
+        position: relative;
+        bottom: 22px;
+    }
+
+    .ComponentInRow select {
+        height: 40px;
+    }
+
+    .GradeComponentRow {
+        gap: 2px; /*between the columns inside the row*/
+    }
+}
+
+@media (max-width: 380px) {
+
+    .MainTitle {
+        font-size: 20px;
+    }
+
+    .ComponentPopupHidden {
+        width: 300px;
+        left: 0;
+    }
+
+    .SemesterYearButton {
+        line-height: 1em;
+        min-width: 80px;
+        max-width: 150px;
+    }
+
+    #CoursesTable thead {
+        font-size: 13px;
+    }
+
+    #CoursesTable tr input[list] {
+        min-width: 20px;
+        font-size: 0.7rem;
+    }
+
+    #CoursesTable input[type="number"] {
+        text-align: start;
+        min-width: 30px;
+        font-size: 0.7rem;
+    }
+
+    #CoursesTable tbody .GPAButton {
+        font-size: 10px;
+    }
+
+    #CoursesTable tbody tr td:nth-last-child(-n+2) {
+        display: flex;
+        flex-direction: column;
+        font-size: 5px;
+    }
+
+}

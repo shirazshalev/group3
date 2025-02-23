@@ -1,0 +1,268 @@
+/* ------------------------Titles and captions' Extra Design------------------------ */
+main {
+    margin: 20px 40px 100px 20px;
+}
+
+.welcomeSection {
+    background-color: #FFE2B2;
+    padding: 30px 85px 20px 0;
+}
+
+.secondPageTitle {
+    font-size: 16px;
+    font-weight: 400;
+    padding-top: 5px;
+}
+
+.indicatorsSection {
+    display: grid;
+    grid-template-columns: 100px 100px 100px;
+    margin-bottom: 10px;
+    gap: 20px;
+    padding: 0 80px 10px 0;
+}
+
+.indicator {
+    width: 100px;
+    height: 100px;
+    text-align: center;
+}
+
+/* ------------------------Page design------------------------ */
+button {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    align-items: center;
+    display: flex;
+    cursor: pointer;
+}
+
+/* ------------------------ACADEMIC RECORD Table------------------------ */
+.academicRecordView {
+    background-color: #FFE2B2;
+    padding: 20px;
+}
+
+#academicRecordTable {
+    direction: rtl;
+    margin: 0;
+    width: 60%;
+    max-width: 600px;
+    min-width: 445px;
+    border-spacing: 5px;
+    table-layout: fixed;
+}
+
+#academicRecordTable th, #academicRecordTable td {
+    border: none;
+    background-color: #FFFFFF;
+    text-align: center;
+    padding: 5px;
+    font-weight: 300;
+}
+
+#academicRecordTable th {
+    background-color: #FFE2B2;
+    color: #000000;
+    border: none;
+    font-weight: 400;
+    font-size: 16px;
+    text-align: right;
+    vertical-align: middle;
+    padding: 5px;
+}
+
+#academicRecordTable th:first-child {
+    visibility: hidden;
+}
+
+#academicRecordTable td:not(.emptyCell) {
+    background-color: #FFFFFF;
+    color: #000000;
+    border: none;
+    font-size: 12px;
+    text-align: right;
+}
+
+#academicRecordTable tr.yearHeader td {
+    background-color: #FFA68D;
+    color: #FFFFFF;
+    /*writing-mode: vertical-rl;*/
+    vertical-align: middle;
+    text-align: right;
+    font-size: 14px;
+    font-weight: 400;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    padding-right: 35px;
+}
+
+.collapseIcon {
+    width: 10px;
+    height: 10px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+img.collapseIcon {
+    filter: invert(1);
+}
+
+#academicRecordTable td.emptyCell {
+    background-color: transparent;
+}
+
+#academicRecordTable colgroup col.yearCol {
+    width: 10%;
+    min-width: 30px;
+    max-width: 35px;
+}
+
+#academicRecordTable colgroup col.courseCol {
+    width: 60%;
+    min-width: 200px;
+}
+
+#academicRecordTable colgroup col.creditCol {
+    width: 15%;
+    min-width: 50px;
+}
+
+#academicRecordTable colgroup col.gradeCol {
+    width: 15%;
+    min-width: 50px;
+}
+
+#academicRecordTable th.yearHeader {
+    visibility: hidden;
+}
+
+tr[data-hidden="true"] {
+    display: none; /* Hides rows where the data-hidden attribute is set to "true" */
+}
+
+tr[data-year] td:first-child {
+    font-weight: bold; /* Makes the text in the first cell of rows with a data-year attribute bold */
+    cursor: pointer; /* Changes the cursor to a pointer when hovering over these cells */
+}
+
+#academicRecordTable td:nth-child(3), #academicRecordTable td:nth-child(4) {
+    text-align: center;
+    cursor: default;
+}
+
+.detailsWindow {
+    position: absolute;
+    bottom: 35%;
+    background-color: rgba(51, 51, 51, 0.92);
+    color: #FFFFFF;
+    font-weight: 300;
+    padding: 8px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    text-align: right;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    white-space: pre-line;
+    pointer-events: none;
+    z-index: 1000;
+    overflow: visible;
+    width: 110px;
+    height: 50px;
+    line-height: 1.5;
+}
+
+.impactGPA {
+    position: absolute;
+    bottom: 35%;
+    color: #FFFFFF;
+    font-weight: 400;
+    padding: 2px;
+    border-radius: 25px;
+    font-size: 12px;
+    text-align: center;
+    direction: ltr;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    white-space: pre-line;
+    pointer-events: none;
+    z-index: 1000;
+    overflow: visible;
+    width: 50px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+}
+
+.arrowIcon {
+    width: 15px;
+    height: 15px;
+    filter: brightness(0) invert(1);
+}
+
+/* Media Query */
+@media screen and (max-width: 768px) {
+    /* For tablet screens */
+    main {
+        margin-right: 10px;
+        margin-left: 10px;
+    }
+
+    .welcomeSection {
+        padding-right: 55px;
+        padding-left: 10px;
+    }
+
+    .indicatorsSection {
+        gap: 10px;
+        padding: 0 45px 10px 0;
+    }
+
+    .academicRecordView {
+        padding: 20px 5px 20px 10px;
+    }
+
+    #academicRecordTable {
+        width: 445px;
+    }
+
+    #academicRecordTable colgroup col.yearCol {
+        width: 5%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    /* For small screens */
+    .welcomeSection {
+        padding-right: 30px;
+        padding-left: 10px;
+    }
+
+    .indicatorsSection {
+        gap: 10px;
+        padding: 0 25px 10px 0;
+    }
+
+    #academicRecordTable {
+        width: 100%;
+        min-width: 0;
+    }
+}
+
+@media screen and (max-width: 380px) {
+    /* For mobile devices */
+    .welcomeSection h1 {
+        font-size: 20px;
+    }
+
+    .welcomeSection h2 {
+        font-size: 14px;
+    }
+}
+
