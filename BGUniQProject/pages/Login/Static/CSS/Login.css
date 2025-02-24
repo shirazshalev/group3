@@ -14,10 +14,19 @@
 }
 
 main {
-    min-height: 80vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 20px;
+    min-height: 80vh;
+    box-sizing: border-box;
+}
+
+.loginSection {
+    padding: 50px;
+    border: 0.5px solid #fefdf5;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    border-radius: 35px;
 }
 
 .loginStyle {
@@ -37,7 +46,7 @@ main {
     font-size: 14px;
     text-align: right;
     line-height: 1.5;
-    padding-bottom: 20px;
+    padding-bottom: 10px;
     font-weight: 400;
 }
 
@@ -87,30 +96,6 @@ main {
     background-color: #ffe2b2;
 }
 
-footer {
-    display: grid;
-    grid-template-columns: 1fr;
-}
-
-footer div{
-    justify-self: left;
-}
-
-#logo {
-    height: 80px;
-    width: auto;
-    padding-left: 20px;
-    padding-top: 20px;
-}
-
-header {
-    justify-self: left;
-    padding-left: 20px;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    font-size: 12px;
-}
-
 .loginStyle .extraActions {
     display: flex;
     justify-content: space-between;
@@ -128,4 +113,38 @@ header {
     text-decoration: underline;
 }
 
-/* Media Query - not needed */
+input:focus, textarea:focus, select:focus, button:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+input {
+    cursor: default;
+}
+
+/* ------------------------ForgotMyPassword------------------------ */
+.back {
+    display: flex;
+    justify-content: flex-end;
+    padding-bottom: 5px;
+    cursor: pointer;
+}
+
+/* ------------------------Footer------------------------ */
+footer {
+    display: grid;
+    grid-template-columns: 1fr;
+    min-height: 10vh;
+    margin: 20px;
+}
+
+footer div{
+    justify-self: left;
+}
+
+#logo {
+    height: 80px;
+    width: auto;
+}
+
+/* ------------------------Media Query - not needed------------------------ */

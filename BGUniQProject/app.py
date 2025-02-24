@@ -11,6 +11,9 @@ def home():
 from pages.Login.Login import (loginBP)
 app.register_blueprint(loginBP)
 
+# ForgotMyPassword
+from pages.ForgotMyPassword.ForgotMyPassword import (ForgotMyPasswordBP)
+app.register_blueprint(ForgotMyPasswordBP)
 
 # Navigation
 from components.Navigation.Navigation import (navigationBP)
