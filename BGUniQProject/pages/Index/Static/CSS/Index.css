@@ -121,13 +121,40 @@ h4 {
     }
 }
 
-@media screen and (max-width: 620px) {
-    .mainTitleBGUniQ {
-        font-size: 20px;
+@media screen and (max-width: 680px) {
+    .welcomeSection {
+        padding-right: 15px;
     }
+
+
 
     .secondTitleBGUniQ {
         font-size: 12px;
+    }
+
+    .pageContent {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 5px;
+    }
+
+    .indicatorsSection {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin: 0 auto;
+        text-align: center;
+        padding: 0;
+    }
+
+    .indicatorsContainer {
+        margin: 0 auto;
+        width: 90%;
+    }
+
+    .serviceSection {
+        margin: 20px;
     }
 
     .serviceButtons {
@@ -144,19 +171,8 @@ h4 {
 
 @media screen and (max-width: 480px) {
     /* For small screens */
-    .pageContent {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 5px;
-    }
-
-    .indicatorsContainer {
-        margin: 0 auto;
-        width: 90%;
-    }
-
-    .serviceSection {
-        margin: 20px;
+    .mainTitleBGUniQ {
+        font-size: 25px;
     }
 }
 
