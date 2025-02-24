@@ -1,22 +1,15 @@
 * {
-    padding: 0;
-    margin: 0;
     background-color: #fefdf5;
     box-sizing: border-box;
 }
 
-body {
-    min-height: 100vh;
-}
-
 #nav {
-    justify-self: left;
+    display: flex;
+    justify-content: flex-end;
     padding-left: 20px;
     padding-top: 20px;
     padding-bottom: 10px;
-    color: #000000;
     font-size: 12px;
-    font-family: 'Fredoka', Serif, serif;
     font-weight: 300;
 }
 
@@ -34,18 +27,14 @@ main {
 }
 
 .mainTitle {
-    color: #000000;
     font-size: 20px;
     font-weight: 500;
-    font-family: 'Fredoka', Serif, serif;
     text-align: right;
     padding-bottom: 5px;
 }
 
 .textStyle {
-    color: #000000;
     font-size: 14px;
-    font-family: 'Fredoka', Serif, serif;
     text-align: right;
     line-height: 1.5;
     padding-bottom: 20px;
@@ -119,9 +108,7 @@ header {
     padding-left: 20px;
     padding-top: 20px;
     padding-bottom: 20px;
-    color: #000000;
     font-size: 12px;
-    font-family: 'Fredoka', Serif, serif;
 }
 
 .loginStyle .extraActions {
@@ -129,7 +116,6 @@ header {
     justify-content: space-between;
     color: #000000;
     font-size: 12px;
-    font-family: 'Fredoka', Serif, serif;
     margin: -15px 0 15px;
 }
 
