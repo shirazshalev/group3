@@ -4,21 +4,20 @@
 
 main {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    padding: 20px;
-    height: fit-content;
-    margin-bottom: 400px;
+    justify-content: center;
+    box-sizing: border-box;
+    margin: 20px;
+    min-height: 70vh;
 }
 
 .mainSection {
-    position: relative;
     width: 400px;
 }
 
 .welcomeSection {
-    margin-top: 20px;
-    margin-bottom: 10px;
+    padding: 0;
 }
 
 .pageTitle {
@@ -32,7 +31,7 @@ main {
     font-size: 14px;
     text-align: right;
     line-height: 1.5;
-    padding-bottom: 20px;
+    padding-bottom: 10px;
 }
 
 .formStyle {
@@ -40,7 +39,6 @@ main {
 }
 
 .userInput {
-    position: absolute;
     display: grid;
     grid-template-columns: 1fr;
     justify-items: center;
@@ -49,7 +47,6 @@ main {
     min-width: 400px;
     max-width: 800px;
     margin: 0 auto;
-    box-sizing: border-box;
 }
 
 .multipleChoiceLists {
@@ -71,6 +68,7 @@ main {
     max-width: 400px;
     margin-top: 5px;
     margin-bottom: 5px;
+    border-radius: 0;
     border: 1px solid #f7af18;
     box-sizing: border-box;
     box-shadow: none;
@@ -109,7 +107,7 @@ main {
     font-weight: 500;
     line-height: 1.2em;
     text-align: center;
-    padding: 10px 20px;
+    padding: 10px;
     border: none;
     width: 100%;
     height: 50px;
@@ -126,9 +124,108 @@ main {
     background-color: #ffe2b2;
 }
 
-/* -------------------------- Responsive Style -------------------------- */
 
-/* Media Query */
+input:focus, textarea:focus, select:focus, button:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+input {
+    cursor: default;
+}
+
+/* --------------------------Terms Of Use-------------------------- */
+.hiddenWindow {
+    display: none !important;
+}
+
+.openWindow {
+    display: flex !important;
+}
+
+.popupTermsWindow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    border: 0.5px solid #7E7E7E;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    padding: 10px;
+    width: 600px;
+    max-height: 50vh;
+    margin: 0 0 10px 10px;
+    z-index: 997;
+    overflow-y: auto;
+}
+
+.popupTermsWindow ol {
+    list-style-type: decimal;
+    counter-reset: main-counter;
+    margin-right: 10px;
+    padding-right: 10px;
+}
+
+.popupTermsWindow ol > li {
+    counter-increment: main-counter;
+}
+
+.popupTermsWindow ol > li > ol {
+    list-style: none;
+    counter-reset: sub-counter;
+    margin-right: 5px;
+}
+
+.popupTermsWindow ol > li > ol > li {
+    counter-increment: sub-counter;
+    display: flex;
+    align-items: flex-start;
+}
+
+.popupTermsWindow ol > li > ol > li::before {
+    content: counter(main-counter) "." counter(sub-counter) " ";
+    flex-shrink: 0;
+    width: 2em;
+    text-align: right;
+    direction: ltr;
+    line-height: 1.5;
+    display: inline-block;
+}
+
+.popupTermsWindow li {
+    direction: rtl;
+    text-align: justify;
+    line-height: 1.5;
+}
+
+.termsTitle {
+    font-weight: 500;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.subsection {
+    font-weight: 400;
+    font-size: 14px;
+}
+
+.sectionDetails {
+    font-weight: 300;
+    font-size: 12px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+.closeBtn {
+    display: flex;
+    justify-content: flex-end;
+    padding: 5px;
+    cursor: pointer;
+}
+
+/* -------------------------- Responsive Style -------------------------- */
 @media screen and (max-width: 768px) {
     /* For tablet screens */
 }

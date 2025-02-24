@@ -26,7 +26,8 @@ button {
 }
 
 p.bgu {
-    justify-self: left;
+    display: flex;
+    justify-content: flex-end;
     padding-left: 20px;
     padding-top: 20px;
     padding-bottom: 10px;

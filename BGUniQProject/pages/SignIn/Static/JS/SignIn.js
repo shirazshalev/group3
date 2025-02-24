@@ -61,6 +61,19 @@ document.addEventListener('DOMContentLoaded', function () {
             alertBox.classList.add('hidden')
         })
     }
+
+    const termsOfUse = document.querySelector('#terms')
+    const popupTermsWindow = document.querySelector('.popupTermsWindow')
+    termsOfUse.addEventListener('click', (e) => {
+        e.preventDefault()
+        popupTermsWindow.classList.remove("hiddenWindow")
+        popupTermsWindow.classList.add("openWindow")
+    })
+    document.addEventListener('click', function (e) {
+        if (e.target.classList.contains('closeIcon')) {
+            e.preventDefault()
+            popupTermsWindow.classList.add("hiddenWindow")
+            popupTermsWindow.classList.remove("openWindow")
+        }
+    })
 })
-
-
