@@ -1,5 +1,7 @@
+/* ------------------------Titles and captions' Extra Design------------------------ */
 .welcomeSection {
     background-color: #FEFDF5;
+    padding: 0;
 }
 
 main {
@@ -16,10 +18,6 @@ main {
     width: 400px;
 }
 
-.welcomeSection {
-    padding: 0;
-}
-
 .pageTitle {
     font-size: 25px;
     font-weight: 500;
@@ -34,6 +32,7 @@ main {
     padding-bottom: 10px;
 }
 
+/* ------------------------Form & choiceLists by the User------------------------ */
 .formStyle {
     min-width: 400px;
 }
@@ -49,13 +48,23 @@ main {
     margin: 0 auto;
 }
 
-.multipleChoiceLists {
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
+.selectIcon {
+    width: 10px;
+    height: 10px;
+    padding-right: 5px;
+    position: absolute;
+    left: 5px;
+    transition: fill 0.3s ease;
 }
 
-.textBoxInput, .multipleChoiceLists {
+.academicYearAndMonth {
+    font-size: 11px;
+    font-weight: 300;
+    color: #000000;
+}
+
+/* --------------------------choiceLists Design-------------------------- */
+.btnSelect, .textBoxInput {
     color: #7E7E7E;
     background-color: #FFFFFF;
     font-family: 'Fredoka', Serif, serif;
@@ -66,21 +75,65 @@ main {
     width: 100%;
     height: 50px;
     max-width: 400px;
-    margin-top: 5px;
-    margin-bottom: 5px;
     border-radius: 0;
     border: 1px solid #f7af18;
     box-sizing: border-box;
     box-shadow: none;
-    padding-right: 5px;
+    padding-right: 10px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    cursor: default;
 }
 
-.academicYearAndMonth {
+.theList {
+    position: absolute;
+    background-color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    list-style-type: none;
+    border-radius: 4px;
+    border: 0.5px solid #7E7E7E;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    max-height: 200px;
+    overflow-y: auto;
+    padding: 5px 15px 5px 0;
+    min-width: 300px;
+    margin: -9px 0 1px 5px;
+    z-index: 997;
+}
+
+.theList li.listItem {
+    direction: rtl;
     font-size: 11px;
     font-weight: 300;
+}
+
+.theList li.listItem:hover {
+    color: #F7aF18;
+    cursor: default;
+}
+
+.active {
+    background-color: #EEEEEE;
+}
+
+.hiddenList {
+    display: none;
+}
+
+.openList {
+    display: block;
+}
+
+.btnSelect.selected span {
     color: #000000;
 }
 
+/* --------------------------Checkbox Terms-------------------------- */
 .checkbox {
     display: flex;
     justify-content: flex-start;
@@ -95,6 +148,9 @@ main {
 .checkbox span:nth-of-type(2), .checkbox span:nth-of-type(4) {
     text-decoration: underline;
     color: #244ea1;
+}
+
+.checkbox span:nth-of-type(2) {
     cursor: pointer;
 }
 

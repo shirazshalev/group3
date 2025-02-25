@@ -24,41 +24,96 @@
 
         <section class="userInput">
             <form class="formStyle" action="" method="GET">
-                <select class="multipleChoiceLists" name="degree">
-                    <option value="" disabled selected hidden>תואר*</option>
-                    <option class="listItem" value="ביולוגיה">ביולוגיה</option>
-                    <option class="listItem" value="הנדסת ביניין">הנדסת בניין</option>
-                    <option class="listItem" value="הנדסת חשמל">הנדסת חשמל</option>
-                    <option class="listItem" value="הנדסת מכונות">הנדסת מכונות</option>
-                    <option class="listItem" value="הנדסת תעשייה וניהול">הנדסת תעשייה וניהול</option>
-                    <option class="listItem" value="מדעי המחשב">מדעי המחשב</option>
-                    <option class="listItem" value="מתמטיקה">מתמטיקה</option>
-                    <option class="listItem" value="ניהול משאבי אנוש">ניהול משאבי אנוש</option>
-                    <option class="listItem" value="פסיכולוגיה">פסיכולוגיה</option>
-                    <option class="listItem" value="פסיכולוגיה וניהול">פסיכולוגיה וניהול</option>
-                    <option class="listItem" value="רפואה">רפואה</option>
-                </select>
-                <select class="multipleChoiceLists" name="department">
-                    <option value="" disabled selected hidden>מחלקה*</option>
-                    <option class="listItem" value="הנדסת ביניין">הנדסת בניין</option>
-                    <option class="listItem" value="הנדסת חשמל">הנדסת חשמל</option>
-                    <option class="listItem" value="הנדסת מכונות">הנדסת מכונות</option>
-                    <option class="listItem" value="הנדסת תעשייה וניהול">הנדסת תעשייה וניהול</option>
-                </select>
-                <select class="multipleChoiceLists" name="template">
-                    <option value="" disabled selected hidden>תבנית*</option>
-                    <option class="listItem" value="תבנית א">תבנית א</option>
-                    <option class="listItem" value="תבנית ב">תבנית ב</option>
-                    <option class="listItem" value="גמיש.ה">גמיש</option>
-                </select>
+                <div class="degrees">
+                    <div class="btnSelect">
+                        <span>תואר*</span>
+                        <img src="{{url_for('static', filename='SVG/triangle-down.svg')}}" class="selectIcon">
+                    </div>
+                    <div class="choiceLists hiddenList">
+                        <ul class="theList">
+                            <li class="listItem" data-value="01">01 - תואר ראשון</li>
+                            <li class="listItem" data-value="02">02 - תואר שני</li>
+                            <li class="listItem" data-value="03">03 - תואר שלישי</li>
+                            <li class="listItem" data-value="04">04 - תעודת הוראה</li>
+                            <li class="listItem" data-value="05">05 - לא לתואר</li>
+                            <li class="listItem" data-value="06">06 - תעודת הסמכה</li>
+                        </ul>
+                    </div>
+                    <input type="hidden" name="degree">
+                </div>
+
+                <div class="departments">
+                    <div class="btnSelect">
+                        <span>מחלקה*</span>
+                        <img src="{{url_for('static', filename='SVG/triangle-down.svg')}}" class="selectIcon">
+                    </div>
+                    <div class="choiceLists hiddenList">
+                        <ul class="theList">
+                            <li class="listItem" data-value="117">117 - ניהול משאבי אנוש</li>
+                            <li class="listItem" data-value="122">122 - ספרות עברית</li>
+                            <li class="listItem" data-value="123">123 - לשון עברית</li>
+                            <li class="listItem" data-value="124">124 - לימודי המזרח התיכון</li>
+                            <li class="listItem" data-value="125">125 - ההיסטוריה של עם ישראל</li>
+                            <li class="listItem" data-value="140">140 - המחלקה למתמטיקה</li>
+                            <li class="listItem" data-value="141">141 - מדעי ההתנהגות</li>
+                            <li class="listItem" data-value="142">142 - כלכלה</li>
+                            <li class="listItem" data-value="143">143 - סטטיסטיקה</li>
+                            <li class="listItem" data-value="144">144 - עבודה סוציאלית</li>
+                            <li class="listItem" data-value="146">146 - מדעי המחשב</li>
+                            <li class="listItem" data-value="147">147 - לימודים רב תחומיים</li>
+                            <li class="listItem" data-value="364">364 - הנדסת תעשיה וניהול</li>
+                            <li class="listItem" data-value="365">365 - הנדסת חומרים</li>
+                            <li class="listItem" data-value="366">366 - הנדסה גרעינית</li>
+                            <li class="listItem" data-value="367">367 - הנדסה ביו-רפואית</li>
+                            <li class="listItem" data-value="369">369 - הנדסת ביוטכנולוגיה</li>
+                            <li class="listItem" data-value="371">371 - הנדסת מערכות תקשורת</li>
+                            <li class="listItem" data-value="372">372 - הנדסת מערכות מידע</li>
+                            <li class="listItem" data-value="373">373 - הנדסת תכנה</li>
+                            <li class="listItem" data-value="374">374 - הנדסת בניין</li>
+                            <li class="listItem" data-value="376">376 - הנדסה סביבתית</li>
+                            <li class="listItem" data-value="381">381 - הנדסת מחשבים</li>
+                            <li class="listItem" data-value="382">382 - הנדסת נתונים</li>
+                            <li class="listItem" data-value="383">383 - הנדסת מערכות</li>
+                            <li class="listItem" data-value="391">391 - ניהול מלונאות ותיירות</li>
+                        </ul>
+                    </div>
+                    <input type="hidden" name="department">
+                </div>
+
+                <div class="templates">
+                    <div class="btnSelect">
+                        <span>תבנית*</span>
+                        <img src="{{url_for('static', filename='SVG/triangle-down.svg')}}" class="selectIcon">
+                    </div>
+                    <div class="choiceLists hiddenList">
+                        <ul class="theList">
+                            <li class="listItem" data-value="A">תבנית א</li>
+                            <li class="listItem" data-value="B">תבנית ב</li>
+                            <li class="listItem" data-value="flexible">גמיש</li>
+                        </ul>
+                    </div>
+                    <input type="hidden" name="template">
+                </div>
+
                 <p class="academicYearAndMonth">בחר תאריך תחילת לימודים - חודש ושנה</p>
                 <input class="textBoxInput" type="month" name="AcademicYearAndMonth" placeholder="תאריך תחילת לימודים*">
-                <select class="multipleChoiceLists" name="currentSemester">
-                    <option value="" disabled selected hidden>סמסטר נוכחי*</option>
-                    <option class="listItem" value="סמסטר א׳">סמסטר א</option>
-                    <option class="listItem" value="סמסטר ב׳">סמסטר ב</option>
-                    <option class="listItem" value="סמסטר קיץ">סמסטר קיץ</option>
-                </select></br></br>
+
+                <div class="currentSemester">
+                    <div class="btnSelect">
+                        <span>סמסטר נוכחי*</span>
+                        <img src="{{url_for('static', filename='SVG/triangle-down.svg')}}" class="selectIcon">
+                    </div>
+                    <div class="choiceLists hiddenList">
+                        <ul class="theList">
+                            <li class="listItem" data-value="autumn">סמסטר א</li>
+                            <li class="listItem" data-value="spring">סמסטר ב</li>
+                            <li class="listItem" data-value="summer">סמסטר קיץ</li>
+                        </ul>
+                    </div>
+                    <input type="hidden" name="semester">
+                </div>
+
+                </br>
                 <section class="checkbox">
                     <input class="conditionsCheckbox" type="checkbox" name="conditionsCheckbox">
                     <span>&nbsp;אני מאשר.ת את&nbsp;</span>
@@ -177,7 +232,7 @@
                         </div>
                     </div>
                 </section>
-                </br></br>
+                </br>
                 <input class="mainButton" type="submit" name="Login" value="המשך">
             </form>
         </section>
