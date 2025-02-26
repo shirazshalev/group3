@@ -1,397 +1,269 @@
-// // Updating the Year Chart bar's height regarding the bar value
-// const bars = document.querySelectorAll('.Bar')
-// const maxHeightAtGraph = 180
-// bars.forEach(bar => {
-//     const value = bar.getAttribute('data-value')
-//     const height = (value / 100) * maxHeightAtGraph
-//     bar.style.height = `${height}px`
-// })
-//
-// // ------------------------------------------ Years > Semesters Logic ------------------------------------------
-// // Select year bars and the semester graph container
-// const yearBars = document.querySelectorAll('.yearBar')
-// const semesterGraph = document.getElementById('SemesterAverageGraph')
-// const backButton = document.getElementById('BackButton')
-//
-// // Example data for semester averages
-// const semesterData = {
-//     "שנה א": [78, 85],
-//     "שנה ב": [75, 82],
-//     "שנה ג": [90, 87]
-// }
-//
-// // Add click event listeners to year bars
-// yearBars.forEach(bar => {
-//     bar.addEventListener('click', () => {
-//         const yearLabel = bar.querySelector('.BarLabel').textContent.trim() // Get the year label
-//         const semesters = semesterData[yearLabel] // Fetch semester data for the selected year
-//
-//         // Update the semester graph with the fetched data
-//         const semesterBars = semesterGraph.querySelectorAll('.Bar')
-//
-//         semesterBars.forEach((semesterBar, index) => {
-//             if (semesters[index] !== undefined) {
-//
-//                 const value = semesters[index]
-//                 const semester = index + 1
-//                 const detailsWindow = semesterBar.querySelector('.DetailsWindow')
-//                 semesterBar.style.height = `${(value / 100) * 180}px` // Set height based on value
-//                 semesterBar.innerHTML = ""
-//
-//                 // Add the average value above the bar
-//                 const barValue = document.createElement('div')
-//                 barValue.classList.add('BarValue')
-//                 barValue.textContent = value // Average value
-//                 semesterBar.appendChild(barValue)
-//
-//                 // Add the semester name below the bar
-//                 const barLabel = document.createElement('div')
-//                 barLabel.classList.add('BarLabel')
-//                 barLabel.textContent =
-//                     semester === 1 ? 'סמסטר א' : semester === 2 ? 'סמסטר ב' : 'סמסטר קיץ'
-//                 semesterBar.appendChild(barLabel)
-//
-//                 if (detailsWindow) {
-//                     semesterBar.appendChild(detailsWindow) // החזר את החלונית לעמודה
-//                 }
-//
-//             } else {
-//                 // Hide the bar if no data is available
-//                 semesterBar.style.display = 'none'
-//             }
-//         })
-//
-//         // Display the semester graph
-//         semesterGraph.classList.remove('Hidden')
-//     })
-// })
-// // ------------------------------------------ Semesters > Courses Logic ------------------------------------------
-// // Example data for course grades in each semester
-// const coursesData = {
-//     "סמסטר א": [
-//         {name: "מערכות בינה עסקית", grade: 85},
-//         {name: "תשתית וטכנולוגיית מידע", grade: 90},
-//         {name: "יסודות המימון", grade: 78}
-//     ],
-//     "סמסטר ב": [
-//         {name: "מערכות בינה עסקית", grade: 86},
-//         {name: "תשתית וטכנולוגיית מידע", grade: 87},
-//         {name: "יסודות המימון", grade: 94},
-//         {name: "אוטומציה", grade: 80},
-//         {name: "ניהול פרויקטים", grade: 95},
-//         {name: "הנדסת איכות", grade: 94}
-//     ],
-//     "סמסטר קיץ": [
-//         {name: "עקרונות השיווק", grade: 92},
-//         {name: "ניהול משאבי אנוש", grade: 87},
-//         {name: "חקר ביצועים", grade: 89}
-//     ]
-// }
-//
-// // Add click event listeners to semester bars
-// const semesterBars = semesterGraph.querySelectorAll('.Bar')
-// const coursesGraph = document.getElementById('CoursesGradesGraph')
-//
-// semesterBars.forEach(bar => {
-//     bar.addEventListener('click', () => {
-//         const semesterLabel = bar.querySelector('.BarLabel').textContent.trim() // Get the semester label
-//         const courses = coursesData[semesterLabel] // Fetch course data for the selected semester
-//         const courseBars = coursesGraph.querySelectorAll('.Bar')
-//
-//         // Update the courses graph with the fetched data
-//         courseBars.forEach((courseBar, index) => {
-//             if (courses[index] !== undefined) {
-//                 const {name, grade} = courses[index] // Extract course name and grade
-//                 const detailsWindow = courseBar.querySelector('.DetailsWindow')
-//
-//                 // Set the height of the bar based on the grade
-//                 courseBar.style.height = `${(grade / 100) * 180}px`
-//
-//                 // Clear any existing content
-//                 courseBar.innerHTML = ""
-//
-//                 // Add the grade above the bar
-//                 const barValue = document.createElement('div')
-//                 barValue.classList.add('BarValue')
-//                 barValue.textContent = grade // Add the grade as text
-//                 courseBar.appendChild(barValue)
-//
-//                 // Add the course name below the bar
-//                 const barLabel = document.createElement('div')
-//                 barLabel.classList.add('BarLabel')
-//                 barLabel.textContent = name // Add the course name
-//                 courseBar.appendChild(barLabel)
-//
-//                 // Add the details window
-//                 if (detailsWindow) {
-//                     courseBar.appendChild(detailsWindow)
-//                 }
-//
-//                 // Ensure the bar is visible
-//                 courseBar.style.display = 'flex'
-//                 courseBar.style.flexDirection = 'column-reverse' // Labels are below
-//             } else {
-//                 courseBar.style.display = 'none' // Hide extra bars
-//             }
-//         })
-//
-//         // Display the courses graph
-//         coursesGraph.classList.remove('Hidden')
-//     })
-// })
-//
-// // ------------------------------------------ back one step button Logic ------------------------------------------
-// // Back button functionality
-// backButton.addEventListener('click', () => {
-//     const isCoursesGraphVisible = !coursesGraph.classList.contains('Hidden')
-//     const isSemesterGraphVisible = !semesterGraph.classList.contains('Hidden')
-//
-//     if (isCoursesGraphVisible) {
-//         // If the courses graph is visible, hide it
-//         coursesGraph.classList.add('Hidden')
-//     } else if (isSemesterGraphVisible) {
-//         // If only the semester graph is visible, hide it
-//         semesterGraph.classList.add('Hidden')
-//     } else {
-//         console.log('Already at the year view')
-//     }
-// })
-
-// Creating the YearAverageGraph using Plotly javascript
 
 // temporary data
 let studentData = {
-    "שנה א׳": { semesters: 2, courses: 10, aboveTarget: 3 },
-    "שנה ב׳": { semesters: 2, courses: 13, aboveTarget: 5 },
-    "שנה ג׳": { semesters: 2, courses: 12, aboveTarget: 4 },
-    "שנה ד׳": { semesters: 1, courses: 6, aboveTarget: 2 }
+    "שנה א׳": {semesters: 2, courses: 10, aboveTarget: 3},
+    "שנה ב׳": {semesters: 2, courses: 13, aboveTarget: 5},
+    "שנה ג׳": {semesters: 2, courses: 12, aboveTarget: 4},
+    "שנה ד׳": {semesters: 1, courses: 6, aboveTarget: 2}
 };
 
-let trace1 = {
-    type: 'bar',
-    x: Object.keys(studentData),
-    y: [65, 78, 82, 85],
-    width: [0.8, 0.8, 0.8, 0.8],
-    hovertext: Object.keys(studentData).map(year =>
-        `
-            סך סמסטרים: ${studentData[year].semesters}<br>
-            סך קורסים: ${studentData[year].courses}<br>
-            ציונים מעל היעד: ${studentData[year].aboveTarget}<br>
-       `
-    ),
-    marker: {
-        color: '#ffbf8b',
-        line: {
-            width: 1
-        }
-    }
+let semesterData = {
+    'שנה א׳': [60, 70],
+    'שנה ב׳': [75, 80],
+    'שנה ג׳': [78, 85],
+    'שנה ד׳': [82, 88]
 };
 
-let data = [ trace1 ];
-
-let layout = {
-    title: {
-        text: 'ממוצע שנת לימודים',
-        font: { size: 16}
-    },
-    font: {
-        family: 'Fredoka',
-        size: 14,
-        color: '#333'
-    },
-    xaxis: {
-        title: 'שנת לימודים',
-        tickfont: { size: 14}
-    },
-    yaxis: {
-        title: 'ציון ממוצע',
-        tickfont: { size: 14},
-        range: [0, 100],
-        side: 'left'
-    },
-    hoverlabel: {
-        font: { family: 'Fredoka', size: 14, color: 'white' },
-        bgcolor: 'rgba(51,51,51,0.8)',
-        bordercolor: 'rgba(51,51,51,0.8)',
-        rtl: true,
-        align: 'right',
-        xanchor: "center",
-        yanchor: "middle"
-    },
-    plot_bgcolor: "rgba(0,0,0,0)",
-    paper_bgcolor: "rgba(0,0,0,0)"
-};
-
-
-Plotly.newPlot('YearAverageGraph', data, layout, {responsive: true}, {displayModeBar: false} );
-
-
-// Creating the SemesterAverageGraph using Plotly javascript
-
-
-// Creating the CoursesGradesGraph using Plotly javascript
-
-
-
-
-
-
-
-// Updating the Year Chart bar's height regarding the bar value
-const bars = document.querySelectorAll('.Bar')
-const maxHeightAtGraph = 180
-bars.forEach(bar => {
-    const value = bar.getAttribute('data-value')
-    const height = (value / 100) * maxHeightAtGraph
-    bar.style.height = `${height}px`
-})
-
-// ------------------------------------------ Years > Semesters Logic ------------------------------------------
-// Select year bars and the semester graph container
-const yearBars = document.querySelectorAll('.yearBar')
-const semesterGraph = document.getElementById('SemesterAverageGraph')
-const backButton = document.getElementById('BackButton')
-
-// Example data for semester averages
-const semesterData = {
-    "שנה א": [78, 85],
-    "שנה ב": [75, 82],
-    "שנה ג": [90, 87]
-}
-
-// Add click event listeners to year bars
-yearBars.forEach(bar => {
-    bar.addEventListener('click', () => {
-        const yearLabel = bar.querySelector('.BarLabel').textContent.trim() // Get the year label
-        const semesters = semesterData[yearLabel] // Fetch semester data for the selected year
-
-        // Update the semester graph with the fetched data
-        const semesterBars = semesterGraph.querySelectorAll('.Bar')
-
-        semesterBars.forEach((semesterBar, index) => {
-            if (semesters[index] !== undefined) {
-
-                const value = semesters[index]
-                const semester = index + 1
-                const detailsWindow = semesterBar.querySelector('.DetailsWindow')
-                semesterBar.style.height = `${(value / 100) * 180}px` // Set height based on value
-                semesterBar.innerHTML = ""
-
-                // Add the average value above the bar
-                const barValue = document.createElement('div')
-                barValue.classList.add('BarValue')
-                barValue.textContent = value // Average value
-                semesterBar.appendChild(barValue)
-
-                // Add the semester name below the bar
-                const barLabel = document.createElement('div')
-                barLabel.classList.add('BarLabel')
-                barLabel.textContent =
-                    semester === 1 ? 'סמסטר א' : semester === 2 ? 'סמסטר ב' : 'סמסטר קיץ'
-                semesterBar.appendChild(barLabel)
-
-                if (detailsWindow) {
-                    semesterBar.appendChild(detailsWindow) // החזר את החלונית לעמודה
-                }
-
-            } else {
-                // Hide the bar if no data is available
-                semesterBar.style.display = 'none'
-            }
-        })
-
-        // Display the semester graph
-        semesterGraph.classList.remove('Hidden')
-    })
-})
-// ------------------------------------------ Semesters > Courses Logic ------------------------------------------
-// Example data for course grades in each semester
-const coursesData = {
-    "סמסטר א": [
+let coursesData = {
+    "סמסטר א׳": [
         {name: "מערכות בינה עסקית", grade: 85},
         {name: "תשתית וטכנולוגיית מידע", grade: 90},
         {name: "יסודות המימון", grade: 78}
     ],
-    "סמסטר ב": [
+    "סמסטר ב׳": [
         {name: "מערכות בינה עסקית", grade: 86},
         {name: "תשתית וטכנולוגיית מידע", grade: 87},
         {name: "יסודות המימון", grade: 94},
         {name: "אוטומציה", grade: 80},
         {name: "ניהול פרויקטים", grade: 95},
         {name: "הנדסת איכות", grade: 94}
-    ],
-    "סמסטר קיץ": [
-        {name: "עקרונות השיווק", grade: 92},
-        {name: "ניהול משאבי אנוש", grade: 87},
-        {name: "חקר ביצועים", grade: 89}
     ]
 }
 
-// Add click event listeners to semester bars
-const semesterBars = semesterGraph.querySelectorAll('.Bar')
+//pointers
+const yearGraph = document.getElementById('YearAverageGraph')
+const semesterGraph = document.getElementById('SemesterAverageGraph')
 const coursesGraph = document.getElementById('CoursesGradesGraph')
+const backButton = document.getElementById('BackButton')
 
-semesterBars.forEach(bar => {
-    bar.addEventListener('click', () => {
-        const semesterLabel = bar.querySelector('.BarLabel').textContent.trim() // Get the semester label
-        const courses = coursesData[semesterLabel] // Fetch course data for the selected semester
-        const courseBars = coursesGraph.querySelectorAll('.Bar')
+// variables
+const sharedLayout = {
+    showlegend: false,
+    title: {
+        font: {size: 14},
+        weight: '200',
+        xanchor: 'center'
+    },
+    font: {
+        family: 'Fredoka',
+        size: 12,
+        color: '#333',
+        weight: '100'
+    },
+    xaxis: {
+        tickfont: {size: 12},
+        linecolor: 'black',
+        lineWidth: 0.5,
+        automargin: true
+    },
+    yaxis: {
+        tickfont: {size: 12},
+        range: [0, 100],
+        side: 'left',
+        // gridcolor: '#e0e1e2',
+        showgrid: false
+    },
+    hoverlabel: {
+        font: {
+            family: 'Fredoka',
+            size: 12,
+            color: 'white',
+            weight: '100'
+        },
+        bgcolor: 'rgba(0,0,0,0.75)',
+        bordercolor: 'rgba(0,0,0,0.75)',
+        rtl: true,
+        align: 'right'
+    },
+    plot_bgcolor: "rgba(0,0,0,0)",
+    paper_bgcolor: "rgba(0,0,0,0)",
+    barcornerradius: 5
+};
 
-        // Update the courses graph with the fetched data
-        courseBars.forEach((courseBar, index) => {
-            if (courses[index] !== undefined) {
-                const {name, grade} = courses[index] // Extract course name and grade
-                const detailsWindow = courseBar.querySelector('.DetailsWindow')
+const config = {
+    displayModeBar: false,
+    responsive: true
+};
 
-                // Set the height of the bar based on the grade
-                courseBar.style.height = `${(grade / 100) * 180}px`
+//functions
+function createTrendLine(xValues, yValues) {
+    return {
+        type: 'scatter',
+        mode: 'lines',
+        x: xValues,
+        y: yValues,
+        line: {
+            color: '#333',
+            width: 1,
+            dash: 'dot'
+        }
+    };
+}
 
-                // Clear any existing content
-                courseBar.innerHTML = ""
+// default visible graphs style
+semesterGraph.style.display = 'none';
+coursesGraph.style.display = 'none';
+createYearGraph();
 
-                // Add the grade above the bar
-                const barValue = document.createElement('div')
-                barValue.classList.add('BarValue')
-                barValue.textContent = grade // Add the grade as text
-                courseBar.appendChild(barValue)
+// Creating the YearAverageGraph using Plotly javascript
+function createYearGraph() {
+    let xValue = Object.keys(studentData)
+    let yValue = [65, 78, 82, 85]
 
-                // Add the course name below the bar
-                const barLabel = document.createElement('div')
-                barLabel.classList.add('BarLabel')
-                barLabel.textContent = name // Add the course name
-                courseBar.appendChild(barLabel)
-
-                // Add the details window
-                if (detailsWindow) {
-                    courseBar.appendChild(detailsWindow)
-                }
-
-                // Ensure the bar is visible
-                courseBar.style.display = 'flex'
-                courseBar.style.flexDirection = 'column-reverse' // Labels are below
-            } else {
-                courseBar.style.display = 'none' // Hide extra bars
+    let yearTrace = {
+        type: 'bar',
+        x: xValue,
+        y: yValue,
+        width: [0.8, 0.8, 0.8, 0.8],
+        text: yValue.map(String),
+        textposition: 'outside',
+        textfont: {
+            size: 12
+        },
+        hovertemplate: Object.keys(studentData).map(year =>
+            `${year}<br>` +
+            `סך סמסטרים: ${studentData[year].semesters}<br>` +
+            `סך קורסים: ${studentData[year].courses}<br>` +
+            `ציונים מעל היעד: ${studentData[year].aboveTarget}<br>` +
+            `<extra></extra>`
+        ),
+        opacity: 0.75,
+        cliponaxis: false,
+        marker: {
+            color: '#bfe7f9',
+            line: {
+                color: 'black',
+                width: 0.5
             }
-        })
+        }
+    };
 
-        // Display the courses graph
-        coursesGraph.classList.remove('Hidden')
-    })
-})
+    // let yearTrendLine = createTrendLine(xValue, yValue);
 
-// ------------------------------------------ back one step button Logic ------------------------------------------
+    let yearLayout = {
+        ...sharedLayout,
+        title: {text: 'ממוצע שנת לימודים'},
+        xaxis: {...sharedLayout.xaxis, title: 'שנת לימודים'},
+        yaxis: {...sharedLayout.yaxis, title: 'ציון ממוצע'}
+    };
+
+    Plotly.newPlot('YearAverageGraph', [yearTrace], yearLayout, config).then(addYearBarsClickListener);
+}
+
+// Creating the SemesterAverageGraph using Plotly javascript
+function addYearBarsClickListener() {
+    yearGraph.on('plotly_click', function (data) {
+        let clickedYear = data.points[0].x;
+
+        if (semesterData[clickedYear]) {
+            let xValue = ['סמסטר א׳', 'סמסטר ב׳'];
+            let yValue = semesterData[clickedYear];
+
+            let semesterTrace = {
+                type: 'bar',
+                x: xValue,
+                y: yValue,
+                width: [0.8, 0.8],
+                text: yValue.map(String),
+                textposition: 'outside',
+                textfont: {
+                    size: 12
+                },
+                hovertemplate: xValue.map(semester => {
+                    let courses = coursesData[semester] || [];
+                    let aboveTarget = courses.filter(course => course.grade > 85).length;
+                    return `${semester}<br>` +
+                        `סך קורסים: ${courses.length}<br>` +
+                        `קורסים מעל יעד: ${aboveTarget}<br>` +
+                        `<extra></extra>`;
+                }),
+                opacity: 0.75,
+                cliponaxis: false,
+                marker: {
+                    color: '#f8b912',
+                    line: {
+                        color: 'black',
+                        width: 0.5
+                    }
+                }
+            };
+
+            let semesterLayout = {
+                ...sharedLayout,
+                title: {text: 'ממוצע סמסטריאלי בשנה הנבחרת'},
+                xaxis: {...sharedLayout.xaxis, title: 'סמסטר'},
+                yaxis: {...sharedLayout.yaxis, title: 'ציון ממוצע'}
+            };
+
+            semesterGraph.style.display = 'block';
+            Plotly.newPlot('SemesterAverageGraph', [semesterTrace], semesterLayout, config).then(addSemesterBarsClickListener);
+        }
+    });
+}
+
+// Creating the CoursesGradesGraph using Plotly javascript
+function addSemesterBarsClickListener() {
+    semesterGraph.on('plotly_click', function (data) {
+        let clickedSemester = data.points[0].x;
+
+        if (coursesData[clickedSemester]) {
+
+            let courseList = coursesData[clickedSemester];
+            let xValue = courseList.map(course => course.name);
+            let yValue = courseList.map(course => course.grade);
+
+            let coursesTrace = {
+                type: 'bar',
+                x: xValue,
+                y: yValue,
+                width: 0.8,
+                text: yValue.map(String),
+                textposition: 'outside',
+                textfont: {
+                    size: 12
+                },
+                hovertemplate: xValue.map((course, index) =>
+                    `:${course}<br>` +
+                    `ציון: ${yValue[index]}<br>` +
+                    `<extra></extra>`
+                ),
+                opacity: 0.75,
+                cliponaxis: false,
+                marker: {
+                    color: '#f7b36c',
+                    line: {
+                        color: 'black',
+                        width: 0.5
+                    }
+                }
+            };
+
+            let coursesLayout = {
+                ...sharedLayout,
+                title: {text: 'ציוני קורסים בסמסטר הנבחר'},
+                xaxis: {...sharedLayout.xaxis, title: 'קורס'},
+                yaxis: {...sharedLayout.yaxis, title: 'ציון ממוצע'}
+            };
+
+            coursesGraph.style.display = 'block';
+            Plotly.newPlot('CoursesGradesGraph', [coursesTrace], coursesLayout, config);
+        }
+    });
+}
+
 // Back button functionality
 backButton.addEventListener('click', () => {
-    const isCoursesGraphVisible = !coursesGraph.classList.contains('Hidden')
-    const isSemesterGraphVisible = !semesterGraph.classList.contains('Hidden')
-
+    const isCoursesGraphVisible = window.getComputedStyle(coursesGraph).display !== 'none';
+    const isSemesterGraphVisible = window.getComputedStyle(semesterGraph).display !== 'none';
     if (isCoursesGraphVisible) {
         // If the courses graph is visible, hide it
-        coursesGraph.classList.add('Hidden')
+        coursesGraph.style.display = 'none';
     } else if (isSemesterGraphVisible) {
         // If only the semester graph is visible, hide it
-        semesterGraph.classList.add('Hidden')
+        semesterGraph.style.display = 'none';
     } else {
         console.log('Already at the year view')
     }
 })
+
+
