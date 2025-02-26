@@ -206,7 +206,7 @@ tr[data-year] td:first-child {
     filter: brightness(0) invert(1);
 }
 
-/* Media Query */
+/* ------------------------Media Query------------------------ */
 @media screen and (max-width: 768px) {
     /* For tablet screens */
     main {

@@ -64,13 +64,17 @@ courseNames.forEach(course => {
 // Media Query
 const finalGradeTitle = document.querySelector('th.gradeCol')
 const originalTitle = finalGradeTitle.textContent
-window.addEventListener('resize', (e) => {
-    e.preventDefault()
+const updateTitleBasedOnWidth = () => {
     if (window.innerWidth < 844) {
         finalGradeTitle.textContent = 'ציון'
     } else {
         finalGradeTitle.textContent = originalTitle
     }
+}
+updateTitleBasedOnWidth()
+window.addEventListener('resize', (e) => {
+    e.preventDefault()
+    updateTitleBasedOnWidth()
 })
 
 // The grade's impact on the GPA

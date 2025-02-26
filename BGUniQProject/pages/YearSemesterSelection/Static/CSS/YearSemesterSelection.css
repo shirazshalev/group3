@@ -103,18 +103,20 @@ table {
 }
 
 /* ------------------------Media Query------------------------ */
-@media (max-width: 565px) {
+@media (max-width: 571px) {
     main {
         margin-right: 15px;
         margin-left: 15px;
     }
 
-    .MainTitle {
-        font-size: 25px;
-    }
-
     .SemesterYearButton {
         min-width: 100px;
+    }
+}
+
+@media (max-width: 541px) {
+    .pageTitle {
+        font-size: 25px;
     }
 }
 
@@ -124,17 +126,32 @@ table {
         margin-left: 10px;
     }
 
-    .MainTitle {
-        font-size: 20px;
+    .pageTitle {
+        font-size: 22px;
     }
 
     .SemesterYearButton {
-        min-width: 83px;
-        font-size: 13px;
+        line-height: 1em;
+        height: 30px;
+        min-width: 100px;
+        max-width: 150px;
+        font-size: 14px;
     }
 }
 
-@media (max-width: 380px) {
+@media (max-width: 450px) {
+    .SemesterYearButton {
+        min-width: 85px;
+    }
+}
+
+@media (max-width: 395px) {
+    .pageTitle {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 385px) {
     .SemesterYearButton {
         min-width: 80px;
     }

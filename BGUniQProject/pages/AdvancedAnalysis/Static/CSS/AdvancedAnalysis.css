@@ -25,13 +25,15 @@
 
 }
 
-.AnalysisGraph { /*----the section with the graph & button SHOW----*/
+/*----the section with the graph & button SHOW----*/
+.AnalysisGraph {
     display: grid;
     grid-template-columns: 1fr;
     justify-content: center;
 }
 
-.GraphContainer { /*----div of the first graph----*/
+/*----div of the first graph----*/
+.GraphContainer {
     margin-bottom: 20px;
 }
 
@@ -138,7 +140,7 @@
 
 /*------Second Chart New Conditions-----*/
 .AnalysisGraphsContainer.expanded {
-    display: flex; /* מחליף את ה-grid ל-flexbox */
+    display: flex;
     flex-direction: column;
     justify-content: center; /* ממרכז את התוכן */
     align-items: center;
@@ -183,7 +185,6 @@
     position: relative;
     background: repeating-linear-gradient(to top, #c8c8c8, #c8c8c8 0.5px, transparent 0.5px, transparent 35px);
 }
-
 
 .AVGChart .YearGroup {
     display: flex;
@@ -250,7 +251,7 @@
 }
 
 .Bar.Orange {
-    background-color: #F7aF18; /*semesterB */
+    background-color: #F7aF18; /* semesterB */
 }
 
 .Bar.DarkOrange {
@@ -259,7 +260,7 @@
 
 .AVGChart .Scale {
     position: absolute;
-    left: -20px; /*----------- -25px ------------*/
+    left: -20px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -335,9 +336,7 @@
     visibility: hidden;
 }
 
-
 /*-------------btn-------------*/
-
 .ButtonContainer {
     margin: 40px 0 10px 0;
     display: grid;
@@ -368,7 +367,7 @@
     height: 30px;
 }
 
-/* Media Query */
+/* ------------------------Media Query------------------------ */
 @media screen and (max-width: 768px) {
     /* For tablet screens */
     main {
@@ -408,10 +407,6 @@
 
 @media screen and (max-width: 480px) {
     /* For small screens */
-    .secondPageTitle {
-        font-size: 12px;
-    }
-
     .PerformanceIndicatorsContainer {
         padding-bottom: 10px;
         margin: 0 auto;
@@ -436,6 +431,12 @@
 
     .YearGroup .BarValue {
         font-size: 10px;
+    }
+}
+
+@media screen and (max-width: 433px) {
+    .secondPageTitle {
+        font-size: 12px;
     }
 }
 
