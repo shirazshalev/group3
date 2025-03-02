@@ -11,6 +11,175 @@ button {
     font-family: 'Fredoka', Serif, serif;
 }
 
+/* ------------------------Popup Components Window Design------------------------ */
+.popupComponentsWindow {
+    position: absolute;
+    top: 50px;
+    left: -10px;
+    background-color: #ffe0b3;
+    border: 1px solid black;
+    border-radius: 30px;
+    padding: 15px;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
+    z-index: 997;
+    width: 450px;
+    display: none;  /* Hidden by default */
+}
+
+.ComponentPercentage, .ComponentGrade {
+    margin-right: -5px;
+}
+
+.hiddenWindow {
+    display: none;
+}
+
+.openWindow {
+    display: block;
+}
+
+/* Table Design */
+.additionalComponents {
+    direction: rtl;
+    margin: 0;
+    width: 100%; /* Ensure it takes the full width of the popup */
+    border-spacing: 10px;
+    table-layout: fixed;
+}
+
+.additionalComponents th {
+    font-family: 'Fredoka', Serif, serif;
+    font-size: 14px;
+    font-weight: 300;
+    margin-bottom: 5px;
+    text-align: right;
+}
+
+.additionalComponents tbody td {
+    color: #000000;
+    background-color: #FFFFFF;
+    font-family: 'Fredoka', Serif, serif;
+    font-size: 12px;
+    font-weight: 300;
+    line-height: 1.2em;
+    text-align: right;
+    padding-right: 5px;
+    height: 40px;
+    border: none;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+.additionalComponents colgroup col:first-child {
+    width: 60%;
+    min-width: 100px;
+}
+
+.additionalComponents colgroup col:nth-child(2) {
+    width: 20%;
+    min-width: 50px;
+}
+
+.additionalComponents colgroup col:nth-child(3) {
+    width: 20%;
+    min-width: 50px;
+}
+
+.additionalComponents th:first-child, .additionalComponents td:first-child {
+    width: 60%;
+}
+
+.additionalComponents th:nth-child(2), .additionalComponents td:nth-child(2),
+.additionalComponents th:nth-child(3), .additionalComponents td:nth-child(3) {
+    width: 20%;
+}
+
+/* Set correct column widths */
+.additionalComponents input {
+    width: 100%;
+    box-sizing: border-box;
+    cursor: default;
+}
+
+.closeButton {
+    border: none;
+    background: none;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.popupFooter {
+    display: flex;
+    justify-content: flex-start;
+    gap: 5px;
+    margin-right: 5px;
+}
+
+.ActionButton {
+    padding: 5px 10px;
+    margin-top: 10px;
+    background-color: #F7aF18;
+    font-family: 'Fredoka', Serif, serif;
+    color: white;
+    font-size: 0.7rem;
+    font-weight: normal;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    min-width: 40px;
+}
+
+.ActionButton:hover {
+    border: 0.8px solid #000000;
+}
+
+/* --------------------------choiceLists Design-------------------------- */
+.theList, .customDropdown {
+    position: absolute;
+    background-color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    list-style-type: none;
+    border-radius: 4px;
+    border: 0.5px solid #7E7E7E;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    max-height: 200px;
+    overflow-y: auto;
+    padding: 5px 15px 5px 0;
+    min-width: 300px;
+    margin: -9px 0 1px 5px;
+    z-index: 997;
+}
+
+.theList li.listItem, .customDropdown li.listItem {
+    direction: rtl;
+    font-size: 11px;
+    font-weight: 300;
+}
+
+.theList li.listItem:hover, .customDropdown li.listItem:hover {
+    color: #F7aF18;
+    cursor: default;
+}
+
+.active {
+    background-color: #EEEEEE;
+}
+
+.hiddenList {
+    display: none;
+}
+
+.openList {
+    display: block;
+}
+
+.btnSelect.selected span {
+    color: #000000;
+}
+
 /* ------------------------Year-Semester------------------------ */
 .SemesterYearButton {
     color: #000000;
@@ -94,30 +263,43 @@ table {
     width: 100%;
     position: relative;
     text-align: center;
-    border-spacing: 15px 15px;
+    border-spacing: 10px 15px;
     table-layout: auto;
     margin-bottom: 30px;
 }
 
 .tdInput {
     height: 30px;
-    width: auto;
     position: relative;
     vertical-align: middle;
     text-align: center;
 }
 
-table input[type="number"] {
+table input[type="number"], .btnSelect, .manualCourseInput{
+    color: #7E7E7E;
     background-color: #FFFFFF;
-    width: 100%;
-    min-width: 50px;
-    padding: 5px;
-    height: 30px;
-    font-size: 0.9rem;
+    font-family: 'Fredoka', Serif, serif;
+    font-size: 12px;
     font-weight: 300;
+    line-height: 1.2em;
+    text-align: right;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    /*min-width: 50px;*/
+    height: 40px;
+    padding: 10px;
     border: none;
-    text-align: center;
     box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+}
+
+table input[type="number"] {
+    cursor: default;
+}
+
+.manualCourseInput:focus {
+    outline: none; /* Remove default browser outline */
 }
 
 #CoursesTable input[list] {
@@ -135,9 +317,10 @@ table input[type="number"] {
 
 .ThickTd {
     width: 250px;
+    cursor: pointer;
 }
 
-/* ----Binary pass & Additional components Buttons---- */
+/* ------------------------Binary pass & Additional components Buttons------------------------ */
 .GPAButton {
     color: #FFFFFF;
     background-color: #f7af18;
@@ -189,20 +372,24 @@ input[list]:focus, table input[type="number"]:focus {
     position: relative;
 }
 
+/* ------------------------GPA Calculator table Footer Design------------------------ */
+.calculatorInputFooter{
+    margin-right: 35px;
+    position: absolute;
+    bottom: 20px;
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+}
+
 #SaveButton {
     color: #000000;
     background-color: #f7af18;
-    position: absolute;
-    bottom: 20px;
-    align-self: flex-start;
-    right: 200px;
     flex-wrap: nowrap;
     text-align: center;
     border: none;
-    width: 100%;
+    width: 100px;
     height: 30px;
-    max-width: 160px;
-    margin: 7px;
     cursor: pointer;
     transition: background-color 0.3s ease;
     font-size: 1rem;
@@ -214,8 +401,29 @@ input[list]:focus, table input[type="number"]:focus {
     z-index: 10;
 }
 
-#SaveButton:hover {
-    border: 1px solid black;
+#AddCourseButton {
+    color: #000000;
+    background-color: #f7af18;
+    font-family: 'Fredoka', Serif, serif;
+    flex-wrap: nowrap;
+    text-align: center;
+    border: none;
+    height: 30px;
+    width: 250px;
+    max-width: 160px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1em;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-self: flex-start;
+}
+
+#SaveButton:hover, #AddCourseButton:hover {
+    border: 0.8px solid black;
 }
 
 .NotesTextStyle {
@@ -225,34 +433,6 @@ input[list]:focus, table input[type="number"]:focus {
     text-align: right;
     line-height: 1.5;
     padding: 10px 0;
-}
-
-#AddCourseButton {
-    color: #000000;
-    background-color: #f7af18;
-    font-family: 'Fredoka', Serif, serif;
-    flex-wrap: nowrap;
-    text-align: center;
-    border: none;
-    width: 100%;
-    height: 30px;
-    max-width: 160px;
-    margin: 7px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1em;
-    display: flex;
-    align-content: center;
-    justify-content: center;
-    position: absolute;
-    bottom: 20px;
-    align-self: flex-start;
-}
-
-#AddCourseButton:hover {
-    border: 1px solid black;
 }
 
 .ArrowIcon {
@@ -272,7 +452,8 @@ input[list]:focus, table input[type="number"]:focus {
     height: 30px;
 }
 
-.ExtraActionsButton {
+/* ------------------------ExtraActions Button Design------------------------ */
+.extraActionsButton {
     font-size: 2rem;
     color: #FF5A00;
     font-family: 'Fredoka', Serif, serif;
@@ -328,133 +509,13 @@ input[readonly] {
     white-space: nowrap;
 }
 
-/* ------------------------------- Styling Grade By Components Popup Window ------------------------------- */
-/* Popup styles */
-.ComponentPopupHidden {
-    position: absolute;
-    top: 30px;
-    left: -100px;
-    background-color: #ffe0b3;
-    border: 1px solid black;
-    border-radius: 30px;
-    padding: 15px;
-    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
-    z-index: 997;
-    width: 400px;
-    display: none; /* Hidden by default */
-}
 
-.ComponentPopupHidden.show {
-    display: block;
-}
 
-.PopupHeader {
-    flex: 1;
-    margin-bottom: 10px;
-}
 
-.PopupHeader label {
-    font-family: 'Fredoka', Serif, serif;
-    font-weight: 500;
-    font-size: 0.8rem;
-    color: #333;
-    /*text-wrap: nowrap;*/
-    margin-bottom: 5px;
-    text-align: center;
-}
 
-.PopupTitle {
-    font-size: 1rem;
-    font-weight: 500;
-    color: #333;
-}
 
-.PopupHeader .titels {
-    display: flex;
-    flex-direction: row;
-    justify-content: right;
-}
 
-/* Close Popup Window Button Style */
-.PopupHeader button {
-    border: none;
-    background: none;
-    font-size: 1rem;
-    cursor: pointer;
-}
 
-.PopupBody {
-    display: flex;
-    flex-direction: column;
-    gap: 10px; /*between the rows*/
-}
-
-.GradeComponentRow {
-    display: flex;
-    align-items: center;
-    gap: 5px; /*between the columns inside the row*/
-    margin-bottom: 10px;
-}
-
-.ComponentInRow {
-    flex: 1; /* Ensure equal width for all columns */
-    display: flex;
-    height: 30px;
-    /*flex-direction: column;*/
-    align-items: flex-start;
-    gap: 10px; /* between the title row to the input cell */
-}
-
-/* Specific width for the "מרכיב ציון" column */
-.ComponentInRow:first-child {
-    flex: 1.5; /* Give more space to the first column */
-}
-
-.ComponentInRow input[type="number"] {
-    padding: 10px;
-    height: 30px;
-    width: 100%;
-    font-family: 'Fredoka', Serif, serif;
-    font-size: 0.7rem;
-    border: 0.8px solid #000000;
-    text-align: right;
-    min-width: 40px;
-}
-
-.ComponentInRow select {
-    padding: 5px;
-    width: 100%;
-    height: 30px;
-    font-family: 'Fredoka', Serif, serif;
-    font-size: 0.7rem;
-    border: 1px solid #000000;
-    min-width: 40px;
-}
-
-.PopupFooter {
-    display: flex;
-    justify-content: flex-start;
-    gap: 5px;
-}
-
-.ActionButton {
-    padding: 5px 10px;
-    margin-top: 10px;
-    background-color: #F7aF18;
-    font-family: 'Fredoka', Serif, serif;
-    color: white;
-    font-size: 0.7rem;
-    font-weight: normal;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    min-width: 40px;
-}
-
-.ActionButton:hover {
-    border: 0.8px solid #000000;
-}
 
 /* ------------------------Media Query------------------------ */
 @media (max-width: 768px) {

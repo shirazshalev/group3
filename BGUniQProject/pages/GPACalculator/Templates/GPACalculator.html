@@ -8,7 +8,7 @@
 {% block title %}מחשבון נקודות זכות{% endblock %}
 {# CSS links #}
 {% block extraStyles %}
-   <link rel="stylesheet" href="{{ url_for('GPACalculator.static', filename='CSS/GPACalculator.css') }}">
+    <link rel="stylesheet" href="{{ url_for('GPACalculator.static', filename='CSS/GPACalculator.css') }}">
 {% endblock %}
 
 {# <body> #}
@@ -49,17 +49,15 @@
             </tbody>
         </table>
     </section>
-
     <section id="ContinueSection">
         <div class="ContinueButtonContainer">
             <button class="ContinueButton" id="ContinueBTN">המשך</button>
         </div>
     </section>
-
     <section id="CalculatorSection" class="hidden">
         <div>
             <h3 class="pageTitle">מחשבון נקודות זכות</h3>
-            <P class="TextStyle">הקפידו על הזנה מדויקת של פרטי הקורסים - בחרו את שם הקורס או הזינו ידנית</P>
+            <P class="TextStyle">הקפידו על הזנה מדויקת של פרטי הקורסים- בחרו את שם הקורס או הזינו ידנית</P>
             <div id="CalculatorInputContainer">
                 <table id="CoursesTable" class="TextStyle">
                     <thead>
@@ -74,7 +72,7 @@
                     <tr>
                         <td>
                             <div class="PopupMenuContainer">
-                                <button class="ExtraActionsButton">...</button>
+                                <button class="extraActionsButton">...</button>
                                 <div class="PopupActionsMenu">
                                     <div class="menu-item" data-action="PtorCredits">הגדר כפטור נק״ז</div>
                                     <div class="menu-item" data-action="delete">מחק קורס</div>
@@ -85,16 +83,16 @@
                         </td>
                         <td class="tdInput ThickTd">
                             <div class="InputCourseContainer">
-                                <input list="CourseNames" placeholder="">
-                                <img src="{{url_for('static', filename='SVG/triangle-down.svg')}}" alt="arrow" class="ArrowIcon">
+                                <div class="btnSelect">
+                                    <span>הקלד קורס או בחר מהרשימה</span>
+                                    <img src="{{ url_for('static', filename='SVG/triangle-down.svg') }}" alt="arrow"
+                                         class="ArrowIcon">
+                                </div>
+                                <!-- List container (will be generated dynamically in JS) -->
+                                <div class="choiceLists hiddenList"></div>
+                                <input type="hidden" name="course">
                                 <span class="error-message"></span>
                             </div>
-                            <datalist id="CourseNames">
-                                <option value="הנדסת איכות"></option>
-                                <option value="ניהול פרויקטים"></option>
-                                <option value="אוטומציה וייצור ממוחשב"></option>
-                                <option value="יסודות המימון"></option>
-                            </datalist>
                         </td>
                         <td class="tdInput">
                             <input type="number" step="0.5" min="0" max="10">
@@ -104,47 +102,10 @@
                             <input type="number" step="1" min="0" max="100">
                             <span class="error-message"></span>
                         </td>
-                        <td class="tdInput">
-                            <button class="GPAButton">ציון לפי מרכיבים</button>
-                            <div class="ComponentPopupHidden" id="ComponentPopup">
-                                <div class="PopupHeader">
-                                    <div class="titels">
-                                        <label>מרכיב ציון</label>
-                                        <label>%</label>
-                                        <label>ציון המרכיב</label>
-                                    </div>
-                                    <div class="closeButton">
-                                        <button id="closePopupBtn">
-                                            <img src="{{url_for('static', filename='SVG/x.svg')}}" alt="Close" class="closeIcon">
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="PopupBody">
-                                    <div class="GradeComponentRow">
-                                        <div class="ComponentInRow">
-                                            <select class="ComponentsDropdown">
-                                                <option value="" disabled selected>בחרו מרכיב ציון</option>
-                                                <option value="FinalGradeExamA">מבחן סופי - מועד א׳</option>
-                                                <option value="FinalGradeExamB">מבחן סופי - מועד ב׳</option>
-                                                <option value="Project">פרויקט</option>
-                                                <option value="Exercises">תרגילי בית</option>
-                                                <option value="Other">אחר</option>
-                                            </select>
-                                        </div>
-                                        <div class="ComponentInRow">
-                                            <input type="number" step="1" min="0" max="100"
-                                                   class="ComponentPercentage"/>
-                                        </div>
-                                        <div class="ComponentInRow">
-                                            <input type="number" step="1" min="0" max="100" class="ComponentGrade"/>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="PopupFooter">
-                                    <button id="SaveComponentGrade" class="ActionButton">שמור</button>
-                                    <button id="CancelComponentGrade" class="ActionButton">מחק</button>
-                                    <button id="AddComponentBTN" class="ActionButton">+ מרכיב ציון נוסף</button>
-                                </div>
+                        <td class="tdInput gradeByComponents">
+                            <button class="GPAButton gradeByComponentsBtn">ציון לפי מרכיבים</button>
+                            <div class="popupComponentsWindow hiddenWindow" id="ComponentPopup">
+                                <!-- popupWindow for entering a course grade by components >> will be generated dynamically in JS -->
                             </div>
                         </td>
                         <td class="tdInput">
@@ -153,10 +114,13 @@
                     </tr>
                     </tbody>
                 </table>
-                <button id="AddCourseButton">+ להוספת קורס</button>
-                <!--                <div class="ContinueButtonContainer">-->
-                <button id="SaveButton">שמור</button>
-                <!--                </div>-->
+
+                <div class="calculatorInputFooter">
+                    <button id="AddCourseButton">+ להוספת קורס</button>
+                    <!--                <div class="ContinueButtonContainer">-->
+                    <button id="SaveButton">שמור</button>
+                    <!--                </div>-->
+                </div>
             </div>
         </div>
     </section>
@@ -167,6 +131,8 @@
 
 {# JS links #}
 {% block extraScripts %}
-    <script src="{{ url_for('GPACalculator.static', filename='JS/GPACalculator.js') }}"></script>
+    <script src="{{ url_for('GPACalculator.static', filename='JS/GPAYearSemester.js') }}"></script>
+    <script src="{{ url_for('GPACalculator.static', filename='JS/GPAGradeByComponents.js') }}"></script>
+    <script src="{{ url_for('GPACalculator.static', filename='JS/GPACalculatorTable.js') }}"></script>
 {% endblock %}
 {# </body> #}
