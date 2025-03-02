@@ -80,7 +80,8 @@ const sharedLayout = {
         bgcolor: 'rgba(0,0,0,0.75)',
         bordercolor: 'rgba(0,0,0,0.75)',
         rtl: true,
-        align: 'right'
+        align: 'right',
+        direction: 'rtl'
     },
     plot_bgcolor: "rgba(0,0,0,0)",
     paper_bgcolor: "rgba(0,0,0,0)",
@@ -157,11 +158,17 @@ function createYearGraph() {
             let aboveTarget = semesters.reduce((sum, semester) => {
                 return sum + studentAcademicData[year][semester].filter(course => course.grade > 85).length;
             }, 0);
-            return `${year}<br>` +
-                `סך נק״ז: ${yearCredits[index]}<br>` +
-                `סך סמסטרים: ${totalSemesters}<br>` +
-                `סך קורסים: ${totalCourses}<br>` +
-                `ציונים מעל היעד: ${aboveTarget}<br>` +
+            return ''+
+                // `סך נק״ז: ${yearCredits[index]}<br>` +
+                // `סך סמסטרים: ${totalSemesters}<br>` +
+                // `סך קורסים: ${totalCourses}<br>` +
+                // `ציונים מעל היעד: ${aboveTarget}<br>` +
+                // `<extra></extra>`;
+                `${year}<br>` +
+                ` <span >סך נק"ז:</span> ${yearCredits[index]}<br>` +
+                ` <span >סך סמסטרים:</span> ${totalSemesters}<br>` +
+                ` <span >סך קורסים:</span> ${totalCourses}<br>` +
+                 ` <span >ציונים מעל היעד:</span> ${aboveTarget}<br>` +
                 `<extra></extra>`;
         }),
         opacity: 0.75,
@@ -170,7 +177,7 @@ function createYearGraph() {
             color: '#bfe7f9',
             line: {
                 color: 'black',
-                width: xValue.map(year => (year === selectedYear ? 1 : 0.5))
+                width: xValue.map(year => (year === selectedYear ? 1.3 : 0.5))
             }
         }
     };
@@ -242,7 +249,7 @@ function createSemesterGraph(year) {
                 color: '#f8b912',
                 line: {
                     color: 'black',
-                    width: xValue.map(semester => (semester === selectedSemester ? 1 : 0.5))
+                    width: xValue.map(semester => (semester === selectedSemester ? 1.2 : 0.5))
                 }
             }
         };
