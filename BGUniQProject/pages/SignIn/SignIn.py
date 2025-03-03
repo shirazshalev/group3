@@ -20,12 +20,10 @@ def signin():
         department = data.get('department')
         template = data.get('template')
         academicYear = data.get('academicYear')
-        currentSemester = data.get('currentSemester')
 
         session['degree'] = degree
         session['department'] = department
         session['template'] = template
         session['academicYear'] = academicYear
-        session['currentSemester'] = currentSemester
 
         return jsonify({'success': True, 'redirect': url_for('YearSemesterSelection.year_semester_selection')})
