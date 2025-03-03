@@ -13,9 +13,9 @@ document.addEventListener('DOMContentLoaded', function () {
             let isValid = validateForm()
 
             if (isValid) {
-                // Save the full name to Local Storage
-                let fullName = getInputValue('fullName')
-                localStorage.setItem('fullName', fullName)
+                // Save the first name to Local Storage
+                let firstName = getInputValue('firstName')
+                localStorage.setItem('firstName', firstName)
                 // If validation passes, redirect to the next page
                 window.location.href = '/signin'
             }
@@ -24,26 +24,20 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function validateForm() {
         let email = getInputValue('Email')
-        let fullName = getInputValue('fullName')
-        let userName = getInputValue('userName')
+        let firstName = getInputValue('firstName')
+        let lastName = getInputValue('lastName')
         let studentID = getInputValue('StudentID')
         let password = getInputValue('Password')
 
         // Check if all fields are filled
-        if (!email || !fullName || !userName || !studentID || !password) {
+        if (!email || !firstName || !lastName || !studentID || !password) {
             showCustomAlert('יש למלא את כל השדות')
             return false
         }
 
-        // Validate full name
-        if (!isValidFullName(fullName)) {
-            showCustomAlert('השם המלא חייב לכלול לפחות שני חלקים ורק אותיות')
-            return false
-        }
-
-        // Validate username
-        if (!isValidUserName(userName)) {
-            showCustomAlert('שם המשתמש האוניברסיטאי חייב להיות מורכב מאותיות באנגלית בלבד')
+        // Validate first name
+        if (!isValidName(firstName) || !isValidName(lastName)) {
+            showCustomAlert('השם חייב להיות מורכב מאותיות בלבד')
             return false
         }
 
@@ -75,19 +69,10 @@ document.addEventListener('DOMContentLoaded', function () {
         return document.querySelector(`input[name="${name}"]`).value.trim()
     }
 
-    function isValidFullName(fullName) {
-        fullName = fullName.trim()
-        let nameParts = fullName.split(/\s+/)
-        if (nameParts.length < 2) {
-            return false; // Must include at least two parts
-        }
+    function isValidName(name) {
+        name = name.trim()
         let nameRegex = /^[א-תA-Za-z]+$/
-        return nameParts.every(part => nameRegex.test(part)) // Check each part
-    }
-
-    function isValidUserName(userName) {
-        let userNameRegex = /^[a-zA-Z]+$/ // Only letters in english
-        return userNameRegex.test(userName)
+        return nameRegex.test(name) // Check
     }
 
     function isValidEmail(email) {
