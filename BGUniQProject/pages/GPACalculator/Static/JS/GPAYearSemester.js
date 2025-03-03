@@ -157,6 +157,7 @@ document.addEventListener("DOMContentLoaded", () => {
             showCustomAlert("יש למלא את כל הפרטים על הקורס לפני שמירת הנתונים")
             return // Stop saving
         }
+        insertCoursesDataToDB()
         showCustomAlert("הנתונים נשמרו בהצלחה, כדי לערוך מחדש יש ללחוץ על שלושת הנקודות המופיעות בצד")
         // Log the array of course objects (optional)
         console.log("Saved courses for", selectedYear, selectedSemester, CoursesArray)

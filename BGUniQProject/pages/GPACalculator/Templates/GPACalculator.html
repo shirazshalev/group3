@@ -131,6 +131,7 @@
 
 {# JS links #}
 {% block extraScripts %}
+    <script src="{{ url_for('GPACalculator.static', filename='JS/GPAfetch.js') }}"></script>
     <script src="{{ url_for('GPACalculator.static', filename='JS/GPAYearSemester.js') }}"></script>
     <script src="{{ url_for('GPACalculator.static', filename='JS/GPAGradeByComponents.js') }}"></script>
     <script src="{{ url_for('GPACalculator.static', filename='JS/GPACalculatorTable.js') }}"></script>
