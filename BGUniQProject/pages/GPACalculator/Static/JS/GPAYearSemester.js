@@ -31,15 +31,15 @@ const yearMap = {
 const semesterMap = {
     "סמסטר א׳": "semesterA",
     "סמסטר ב׳": "semesterB",
-    "סמסטר קיץ": "semesterSummer"
+    "סמסטר קיץ": "semesterC"
 }
 
 // Storage courses data in organized way by year and semester
 const coursesData = {
-    yearA: {semesterA: [], semesterB: [], semesterSummer: []},
-    yearB: {semesterA: [], semesterB: [], semesterSummer: []},
-    yearC: {semesterA: [], semesterB: [], semesterSummer: []},
-    yearD: {semesterA: [], semesterB: [], semesterSummer: []}
+    yearA: {semesterA: [], semesterB: [], semesterC: []},
+    yearB: {semesterA: [], semesterB: [], semesterC: []},
+    yearC: {semesterA: [], semesterB: [], semesterC: []},
+    yearD: {semesterA: [], semesterB: [], semesterC: []}
 }
 let selectedYear = null // save the chosen year by the user
 let selectedSemester = null // save the chosen semester by the user
