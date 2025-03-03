@@ -2,7 +2,7 @@
 document.getElementById('ContinueBTN').addEventListener('click', () => {
     // Hide the Continue Button section
     // Check if selectedYear and selectedSemester exist in coursesData
-    if (coursesData[selectedYear] && coursesData[selectedYear][selectedSemester]) {
+    if ((selectedYear && selectedSemester) && (coursesData[selectedYear] && coursesData[selectedYear][selectedSemester])) {
         document.getElementById('ContinueSection').classList.add('hidden')
         // Show the Calculator Section
         document.getElementById('CalculatorSection').classList.remove('hidden')
