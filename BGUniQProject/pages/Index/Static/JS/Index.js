@@ -3,10 +3,10 @@ document.addEventListener('DOMContentLoaded', function () {
     let firstName = localStorage.getItem('firstName')
     if (firstName) {
         let welcomeUser = document.getElementById('welcomeUser')
-        welcomeUser.textContent = `שלום, ${firstName}`
+        welcomeUser.textContent = `שלום ${firstName},`
     } else {
         let welcomeUser = document.getElementById('welcomeUser')
-        welcomeUser.textContent = `שלום`
+        welcomeUser.textContent = `שלום,`
     }
 })
 
