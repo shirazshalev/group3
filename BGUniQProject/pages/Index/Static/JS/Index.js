@@ -1,14 +1,14 @@
 // Update the welcome to be with the user full name
 document.addEventListener('DOMContentLoaded', function () {
-    let fullName = localStorage.getItem('fullName');
-    if (fullName) {
-        let welcomeUser = document.getElementById('welcomeUser');
-        welcomeUser.textContent = `שלום, ${fullName}`;
+    let firstName = localStorage.getItem('firstName')
+    if (firstName) {
+        let welcomeUser = document.getElementById('welcomeUser')
+        welcomeUser.textContent = `שלום, ${firstName}`
     } else {
-        let welcomeUser = document.getElementById('welcomeUser');
-        welcomeUser.textContent = `שלום`;
+        let welcomeUser = document.getElementById('welcomeUser')
+        welcomeUser.textContent = `שלום`
     }
-});
+})
 
 document.getElementById("btnCreditCalculator").addEventListener("click", (e) => {
     e.preventDefault()
