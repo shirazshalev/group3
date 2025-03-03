@@ -2,7 +2,7 @@ import os
 import pymongo
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
-from BGUniQProject.DBconnector import BGUniQDB, getStudyTemplatesCol
+from BGUniQProject.DBconnector import BGUniQDB, get_study_templates_col
 from dotenv import load_dotenv
 
 def print_all_collections():
@@ -40,7 +40,7 @@ def print_document(doc, indent=0):
 
 
 def print_study_templates():
-    collection = getStudyTemplatesCol()
+    collection = get_study_templates_col()
     documents = collection.find()
 
     print("\nStudy Templates:")

@@ -1,5 +1,4 @@
 from flask import Blueprint, render_template
-from DBconnector import createStudentUser # Only the functions we need
 
 signInBP = Blueprint(
     'SignIn',

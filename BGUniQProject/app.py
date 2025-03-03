@@ -71,5 +71,9 @@ app.register_blueprint(advancedAnalysisBP)
 from pages.YearSemesterSelection.YearSemesterSelection import yearSemesterSelectionBP
 app.register_blueprint(yearSemesterSelectionBP)
 
+# logout
+from pages.Logout.Logout import logoutBP
+app.register_blueprint(logoutBP)
+
 if __name__ == '__main__':
    app.run(debug = True)

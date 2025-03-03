@@ -1,4 +1,5 @@
 import os
+import certifi # SHIRAZ
 import pymongo
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
@@ -20,14 +21,17 @@ uri = os.getenv("DB_URI")
 #     print(e)
 
 # Create a new client (cluster) and connect to the server
-cluster = MongoClient(uri, server_api=ServerApi('1'))
+# YUVAL
+# cluster = MongoClient(uri, server_api=ServerApi('1'))
+# SHIRAZ
+cluster = MongoClient(uri, server_api=ServerApi('1'), tlsCAFile=certifi.where())
 BGUniQDB = cluster['BGUniQDB']
 
 # Define Collections
 StudentsCol = BGUniQDB['Students']
 StudyTemplatesCol = BGUniQDB['StudyTemplates']
 
-def createStudyTemplatesCollection(StudyTemplatesDict, StudyTemplatesCol):
+def create_study_templates_collection(StudyTemplatesDict, StudyTemplatesCol):
     if not StudyTemplatesDict:
         print("The dictionary is empty")
         return
@@ -42,45 +46,42 @@ def createStudyTemplatesCollection(StudyTemplatesDict, StudyTemplatesCol):
 
 # Insert Data:
 if StudyTemplatesCol.count_documents({}) == 0:
-    createStudyTemplatesCollection(StudyTemplatesDict, StudyTemplatesCol)
+    create_study_templates_collection(StudyTemplatesDict, StudyTemplatesCol)
     print("StudyTemplates were added successfully to the collection")
 else:
     print("The templates already exist in the collection")
 
 # Get:
-def getStudyTemplatesCol():
+def get_study_templates_col():
     return StudyTemplatesCol
 
 # Update collections:
 
 
 # Students' collection - all necessary functions
-def getListOfStudents():
+def get_list_of_students():
     return list(StudentsCol.find())
 
-
-def updateStudent(StudentDict):
+def update_student(StudentDict):
     StudentsCol.update_one(StudentDict, True)
 
-
 # StudyTemplates' Collection - all necessary functions
-def getListOfStudyTemplates():
+def get_list_of_study_templates():
     return list(StudyTemplatesCol.find())
 
-def insertStudyTemplate(StudyTemplateDict):
+def insert_study_template(StudyTemplateDict):
     StudyTemplatesCol.insert_one(StudyTemplateDict)
 
-def updateStudyTemplate(StudyTemplateDict):
+def update_study_template(StudyTemplateDict):
     StudyTemplatesCol.update_one(StudyTemplateDict, True)
 
-
 # Creating a new Student-User after the signup
-def createStudentUser(StudentID, FullName, Username, Password, Email, Degree, Department, StudyTemplate, ContractYear,
-                      CurrentSemester):
+def create_student_user(StudentID, FirstName, LastName, Password, Email, Degree, Department, StudyTemplate, ContractYear,
+                        CurrentSemester):
     newUser = {
         "StudentID": StudentID,
-        "FullName": FullName,
-        "Username": Username,
+        "FirstName": FirstName,
+        "LastName": LastName,
         "Password": Password,
         "Email": Email,
         "Degree": Degree,
@@ -93,4 +94,20 @@ def createStudentUser(StudentID, FullName, Username, Password, Email, Degree, De
         "PersonalGoals": []
     }
     StudentsCol.insert_one(newUser)
+
+# USERS
+def get_user_by_email(email):
+    try:
+        user = StudentsCol.find_one({'Email': email})
+        if user:
+            print(f"User found: {user}")  # Debugging statement
+        else:
+            print("User not found")  # Debugging statement
+        return user
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        return None
+
+def check_if_signed(email):
+    return get_user_by_email(email) is not None
 
