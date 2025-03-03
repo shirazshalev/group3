@@ -215,6 +215,12 @@ button {
     transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease;
 }
 
+.SemesterYearButton.disabled {
+    cursor: default;
+    pointer-events: none;
+}
+
+
 table {
     border-spacing: 10px 2.5px;
     margin-right: -10px;
@@ -511,12 +517,6 @@ input[readonly] {
 
 
 
-
-
-
-
-
-
 /* ------------------------Media Query------------------------ */
 @media (max-width: 768px) {
     main {
@@ -525,8 +525,8 @@ input[readonly] {
     }
 
     #CalculatorInputContainer {
-        padding: 10px;
-        border-radius: 40px;
+        padding: 5px 10px 5px 5px;
+
         width: 100%;
         min-height: 50vh;
     }

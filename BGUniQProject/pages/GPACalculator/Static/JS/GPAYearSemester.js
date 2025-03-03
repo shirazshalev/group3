@@ -1,9 +1,23 @@
 // Event listener to the "ContinueSection"
 document.getElementById('ContinueBTN').addEventListener('click', () => {
     // Hide the Continue Button section
-    document.getElementById('ContinueSection').classList.add('hidden')
-    // Show the Calculator Section
-    document.getElementById('CalculatorSection').classList.remove('hidden')
+    // Check if selectedYear and selectedSemester exist in coursesData
+    if (coursesData[selectedYear] && coursesData[selectedYear][selectedSemester]) {
+        document.getElementById('ContinueSection').classList.add('hidden')
+        // Show the Calculator Section
+        document.getElementById('CalculatorSection').classList.remove('hidden')
+        const textElement = document.querySelector('#YearSemesterSection p')
+        if (textElement) {
+            textElement.textContent = "להזנה נוספת עבור שנה ו/או סמסטר שונים יש לרענן את העמוד"
+        }
+        // Changing year and semester buttons
+        const YearSemesterButtons = document.querySelectorAll('.SemesterYearButton')
+        YearSemesterButtons.forEach(button => {
+            button.classList.add('disabled')
+        })
+    } else {
+        showCustomAlert("עבור הזנת הקורסים- יש לבחור תחילה שנה וסמסטר")
+    }
 })
 
 // Map for translate hebrew detail into an english variable
