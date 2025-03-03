@@ -91,7 +91,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function getInputValue(name) {
         let input = document.querySelector(`[name="${name}"]`)
-        return input ? input.value.trim() : ''
+        if (!input) return ''
+        let value = input.value.trim()
+        if (name === "AcademicYearAndMonth") {
+            return value.substring(0, 4)
+        }
+        return value
     }
 
     function showCustomAlert(message) {
