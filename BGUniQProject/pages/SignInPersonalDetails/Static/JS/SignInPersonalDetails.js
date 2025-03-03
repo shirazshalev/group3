@@ -1,14 +1,9 @@
-// document.querySelector('.mainButton').addEventListener("click", (e) => {
-//     e.preventDefault()
-//     window.location.href = "SignIn.html"
-// })
-
 document.addEventListener('DOMContentLoaded', function () {
     let signupForm = document.querySelector('.formStyle')
 
     if (signupForm) {
         signupForm.addEventListener('submit', function (event) {
-            event.preventDefault(); // Prevent default form submission
+            event.preventDefault() // Prevent default form submission
 
             let isValid = validateForm()
 
@@ -16,9 +11,36 @@ document.addEventListener('DOMContentLoaded', function () {
                 // Save the first name to Local Storage
                 let firstName = getInputValue('firstName')
                 localStorage.setItem('firstName', firstName)
-                // If validation passes, redirect to the next page
-                window.location.href = '/signin'
+                // If validation passes, sending data and redirect to the next page
+
+                let email = getInputValue('Email')
+                let studentID = getInputValue('StudentID')
+                let lastName = getInputValue('lastName')
+                let password = getInputValue('Password')
+
+                // sending fetch POST - signInPersonalDetails request with the user details to the server side
+                signInFirstStep(email, studentID, firstName, lastName, password)
             }
+        })
+    }
+
+    function signInFirstStep(email, studentID, firstName, lastName, password) {
+        fetch('/signin-personal', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, studentID, firstName, lastName, password })
+        })
+        .then(response => response.json())
+        .then(result => {
+            if (result.success) {
+                window.location.href = result.redirect
+            } else {
+                showCustomAlert(result.message)
+            }
+        })
+        .catch(error => {
+            console.error("Error:", error)
+            showCustomAlert("אירעה שגיאה בעת הזנת הפרטים, נסו שנית")
         })
     }
 

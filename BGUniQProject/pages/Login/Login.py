@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, session, request, jsonify, url_for
 from BGUniQProject.DBconnector import *
+
 loginBP = Blueprint(
     'Login',
     __name__,
@@ -16,13 +17,13 @@ def login():
         data = request.get_json()
         email = data.get('email')
         password = data.get('password')
-        student_id= data.get('studentID')
+        studentID = data.get('studentID')
         if check_if_signed(email):
             user = get_user_by_email(email)
-            if user['studentID'] == student_id and user['Password'] == password:
+            if user['StudentID'] == studentID and user['Password'] == password:
                 session['email'] = email
-                session['first_name'] = user['FirstName']
-                session['logged_in'] = True
+                session['firstName'] = user['FirstName']
+                session['loggedIn'] = True
                 return jsonify({'success': True, 'redirect': url_for('Index.index')})
             else:
                 return jsonify({'success': False, 'message': 'מספר ת.ז או סיסמה שגויים, אנא נסה שנית :)'})

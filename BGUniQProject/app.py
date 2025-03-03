@@ -1,6 +1,12 @@
 from flask import Flask, redirect, render_template
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = Flask(__name__)
+app.secret_key = os.getenv('SECRET_KEY', 'default_secret_key')
+print("SECRET_KEY Loaded:", app.secret_key)
 
 @app.route('/login')
 @app.route('/')

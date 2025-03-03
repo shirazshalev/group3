@@ -38,9 +38,34 @@ document.addEventListener('DOMContentLoaded', function () {
             event.preventDefault() // Prevent default form submission
             let isValid = validateForm()
             if (isValid) {
-                // If validation passes, redirect to the next page
-                window.location.href = '/year-semester-selection'
+                let degree = getInputValue('degree')
+                let department = getInputValue('department')
+                let template = getInputValue('template')
+                let academicYear = getInputValue('AcademicYearAndMonth')
+                let currentSemester = getInputValue('semester')
+                // sending fetch POST - signIn request with the user details to the server side
+                signInSecondStep(degree, department, template, academicYear, currentSemester)
             }
+        })
+    }
+
+    function signInSecondStep(degree, department, template, academicYear, currentSemester){
+        fetch('/signin', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ degree, department, template, academicYear, currentSemester })
+        })
+        .then(response => response.json())
+        .then(result => {
+            if (result.success) {
+                window.location.href = result.redirect
+            } else {
+                showCustomAlert(result.message)
+            }
+        })
+        .catch(error => {
+            console.error("Error:", error)
+            showCustomAlert("אירעה שגיאה בעת הזנת הפרטים, נסו שנית")
         })
     }
 

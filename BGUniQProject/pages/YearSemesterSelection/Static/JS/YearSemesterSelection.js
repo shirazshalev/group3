@@ -48,7 +48,6 @@ YearSemesterButtons.forEach((button) => {
     })
 })
 
-
 // Event listener to the "ContinueSection" --> moving to the GPA calculator Page
 document.getElementById('ContinueBTN').addEventListener('click', () => {
     // Check if a year and semester have been selected
@@ -56,10 +55,30 @@ document.getElementById('ContinueBTN').addEventListener('click', () => {
         showCustomAlert("יש לבחור שנת לימוד וסמסטר נוכחיים לפני שתמשיכו הלאה")
         return // Stop the transition
     }
-    // If both year and semester are selected, navigate to the next page
-    window.location.href = `/gpa-calculator`
+    // If both year and semester are selected, navigate to the next page /gpa-calculator
+    // sending fetch POST - yearSemesterSelection request with the user details to the server side
+    signInFinalStep(selectedYear, selectedSemester)
 })
 
+function signInFinalStep(contractYear, currentSemester) {
+        fetch('/year-semester-selection', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ contractYear, currentSemester })
+        })
+        .then(response => response.json())
+        .then(result => {
+            if (result.success) {
+                window.location.href = result.redirect
+            } else {
+                showCustomAlert(result.message)
+            }
+        })
+        .catch(error => {
+            console.error("Error:", error)
+            showCustomAlert("אירעה שגיאה, נסו שנית")
+        })
+    }
 
 // Custom Alert Presenting Function
 function showCustomAlert(message) {

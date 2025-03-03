@@ -22,7 +22,6 @@ def print_all_collections():
         for doc in documents:
             print_document(doc)
 
-
 def print_document(doc, indent=0):
     for key, value in doc.items():
         if isinstance(value, dict):  # If the value is a dictionary, go deeper
@@ -47,7 +46,6 @@ def print_study_templates():
     for doc in documents:
         print_document(doc)
         print("-" * 50)
-
 
 print_all_collections()
 #print_study_templates()
