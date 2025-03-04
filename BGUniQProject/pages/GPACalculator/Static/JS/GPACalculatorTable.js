@@ -445,3 +445,19 @@ function handleAction(action, row) {
             console.log('פעולה אינה ידועה')
     }
 }
+
+// Media Query
+const finalGradeTitle = document.querySelector('.tdFinalGrade')
+const originalTitle = finalGradeTitle.textContent
+const updateTitleBasedOnWidth = () => {
+    if (window.innerWidth < 800) {
+        finalGradeTitle.textContent = 'ציון'
+    } else {
+        finalGradeTitle.textContent = originalTitle
+    }
+}
+updateTitleBasedOnWidth()
+window.addEventListener('resize', (e) => {
+    e.preventDefault()
+    updateTitleBasedOnWidth()
+})

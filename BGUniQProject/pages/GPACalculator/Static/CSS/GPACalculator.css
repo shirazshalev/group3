@@ -515,24 +515,43 @@ input[readonly] {
     white-space: nowrap;
 }
 
-
-
 /* ------------------------Media Query------------------------ */
 @media (max-width: 768px) {
-    main {
-        margin-right: 10px;
-        margin-left: 10px;
-    }
-
     #CalculatorInputContainer {
         padding: 5px 10px 5px 5px;
-
-        width: 100%;
-        min-height: 50vh;
+        width: 98%;
     }
 
-    .ComponentPopupHidden {
-        top: 45px;
+    #CoursesTable {
+        margin: 0 0 30px 0;
+        border-spacing: 10px 5px;
+    }
+
+    .CoursesTableHeader {
+        padding: 5px;
+    }
+
+    #CoursesTable tbody tr td:nth-child(1) {
+        width: 20px;
+    }
+
+    #CoursesTable tbody tr td:nth-child(2) {
+        min-width: 70px;
+        max-width: 150px;
+    }
+
+    #CoursesTable tbody tr td:nth-child(3), #CoursesTable tbody tr td:nth-child(4) {
+        width: 50px;
+        min-width: 40px !important;
+    }
+
+    #CoursesTable tbody tr td:nth-child(5), #CoursesTable tbody tr td:nth-child(6) {
+        width: 50px;
+    }
+
+    .popupComponentsWindow {
+        left: 0;
+        width: 400px;
     }
 
     .ActionButton {
@@ -550,13 +569,38 @@ input[readonly] {
     .GPAButton {
         font-size: 14px;
     }
+}
 
+@media (max-width: 620px) {
     #CoursesTable thead {
         font-size: 16px;
         font-weight: 400;
         margin: 0;
     }
 
+    #CoursesTableHeader {
+        padding: 0;
+    }
+
+    .GPAButton {
+        font-size: 12px;
+        min-width: 70px;
+        flex-wrap: wrap;
+    }
+
+    .additionalComponents {
+        border-spacing: 5px;
+    }
+
+    .popupComponentsWindow {
+        left: -50%;
+        width: 350px;
+    }
+
+    .additionalComponents th {
+        font-size: 12px;
+        margin-bottom: 2px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -564,39 +608,31 @@ input[readonly] {
         font-size: 22px;
     }
 
+    .popupComponentsWindow {
+        left: -70%;
+        width: 320px;
+    }
+
+    .theList, .customDropdown {
+        max-height: 200px;
+        min-width: 180px;
+        max-width: 200px;
+    }
+
+    .theList li.listItem, .customDropdown li.listItem {
+        font-size: 10px;
+    }
+
     #CoursesTable tbody tr td:nth-last-child(-n+2) {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-content: center;
-        width: 100%;
-        height: 20px;
+        width: 30px;
         padding-bottom: 1px;
-    }
-
-    #CoursesTable tbody tr {
-        height: 50px;
-    }
-
-    .tdInput {
-        justify-content: start;
-        align-content: start;
     }
 
     #CoursesTable tbody .GPAButton {
         font-size: 10px;
-        height: 100%;
     }
 
-    #CoursesTable tr input[list] {
-        height: 40px;
-    }
-
-    tbody td input[list] {
-        height: 40px;
-    }
-
-    #CoursesTable input[type="number"] {
+    #CoursesTable tr input[list], tbody td input[list], #CoursesTable input[type="number"] {
         height: 40px;
     }
 
@@ -606,16 +642,10 @@ input[readonly] {
         margin: 0;
     }
 
-    .ComponentPopupHidden {
-        top: 25px;
-        left: 0;
-        width: 350px;
-    }
-
     .SemesterYearButton {
         line-height: 1em;
         height: 30px;
-        min-width: 83px;
+        min-width: 100px;
         max-width: 150px;
         font-size: 14px;
     }
@@ -632,17 +662,46 @@ input[readonly] {
         right: 120px;
     }
 
-    .PopupMenuContainer {
-        position: relative;
-        bottom: 22px;
-    }
-
-    .ComponentInRow select {
-        height: 40px;
-    }
-
     .GradeComponentRow {
         gap: 2px; /*between the columns inside the row*/
+    }
+
+    .GPAButton {
+        flex-wrap: wrap;
+        width: 100%;
+        min-width: 50px;
+    }
+}
+
+@media (max-width: 460px) {
+    main {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .SemesterYearButton {
+        min-width: 83px;
+    }
+
+    .TextStyle {
+        font-size: 12px;
+    }
+
+    .description {
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 440px) {
+    .popupComponentsWindow {
+        width: 270px;
+    }
+}
+
+@media (max-width: 385px) {
+    .SemesterYearButton {
+        line-height: 1em;
+        min-width: 80px;
     }
 }
 
@@ -651,39 +710,12 @@ input[readonly] {
         font-size: 20px;
     }
 
-    .ComponentPopupHidden {
-        width: 300px;
-        left: 0;
-    }
-
-    .SemesterYearButton {
-        line-height: 1em;
-        min-width: 80px;
-        max-width: 150px;
-    }
-
-    #CoursesTable thead {
-        font-size: 13px;
-    }
-
-    #CoursesTable tr input[list] {
-        min-width: 20px;
-        font-size: 0.7rem;
-    }
-
     #CoursesTable input[type="number"] {
         text-align: start;
         min-width: 30px;
-        font-size: 0.7rem;
     }
 
-    #CoursesTable tbody .GPAButton {
+    #CoursesTable tbody {
         font-size: 10px;
-    }
-
-    #CoursesTable tbody tr td:nth-last-child(-n+2) {
-        display: flex;
-        flex-direction: column;
-        font-size: 5px;
     }
 }
