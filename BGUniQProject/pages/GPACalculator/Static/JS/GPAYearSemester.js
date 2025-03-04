@@ -59,6 +59,43 @@ function getCourseName(row) {
     return { text: "", element: null, isManual: false }
 }
 
+function savingAndSendingDataToDB(rows) {
+    insertCoursesDataToDB().then(success => {
+        if (success) {
+            console.log("הנתונים נשמרו בבסיס הנתונים בהצלחה")
+            rows.forEach(row => {
+                const courseData = getCourseName(row)
+                const courseNameInput = courseData.text
+                const courseElement = courseData.element
+                const isManual = courseData.isManual
+                const creditsInput = row.querySelector('input[type="number"][step="0.5"]')
+                const gradeInput = row.querySelector('input[type="number"][step="1"]')
+
+                if (isManual && courseElement) {
+                    courseElement.setAttribute("readonly", "true")
+                } else if (!isManual && courseElement) {
+                    courseElement.parentElement.classList.add("locked-course")
+                    courseElement.parentElement.style.pointerEvents = "none"
+                    courseElement.parentElement.style.opacity = "0.7"
+                }
+
+                // Make the inputs readonly
+                creditsInput.setAttribute("readonly", "true")
+                creditsInput.setAttribute("readonly", "true")
+                gradeInput.setAttribute("readonly", "true")
+                creditsInput.parentElement.style.opacity = "0.7"
+                gradeInput.parentElement.style.opacity = "0.7"
+                // Remove any previous highlighting
+                row.classList.remove("incomplete-row")
+
+            })
+            showCustomAlert("הנתונים נשמרו בהצלחה, כדי לערוך מחדש יש ללחוץ על שלושת הנקודות המופיעות בצד")
+        } else {
+            console.log("הכנסת הנתונים לבסיס הנתונים נכשלה")
+        }
+    })
+}
+
 document.addEventListener("DOMContentLoaded", () => {
     // Event listener for choosing year and semester
     const YearSemesterButtons = document.querySelectorAll('#YearSemesterSection .SemesterYearButton')
@@ -108,20 +145,16 @@ document.addEventListener("DOMContentLoaded", () => {
         // Get all rows in the courses table
         const rows = document.querySelectorAll("#CoursesTable tbody tr")
         // Loop through each row
-        rows.forEach(row => {
+        rows.forEach((row, index) => {
             // Get inputs in the row
             const courseData = getCourseName(row)
             const courseNameInput = courseData.text
-            const courseElement = courseData.element
-            const isManual = courseData.isManual
+            //const courseElement = courseData.element
+            //const isManual = courseData.isManual
             const creditsInput = row.querySelector('input[type="number"][step="0.5"]')
             const gradeInput = row.querySelector('input[type="number"][step="1"]')
             // Check if all fields are filled
-            if (
-                courseNameInput === "" ||
-                creditsInput.value.trim() === "" ||
-                gradeInput.value.trim() === ""
-            ) {
+            if (courseNameInput === "" || creditsInput.value.trim() === "" || gradeInput.value.trim() === "") {
                 incompleteRowFound = true // Set flag if any field is empty
                 row.classList.add("incomplete-row") // Highlight the row (optional, add CSS)
             } else {
@@ -133,35 +166,20 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
                 // Add the course object to the array
                 CoursesArray.push(course)
-
-                if (isManual && courseElement) {
-                    courseElement.setAttribute("readonly", "true")
-                } else if (!isManual && courseElement) {
-                    courseElement.parentElement.classList.add("locked-course")
-                    courseElement.parentElement.style.pointerEvents = "none"
-                    courseElement.parentElement.style.opacity = "0.7"
-                }
-
-                // Make the inputs readonly
-                creditsInput.setAttribute("readonly", "true")
-                creditsInput.setAttribute("readonly", "true")
-                gradeInput.setAttribute("readonly", "true")
-                creditsInput.parentElement.style.opacity = "0.7"
-                gradeInput.parentElement.style.opacity = "0.7"
-                // Remove any previous highlighting
-                row.classList.remove("incomplete-row")
             } // End of else condition
+            // if (index === rows.length - 1 && !incompleteRowFound){
+            //     savingAndSendingDataToDB(rows)
+            // }
         }) // End of the loop through each row
         if (incompleteRowFound) {
             // Show an alert if any row is incomplete
             showCustomAlert("יש למלא את כל הפרטים על הקורס לפני שמירת הנתונים")
             return // Stop saving
         }
-        insertCoursesDataToDB()
-        showCustomAlert("הנתונים נשמרו בהצלחה, כדי לערוך מחדש יש ללחוץ על שלושת הנקודות המופיעות בצד")
+        savingAndSendingDataToDB(rows)
         // Log the array of course objects (optional)
         console.log("Saved courses for", selectedYear, selectedSemester, CoursesArray)
-        return // Stop saving
+        // return // Stop saving
     }) // End of the Save button click event listener
 }) // Dom
 

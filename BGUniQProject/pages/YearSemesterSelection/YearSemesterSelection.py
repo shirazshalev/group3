@@ -15,7 +15,6 @@ def year_semester_selection():
         return render_template('YearSemesterSelection.html')
     elif request.method == 'POST':
         data = request.get_json()
-
         session['contractYear'] = data.get('contractYear')
         session['currentSemester'] = data.get('currentSemester')
 
@@ -23,11 +22,9 @@ def year_semester_selection():
         try:
             create_student_user(session.get('studentID'), session.get('firstName'), session.get('lastName'),
                                 session.get('password'), session.get('email'), session.get('degree'), session.get('department'),
-                                session.get('template'), session.get('contractYear'), session.get('currentSemester')
-            )
-            # session.clear()
-            keys_to_remove = ['studentID', 'firstName', 'lastName', 'password', 'degree', 'department', 'template', #delete everything except the email
-                              'contractYear', 'currentSemester']
+                                session.get('template'), session.get('contractYear'), session.get('currentSemester'), session.get('academicYear'))
+            # session.clear() CLEAR everything except the user's email and the first name:
+            keys_to_remove = ['studentID', 'lastName', 'password', 'degree', 'department', 'template', 'contractYear', 'currentSemester', 'academicYear']
             for key in keys_to_remove:
                 session.pop(key, None)
 

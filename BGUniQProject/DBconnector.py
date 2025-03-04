@@ -1,5 +1,5 @@
 import os
-import certifi  # SHIRAZ
+# import certifi  # SHIRAZ
 import pymongo
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
@@ -22,9 +22,9 @@ uri = os.getenv("DB_URI")
 
 # Create a new client (cluster) and connect to the server
 # YUVAL
-# cluster = MongoClient(uri, server_api=ServerApi('1'))
+cluster = MongoClient(uri, server_api=ServerApi('1'))
 # SHIRAZ
-cluster = MongoClient(uri, server_api=ServerApi('1'), tlsCAFile=certifi.where())
+# cluster = MongoClient(uri, server_api=ServerApi('1'), tlsCAFile=certifi.where())
 BGUniQDB = cluster['BGUniQDB']
 
 # Define Collections
@@ -86,8 +86,7 @@ def update_study_template(StudyTemplateDict):
 
 # Creating a new Student-User after the signup
 def create_student_user(StudentID, FirstName, LastName, Password, Email, Degree, Department, StudyTemplate,
-                        ContractYear,
-                        CurrentSemester):
+                        ContractYear, CurrentSemester, AcademicYear):
     newUser = {
         "StudentID": StudentID,
         "FirstName": FirstName,
@@ -99,7 +98,7 @@ def create_student_user(StudentID, FirstName, LastName, Password, Email, Degree,
         "StudyTemplate": StudyTemplate,
         "ContractYear": ContractYear,
         "CurrentSemester": CurrentSemester,
-        "AcademicYear": "",
+        "AcademicYear": AcademicYear,
         "Enrollments": {
             "yearA": {
                 "semesterA": [],
