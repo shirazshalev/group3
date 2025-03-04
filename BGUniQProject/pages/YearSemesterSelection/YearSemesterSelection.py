@@ -25,7 +25,12 @@ def year_semester_selection():
                                 session.get('password'), session.get('email'), session.get('degree'), session.get('department'),
                                 session.get('template'), session.get('contractYear'), session.get('currentSemester')
             )
-            session.clear()
+            # session.clear()
+            keys_to_remove = ['studentID', 'firstName', 'lastName', 'password', 'degree', 'department', 'template', #delete everything except the email
+                              'contractYear', 'currentSemester']
+            for key in keys_to_remove:
+                session.pop(key, None)
+
             return jsonify({'success': True, 'redirect': url_for('GPACalculator.gpa_calculator')})
         except Exception as e:
             return jsonify({'success': False, 'message': f"שגיאה ביצירת החשבון: {str(e)}"})

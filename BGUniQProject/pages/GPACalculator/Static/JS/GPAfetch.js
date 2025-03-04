@@ -35,6 +35,10 @@ function insertCoursesDataToDB() {
         }
     })
 
+    console.log(selectedSemester) // debugging check
+    console.log(selectedYear) // debugging check
+    console.log("Courses Data:", coursesData) // debugging check
+
     // Send data to the server
     fetch("/gpa-calculator", {
         method: "POST",
@@ -45,8 +49,9 @@ function insertCoursesDataToDB() {
             courses: coursesData
         })
     })
-        .then(response => response.json())
+        .then(response => response.text())//debugging check - text instead of json
         .then(data => {
+            console.log("Server response:", data) //debugging check
             if (data.success) {
                 showCustomAlert("הקורסים נשמרו בהצלחה")
             } else if (data.conflict) {
@@ -57,7 +62,7 @@ function insertCoursesDataToDB() {
             }
         })
         .catch(error => {
-            console.error("שגיאה:", error)
+            console.error("שגיאה בשליחת הנתונים לשרת:", error)
             showCustomAlert("שגיאה בשליחת הנתונים לשרת")
         })
 }
