@@ -1,5 +1,5 @@
 import os
-# import certifi  # SHIRAZ
+import certifi  # SHIRAZ
 import pymongo
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
@@ -22,9 +22,9 @@ uri = os.getenv("DB_URI")
 
 # Create a new client (cluster) and connect to the server
 # YUVAL
-cluster = MongoClient(uri, server_api=ServerApi('1'))
+# cluster = MongoClient(uri, server_api=ServerApi('1'))
 # SHIRAZ
-# cluster = MongoClient(uri, server_api=ServerApi('1'), tlsCAFile=certifi.where())
+cluster = MongoClient(uri, server_api=ServerApi('1'), tlsCAFile=certifi.where())
 BGUniQDB = cluster['BGUniQDB']
 
 # Define Collections
@@ -142,3 +142,22 @@ def get_user_by_email(email):
 
 def check_if_signed(email):
     return get_user_by_email(email) is not None
+
+
+def delete_user_by_email(email):
+    try:
+        user = StudentsCol.find_one({'Email': email})
+        if not user:
+            print("User doesn't exist")
+            return False
+        result = StudentsCol.delete_one({'Email': email})
+        if result.deleted_count > 0:
+            print("User deleted successfully")
+            return True
+        else:
+            return False
+    except Exception as e:
+        print(f"error during deletion: {e}")
+        return False
+
+delete_user_by_email("shirazh@post.bgu.ac.il")
