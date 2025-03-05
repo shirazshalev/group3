@@ -40,6 +40,6 @@ def year_semester_selection():
             for key in keys_to_remove:
                 session.pop(key, None)
 
-            return jsonify({'success': True, 'redirect': url_for('GPACalculator.gpa_calculator')})
+            return jsonify({'success': True, 'redirect': url_for('GPACalculator.gpa_calculator_page')})
         except Exception as e:
             return jsonify({'success': False, 'message': f"שגיאה ביצירת החשבון: {str(e)}"})
