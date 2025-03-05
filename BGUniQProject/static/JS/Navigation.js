@@ -37,7 +37,6 @@ const searchButton = document.querySelector('.searchButton')
 const closeButton = document.querySelector('.closeButton')
 const searchForm = document.querySelector('#searchForm')
 
-
 searchButton.addEventListener('click', (e) => {
     e.preventDefault()
     if (searchFormContainer.style.display === 'block') {
@@ -74,3 +73,41 @@ searchForm.addEventListener('submit', (e) => {
         alert("העמוד לא נמצא")
     }
 })
+
+// logout
+document.addEventListener("DOMContentLoaded", function () {
+    const logoutButton = document.querySelector(".logoutButton")
+    if (logoutButton) {
+        logoutButton.addEventListener("click", function () {
+            showLogoutPopup()
+        })
+    }
+})
+
+function showLogoutPopup() {
+    const overlay = document.createElement("div")
+    overlay.classList.add("popup-overlay")
+
+    const popup = document.createElement("div")
+    popup.classList.add("logout-popup")
+
+    const logoutConfirmButton = document.createElement("button")
+    logoutConfirmButton.textContent = "התנתקות"
+    logoutConfirmButton.classList.add("logout-confirm-button")
+
+    logoutConfirmButton.addEventListener("click", function () {
+        // server call ?
+        // showCustomAlert("נתראה בקרוב :)") //
+        window.location.href = "/login" // back to login page
+    })
+
+    overlay.addEventListener("click", function (event) {
+        if (event.target === overlay) {
+            document.body.removeChild(overlay)
+        }
+    })
+
+    popup.appendChild(logoutConfirmButton)
+    overlay.appendChild(popup)
+    document.body.appendChild(overlay)
+}

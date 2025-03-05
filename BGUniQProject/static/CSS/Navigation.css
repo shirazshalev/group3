@@ -107,6 +107,16 @@ p.bgu {
     height: 20px;
 }
 
+.logoutButton {
+    width: 10px;
+    height: 10px;
+}
+
+.logoutIcon {
+    width: 20px;
+    height: 20px;
+}
+
 .languageButton {
     align-items: center;
     gap: 10px;
@@ -222,7 +232,45 @@ p.bgu {
     text-decoration: underline;
 }
 
-/* Media Query */
+
+/* ------------------------logout pop-up------------------------ */
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4); /* רקע כהה חצי שקוף */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.logout-popup {
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 30px;
+    text-align: center;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.logout-confirm-button {
+    font-family: 'Fredoka', Serif, serif;
+    font-size: 20px;
+    font-weight: 300;
+}
+
+.logout-confirm-button:hover {
+    color: #f7af18;
+}
+
+/* ------------------------Media Query------------------------ */
 @media screen and (max-width: 768px) {
     /* For tablet screens */
     .popupMenu {
@@ -242,9 +290,3 @@ p.bgu {
         font-size: 18px;
     }
 }
-
-
-
-
-
-
