@@ -70,3 +70,47 @@ function insertCoursesDataToDB() {
             })
     })
 }
+
+// Deleting a single course from the database
+function deleteCourseFromDB(row) {
+    return new Promise((resolve, reject) => {
+        // Retrieve all rows from the courses table
+        const courseName = getCourseName(row).text
+        // Checking whether the course has already been saved
+        const courseNameInput = getCourseName(row).element
+        const creditsInput = row.querySelector('input[type="number"][step="0.5"]')
+        const gradeInput = row.querySelector('input[type="number"][step="1"]')
+
+        const isReadOnly = creditsInput.hasAttribute('readonly') && gradeInput.hasAttribute('readonly')
+        if (!isReadOnly) {
+            console.log("הקורס לא נשמר עדיין, ולכן אין צורך למחוק מבסיס הנתונים")
+            row.remove()
+            resolve(false)
+            return
+        }
+        console.log(`Trying to delete course: ${courseName} from year: ${selectedYear}, semester: ${selectedSemester}`)
+
+        // Deletion request
+        fetch(`/gpa-calculator/${selectedYear}/${selectedSemester}`, {
+            method: "DELETE",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ courseName: courseName })
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log("Server response:", data)
+            if (data.success) {
+                showCustomAlert("הקורס נמחק בהצלחה מהמערכת.")
+                resolve(true)
+            } else {
+                showCustomAlert(data.message || "אירעה שגיאה במחיקת הקורס.")
+                resolve(false)
+            }
+        })
+        .catch(error => {
+            console.error("שגיאה במחיקת הקורס מהשרת:", error)
+            showCustomAlert("אירעה שגיאה במחיקה מהמערכת, אנא נסה שנית")
+            reject(false)
+        })
+    })
+}

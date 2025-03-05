@@ -90,6 +90,10 @@ function savingAndSendingDataToDB(rows) {
                 // Remove any previous highlighting
                 row.classList.remove("incomplete-row")
 
+                console.log(`📌 Credits Readonly:`, creditsInput.hasAttribute('readonly'))
+                console.log(`📌 Grade Readonly:`, gradeInput.hasAttribute('readonly'))
+
+
             })
             showCustomAlert("הנתונים נשמרו בהצלחה, כדי לערוך מחדש יש ללחוץ על שלושת הנקודות המופיעות בצד")
         } else {
@@ -191,11 +195,52 @@ function showCustomAlert(message) {
         return
     }
     // Set the message
-    alertMessage.textContent = message
+    alertMessage.innerHTML = message
+    // alertMessage.textContent = message
     // Show the alert
     alertBox.classList.remove('hidden')
     // Close the alert when the button is clicked
     closeButton.addEventListener('click', () => {
         alertBox.classList.add('hidden')
+    })
+}
+
+function showCustomAlertWithCancel(message) {
+    return new Promise((resolve) => {
+        const alertBox = document.getElementById('Alert')
+        const alertMessage = document.getElementById('alertMessage')
+        const buttonContainer = document.getElementById('alertFooter')
+        const closeButton = document.getElementById('alertCloseButton')
+
+        if (!alertBox || !alertMessage || !closeButton || !buttonContainer) {
+            console.error("Custom alert elements are not properly defined.")
+            resolve(null)
+            return
+        }
+
+        // Set the message
+        alertMessage.innerHTML = message
+
+        if (!document.getElementById("alertCancelButton")) {
+            let cancelButton = document.createElement("button")
+            cancelButton.textContent = "ביטול"
+            cancelButton.id = "alertCancelButton"
+            cancelButton.classList.add("alert-button")
+            buttonContainer.appendChild(closeButton)
+            buttonContainer.appendChild(cancelButton)
+
+            cancelButton.addEventListener('click', () => {
+                alertBox.classList.add('hidden')
+                cancelButton.remove()
+                resolve("Cancel")
+            })
+        }
+        alertBox.classList.remove('hidden')
+        closeButton.addEventListener('click', () => {
+            alertBox.classList.add('hidden')
+            const cancelButton = document.getElementById("alertCancelButton")
+            if (cancelButton) cancelButton.remove()
+            resolve("Confirm")
+        })
     })
 }

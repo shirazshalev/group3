@@ -338,9 +338,9 @@ const addNewCourseRow = () => {
     // Attach event listener to the new "Grade by components" button
     attachListenersToRow(newRow)
 
-    if (typeof attachGPAButtonListeners === "function") {
-        attachGPAButtonListeners()
-    }
+    // if (typeof attachGPAButtonListeners === "function") {
+    //     attachGPAButtonListeners()
+    // }
 }
 
 // Attach event listener to the "Add Course" button
@@ -478,15 +478,35 @@ function handleAction(action, row) {
             showCustomAlert("הקורס הוגדר בהצלחה כפטור נק״ז")
             break
         case 'delete':
-            console.log('הקורס נמחק')
-            // Remove row from the table
-            row.remove()
-            // Remove the course from the coursesData array
-            const courseNameToDelete = row.querySelector('input[list]').value.trim()
-            const coursesArray = coursesData[selectedYear][selectedSemester]
-            const updatedCoursesArray = coursesArray.filter(course => course.courseName !== courseNameToDelete)
-            coursesData[selectedYear][selectedSemester] = updatedCoursesArray
-            console.log(`Updated courses after deletion:`, coursesData[selectedYear][selectedSemester])
+            // Show confirmation alert before deleting the course
+            showCustomAlertWithCancel("האם אתה בטוח שאתה רוצה למחוק את הקורס?<br><br><span class='alert-subtext'>במידה והקורס כבר נשמר, בלחיצה על כפתור האישור הוא ימחק מהמערכת</span>")
+                .then((result) => {
+                    console.log("User action:", result)
+                    if (result === "Cancel") { // The user did not confirmed the deletion
+                        console.log("המשתמש לחץ על ביטול")
+                        return
+                    }
+                    // The user confirmed the deletion:
+                    console.log("המשתמש לחץ על אישור- ננסה לבצע מחיקה")
+                    // Delete from DB:
+                    deleteCourseFromDB(row)
+                        .then(success => {
+                            if (success) {
+                                console.log("הקורס נמחק בהצלחה מהשרת ומהטבלה.")
+                                // Remove the course from the coursesData array:
+                                row.remove()
+                                const courseNameToDelete = getCourseName(row).text.trim()
+                                const coursesArray = coursesData[selectedYear][selectedSemester]
+                                const updatedCoursesArray = coursesArray.filter(course => course.courseName !== courseNameToDelete)
+                                coursesData[selectedYear][selectedSemester] = updatedCoursesArray
+
+                                console.log(`Updated courses after deletion:`, coursesData[selectedYear][selectedSemester])
+                                console.log('הקורס נמחק, הכל מעודכן, סוף!!!!')
+                            } else {
+                                console.log("מחיקת הקורס נכשלה")
+                            }
+                        })
+                })
             break
         case 'edit':
             console.log('הקורס עודכן')
@@ -511,7 +531,6 @@ function handleAction(action, row) {
                 courseElement.parentElement.style.pointerEvents = "auto"
                 courseElement.parentElement.style.opacity = "1"
             }
-
             break
         case 'details':
             console.log('פעולות נוספות הוצגו')

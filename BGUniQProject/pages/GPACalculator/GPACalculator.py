@@ -240,3 +240,48 @@ def gpa_calculator(selectedYear, selectedSemester):
             print("Error occurred:", str(e))
             traceback.print_exc()
             return jsonify({"success": False, "message": "Internal server error"}), 500
+
+
+
+@gpaCalculatorBP.route("/gpa-calculator/<string:selectedYear>/<string:selectedSemester>", methods=['DELETE'])
+def delete_course(selectedYear, selectedSemester):
+    try:
+        if "email" not in session:
+            return jsonify({"success": False, "message": "User is not logged in"})
+
+        data = request.get_json()
+        course_name = data.get("courseName")
+
+        if not course_name:
+            return jsonify({"success": False, "message": "Missing course name"}), 400
+
+        student_email = session["email"]
+        student = StudentsCol.find_one({"Email": student_email})
+
+        if not student:
+            return jsonify({"success": False, "message": "User not found in the database"})
+
+        enrollments = student.get("Enrollments", {})
+
+        if selectedYear not in enrollments or selectedSemester not in enrollments[selectedYear]:
+            return jsonify({"success": False, "message": "Year or semester not found"})
+
+        original_length = len(enrollments[selectedYear][selectedSemester])
+        enrollments[selectedYear][selectedSemester] = [
+            course for course in enrollments[selectedYear][selectedSemester] if course["courseName"] != course_name
+        ]
+
+        if len(enrollments[selectedYear][selectedSemester]) == original_length:
+            return jsonify({"success": False, "message": "Course not found in the selected semester"})
+
+        StudentsCol.update_one(
+            {"Email": student_email},
+            {"$set": {"Enrollments": enrollments}}
+        )
+
+        return jsonify({"success": True, "message": f"Course '{course_name}' deleted successfully from {selectedYear} {selectedSemester}."})
+
+    except Exception as e:
+        print("Error occurred while deleting course:", str(e))
+        traceback.print_exc()
+        return jsonify({"success": False, "message": "Internal server error"}), 500

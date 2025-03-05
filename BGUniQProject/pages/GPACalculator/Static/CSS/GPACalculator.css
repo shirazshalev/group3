@@ -515,6 +515,18 @@ input[readonly] {
     white-space: nowrap;
 }
 
+.alert-subtext {
+    font-size: 0.85em;
+    color: #666;
+}
+
+.customAlertFooter {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    margin-top: 15px;
+}
+
 /* ------------------------Media Query------------------------ */
 @media (max-width: 768px) {
     #CalculatorInputContainer {

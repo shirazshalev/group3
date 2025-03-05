@@ -151,7 +151,7 @@ h5 {
 }
 
 /* Button styling */
-#alertCloseButton {
+#alertCloseButton, #alertCancelButton {
     background-color: #f7af18;
     color: #fff;
     font-family: 'Fredoka', Serif, serif;
@@ -162,10 +162,16 @@ h5 {
     cursor: pointer;
     transition: background-color 0.3s ease;
     margin: 0 auto;
+    min-width: 100px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-#alertCloseButton:hover {
+#alertCloseButton:hover, #alertCancelButton:hover {
     background-color: #244ea1;
 }
+
 
 /* ------------------------Media Query------------------------ */
