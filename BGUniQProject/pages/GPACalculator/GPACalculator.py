@@ -147,6 +147,7 @@ def gpa_calculator(selectedYear, selectedSemester):
             # Get the student's Enrollment data
             enrollments = student.get("Enrollments", {})
 
+            updated = False
 
             # Extract all courses names and IDs from the template the student belongs
             courses_id_from_template = get_list_of_courses_id_from_template_collection(study_template_document)
@@ -234,13 +235,12 @@ def gpa_calculator(selectedYear, selectedSemester):
                 return jsonify({"success": True, "message": "Courses saved/updated successfully!"})
 
             print("לא אמורים להכניס את הנתונים לבסיס נתונים")
-            return jsonify({"success": False, "message": "No changes detected in the course data."})
+            return jsonify({"success": True, "message": "No changes detected, nothing to update."})
 
         except Exception as e:
             print("Error occurred:", str(e))
             traceback.print_exc()
             return jsonify({"success": False, "message": "Internal server error"}), 500
-
 
 
 @gpaCalculatorBP.route("/gpa-calculator/<string:selectedYear>/<string:selectedSemester>", methods=['DELETE'])
@@ -273,6 +273,9 @@ def delete_course(selectedYear, selectedSemester):
 
         if len(enrollments[selectedYear][selectedSemester]) == original_length:
             return jsonify({"success": False, "message": "Course not found in the selected semester"})
+
+        if not enrollments[selectedYear][selectedSemester]:
+            enrollments[selectedYear][selectedSemester] = []
 
         StudentsCol.update_one(
             {"Email": student_email},

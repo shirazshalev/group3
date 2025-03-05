@@ -324,7 +324,7 @@ const addNewCourseRow = () => {
     const binaryPassCell = document.createElement("td")
     binaryPassCell.classList.add("tdInput")
     const binaryButton = document.createElement("button")
-    binaryButton.classList.add("GPAButton")
+    binaryButton.classList.add("GPAButton", "binaryButton")
     binaryButton.textContent = "עובר בינארי"
     const binaryButtonSpan = document.createElement("span")
     binaryButtonSpan.classList.add("error-message")
@@ -382,6 +382,12 @@ document.addEventListener('click', (event) => {
     }
 })
 
+document.addEventListener('click', (event) => {
+    const button = event.target.closest('.binaryButton')
+    if (button) {
+        button.classList.toggle('active')
+    }
+})
 
 // ----------------------------------Validations----------------------------------
 document.addEventListener("input", () => validateAllCourseNames())
