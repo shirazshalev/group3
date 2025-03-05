@@ -70,8 +70,43 @@ def assign_course_ids_to_user_courses(user_courses, study_template, student):
     return user_courses
 
 
-@gpaCalculatorBP.route("/gpa-calculator", methods=['GET', 'POST'])
-def gpa_calculator():
+@gpaCalculatorBP.route("/gpa-calculator", methods=['GET'])
+def gpa_calculator_page():
+    # loading GPA page from Index
+    return render_template('GPACalculator.html')
+
+
+@gpaCalculatorBP.route("/get-study-template", methods=['GET'])
+def get_study_template():
+    try:
+        if "email" not in session:
+            return jsonify({"success": False, "message": "User is not logged in"})
+
+        student_email = session["email"]
+        student = StudentsCol.find_one({"Email": student_email})
+
+        if not student:
+            return jsonify({"success": False, "message": "User not found in the database"})
+
+        study_template_name = student.get("StudyTemplate")
+        if not study_template_name:
+            return jsonify({"success": False, "message": "Study template not found"})
+
+        study_template_document = StudyTemplatesCol.find_one({"_id": study_template_name})
+
+        if not study_template_document:
+            return jsonify({"success": False, "message": "Study template not found in the database"})
+
+        return jsonify({"success": True, "study_template": study_template_document})
+
+    except Exception as e:
+        print("Error occurred:", str(e))
+        traceback.print_exc()
+        return jsonify({"success": False, "message": "Internal server error"}), 500
+
+
+@gpaCalculatorBP.route("/gpa-calculator/<string:selectedYear>/<string:selectedSemester>", methods=['GET', 'POST'])
+def gpa_calculator(selectedYear, selectedSemester):
     if request.method == 'GET':
         return render_template('GPACalculator.html')
     elif request.method == 'POST':
@@ -84,8 +119,6 @@ def gpa_calculator():
             data = request.get_json() # Retrieve the data sent from the frontend
             print(" הנתונים שהתקבלו מהלקוח:", data) # debugging check
             student_email = session["email"]
-            selectedYear = data.get("year")
-            selectedSemester = data.get("semester")
             studentCoursesToDB = data.get("courses", [])
 
             # Validate received data
@@ -124,7 +157,7 @@ def gpa_calculator():
 
             # Iterate over studentCoursesToDB to validate and process
             for course in student_courses_to_db_with_id:
-                print("רשימת הקורסים שהזין הסטודנט במחשבון נק״ז:", studentCoursesToDB) # debugging check
+                print("רשימת הקורסים שהזין הסטודנט במחשבון נק״ז:", student_courses_to_db_with_id) # debugging check
                 print("בדיקת ההקורס:", course) # debugging check
                 if not isinstance(student_courses_to_db_with_id, list):  # debugging check
                     return jsonify({"success": False, "message": "Invalid course data format"})  # debugging check
@@ -182,7 +215,6 @@ def gpa_calculator():
 
                     # Add the new course to the selected year and semester
                     # enrollments[selectedYear][selectedSemester].append(course)
-                    # print("נתוני קורס חדשים לגמרי")
                     # updated = True  # Mark as updated
                     if course_id not in [c["courseID"] for c in enrollments.get(selectedYear, {}).get(selectedSemester, [])]:
                         enrollments[selectedYear][selectedSemester].append(course)
@@ -191,15 +223,6 @@ def gpa_calculator():
                     else:
                         print(
                             f"הקורס {course_name} כבר קיים בשנה {selectedYear} ובסמסטר {selectedSemester}, לא נוסף שוב")
-
-                    # if selectedYear not in student["Enrollments"]:
-                    #     student["Enrollments"][selectedYear] = {}
-                    # if selectedSemester not in student["Enrollments"][selectedYear]:
-                    #     student["Enrollments"][selectedYear][selectedSemester] = []
-                    #
-                    # student["Enrollments"][selectedYear][selectedSemester].extend(studentCoursesToDB)
-                    # StudentsCol.update_one({"Email": student_email}, {"$set": {"Enrollments": student["Enrollments"]}})
-
 
             # If updates were made, save everything at once
             if updated:

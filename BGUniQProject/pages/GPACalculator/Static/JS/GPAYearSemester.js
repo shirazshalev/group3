@@ -15,6 +15,8 @@ document.getElementById('ContinueBTN').addEventListener('click', () => {
         YearSemesterButtons.forEach(button => {
             button.classList.add('disabled')
         })
+        // Retrieving courses from studyTemplate and updating the drop-down courses list:
+        updateCoursesFromTemplate()
     } else {
         showCustomAlert("עבור הזנת הקורסים- יש לבחור תחילה שנה וסמסטר")
     }
@@ -107,12 +109,12 @@ document.addEventListener("DOMContentLoaded", () => {
             } else if (button.textContent.includes('סמסטר')) {
                 selectedSemester = semesterMap[button.textContent.trim()] // translate and save the selected semester
             }
-            // Keeping showing the chosen detail in light orange
+            // Keeping showing the chosen detail in light orange:
             const row = button.closest('tr')
             const buttonsInRow = row.querySelectorAll('.SemesterYearButton') // Get all buttons in the same row
-            // Remove the active class from all buttons in the same row
+            // Remove the active class from all buttons in the same row:
             buttonsInRow.forEach((btn) => btn.classList.remove('active'))
-            // Add the active class to the clicked button
+            // Add the active class to the clicked button:
             button.classList.add('active')
             console.log(`Selected Year: ${selectedYear}, Selected Semester: ${selectedSemester}`)
         })
@@ -167,9 +169,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 // Add the course object to the array
                 CoursesArray.push(course)
             } // End of else condition
-            // if (index === rows.length - 1 && !incompleteRowFound){
-            //     savingAndSendingDataToDB(rows)
-            // }
         }) // End of the loop through each row
         if (incompleteRowFound) {
             // Show an alert if any row is incomplete
@@ -179,7 +178,6 @@ document.addEventListener("DOMContentLoaded", () => {
         savingAndSendingDataToDB(rows)
         // Log the array of course objects (optional)
         console.log("Saved courses for", selectedYear, selectedSemester, CoursesArray)
-        // return // Stop saving
     }) // End of the Save button click event listener
 }) // Dom
 

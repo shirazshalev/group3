@@ -23,8 +23,20 @@ def year_semester_selection():
             create_student_user(session.get('studentID'), session.get('firstName'), session.get('lastName'),
                                 session.get('password'), session.get('email'), session.get('degree'), session.get('department'),
                                 session.get('template'), session.get('contractYear'), session.get('currentSemester'), session.get('academicYear'))
+
+            user = get_user_by_email(session.get('email'))
+            # session['studyTemplateName'] = user.get('StudyTemplate')
+
+            study_template = StudyTemplatesCol.find_one({"_id": session['template']})
+            if study_template:
+                session['studyTemplate'] = study_template
+            else:
+                session['studyTemplate'] = {}
+
+            session['enrollments'] = user.get('Enrollments', {})
+
             # session.clear() CLEAR everything except the user's email and the first name:
-            keys_to_remove = ['studentID', 'lastName', 'password', 'degree', 'department', 'template', 'contractYear', 'currentSemester', 'academicYear']
+            keys_to_remove = ['studentID', 'lastName', 'password', 'degree', 'department', 'contractYear', 'currentSemester', 'academicYear']
             for key in keys_to_remove:
                 session.pop(key, None)
 

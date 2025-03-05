@@ -2,43 +2,109 @@
 document.querySelectorAll("#CoursesTable tbody tr").forEach((row) => {
     attachValidationListeners(row)
 })
-document.querySelectorAll("#CoursesTable tbody tr").forEach(attachValidationListeners)
 
-const courses = [
-    {id: 1, name: "מבוא לכלכלה", credits: 3.5},
-    {id: 2, name: "מבוא למערכות מידע", credits: 3.0},
-    {id: 3, name: "מבוא לחשבונאות פיננסית", credits: 3.5},
-    {id: 4, name: "מבוא להנדסת תעשיה וניהול", credits: 1.0},
-    {id: 5, name: "חדו״א 1 להנדסה", credits: 5.0},
-    {id: 6, name: "מבוא למתמטיקה דיסקרטית", credits: 3.5},
-    {id: 7, name: "אלגברה ליניארית להנדסה", credits: 4.5},
-    {id: 8, name: "חקר ביצועים 1", credits: 3.5},
-    {id: 9, name: "גרפיקה הנדסית וממוחשבת", credits: 1.5},
-    {id: 10, name: "מבוא לתכנות", credits: 4.0},
-    {id: 11, name: "מבוא להסתברות", credits: 3.5},
-    {id: 12, name: "חדו״א להנדסת תעשיה וניהול 2", credits: 4.0},
-    {id: 13, name: "משוואות דיפרנציאליות רגילות", credits: 3.5},
-    {id: 14, name: "סדנת כתיבה מדעית", credits: 0.5},
-    {id: 15, name: "חקר ביצועים 2", credits: 3.5},
-    {id: 16, name: "תכנון ופקוח על היצור 1", credits: 4.0},
-    {id: 17, name: "פיתוח תוכנה מונחה עצמים", credits: 3.5},
-    {id: 18, name: "אמידה ומבחני השערות", credits: 3.5},
-    {id: 19, name: "יסודות האלגוריתמים והסיבוכיות", credits: 3.5},
-    {id: 20, name: "פיסיקה 1ב", credits: 3.5},
-    {id: 21, name: "תכנון ופקוח על היצור 2", credits: 4.0},
-    {id: 22, name: "בסיסי נתונים", credits: 3.5},
-    {id: 23, name: "הנדסת שיטות ותהליכים ארגוניים", credits: 4.0},
-    {id: 24, name: "מבוא להנ׳ מכונות ותהליכי ייצור", credits: 3.5},
-    {id: 25, name: "פיסיקה 2ב", credits: 3.5},
-    {id: 26, name: "אנגלית מתקדמים ב׳", credits: 2.0},
-    {id: 27, name: "מבוא להנדסת גורמי אנוש", credits: 3.0},
-    {id: 28, name: "מבוא לקבלת החלטות", credits: 3.0},
-    {id: 29, name: "מבוא להנדסת חשמל", credits: 3.5},
-    {id: 30, name: "סימולציה", credits: 4.0},
-    {id: 31, name: "סדנת מיומנויות בתקשורת בינאישית", credits: 0.5},
-    {id: 32, name: "ניתוח ועיצוב מע׳-מידע", credits: 3.5},
-    {id: 33, name: "מודלים של רגרסיה ליניארית", credits: 3.5}
+window.courses = [] = [
+    {id: 20119321, name: "אלגברה לינארית להנדסה", credits: 4.5},
+    {id: 20119621, name: "חדו\"א 2 להנדסת תעשייה וניהול", credits: 4.0},
+    {id: 36411421, name: "פיתוח תוכנה מונחה עצמים", credits: 3.5},
+    {id: 10110195, name: "הפסיכולוגיה של מיסאינפורמציה", credits: 2.0},
+    {id: 10210275, name: "זבל: ניתוח חברתי ותרבותי של החסר ערך", credits: 2.0},
+    {id: 10210283, name: "לעולם לא עוד? זיכרון השואה בפוליטיקה ובחברה בעידן הגלובלי", credits: 2.0},
+    {id: 12110049, name: "מקומו של התנ\"ך בישראל במאה העשרים ובראשית המאה העשרים ואחת", credits: 2.0},
+    {id: 12112791, name: "מי כתב את התנ\"ך: ספרי נביאים וכתובים", credits: 2.0},
+    {id: 12210208, name: "אורות וצללים בעידן ההשכלה והנאורות", credits: 2.0},
+    {id: 12210226, name: "מימזיס וריאליזם: תחנות בייצוג המציאות בספרות העברית", credits: 2.0},
+    {id: 12210335, name: "דמיון פוליטי: מאה שנה של ספרות מקומית 1920-2020", credits: 2.0},
+    {id: 12210575, name: "רצח אם - האם המזרחית בספרות: שגעון, קרבנות, ניכור", credits: 2.0},
+    {id: 12210755, name: "מן הצד השני של המילה", credits: 2.0},
+    {id: 12210765, name: "סדנא לכתיבת המלנכוליה", credits: 2.0},
+    {id: 12210773, name: "והתלת לבנך ביום ההוא: פרודיות ספרדיות יהודיות על ההגדה של פסח", credits: 2.0},
+    {id: 12210785, name: "העגלה המלאה של החילוניות הישראלית: קריאה בטקסטים נבחרים", credits: 2.0},
+    {id: 12210825, name: "ילדים וילדות בספרות חז\"ל", credits: 2.0},
+    {id: 12210894, name: "על ספרים ומחשבים: מבוא למחקר ספרות חישובי", credits: 2.0},
+    {id: 12211551, name: "יהודה הלוי: סערת הלב בלב הסערה", credits: 2.0},
+    {id: 12212101, name: "תורת הספרות - מניטשה עד דרידה", credits: 2.0},
+    {id: 12212371, name: "משוררים עבריים בעולם משתנה", credits: 2.0},
+    {id: 12212411, name: "מי מפחד משירה? - ב", credits: 2.0},
+    {id: 12212421, name: "איך לקרוא סיפור? - ב", credits: 2.0},
+    {id: 12212861, name: "מהתנ\"ך ועד החסידות: תחנות בספרות העברית מהמקרא ועד החסידות - ב", credits: 2.0},
+    {id: 12214481, name: "מבוא היסטורי לספרות העברית במאה העשרים: סיפורת", credits: 2.0},
+    {id: 12310145, name: "מבעד למסורת: רבדי לשון שונים בטקסט המקראי", credits: 2.0},
+    {id: 12310155, name: "בלשנות דיאכרונית של העברית", credits: 2.0},
+    {id: 12410021, name: "מבוא למזרח התיכון המודרני", credits: 2.0},
+    {id: 12410041, name: "מבוא לתולדות האימפריה העות'מנית", credits: 2.0},
+    {id: 12410060, name: "גני עדן מלאכותיים: סמים וחברה במזה\"ת", credits: 2.0},
+    {id: 12410136, name: "הפלסטינים: היסטוריה, חברה, תרבות, לאומיות", credits: 2.0},
+    {id: 12410179, name: "אסלאם בארץ-ישראל (מאות 7 עד 21)", credits: 2.0},
+    {id: 12410317, name: "הסכסוך הישראלי-פלסטיני: סוגיות הליבה מנקודת מבט פלסטינית וישראלית", credits: 2.0},
+    {id: 12410331, name: "ערבית מדוברת למתחילים", credits: 2.0},
+    {id: 12410364, name: "הסכמי אברהם במבחן המעשה", credits: 2.0},
+    {id: 12410430, name: "בימת המזרח התיכון: היבטים חברתיים ופוליטיים של סכסוכים", credits: 2.0},
+    {id: 12410443, name: "מיתוסים ומציאות במזרח התיכון", credits: 2.0},
+    {id: 12410475, name: "יחסים בין קבוצות במרחב האקדמי בישראל - כלים לשינוי", credits: 2.0}
 ]
+
+document.addEventListener("DOMContentLoaded", function () {
+    fetch("/get-study-template")  // Retrieving data from the session when the page loads
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("שגיאה בטעינת הנתונים מהשרת")
+            }
+            return response.json()
+        })
+        .then(data => {
+            if (data.success) {
+                // Saving the global template in JS
+                window.studyTemplate = data.study_template || {}
+                console.log("Study Template Loaded:", window.studyTemplate)
+            } else {
+                console.error("Error loading study template:", data.message)
+            }
+        })
+        .catch(error => console.error("שגיאת רשת:", error))
+})
+
+function updateCoursesFromTemplate() {
+    if (!window.studyTemplate || !window.studyTemplate.years) {
+        console.log("Study template is not loaded yet")
+        return
+    }
+    if (!selectedYear || !selectedSemester) {
+        console.log("Year or semester not selected yet")
+        return
+    }
+    let relevantCourses = window.studyTemplate.years[selectedYear]?.[selectedSemester] || []
+    if (relevantCourses.length === 0) {
+        console.log("Template courses list is empty >> View the general list")
+    } else {
+        window.courses = relevantCourses.map(course => ({
+            id: course.courseID,
+            name: course.courseName,
+            credits: course.credits
+        }))
+    }
+    updateCoursesDropdown()
+}
+
+// Update the courses list according to the selected year and semester:
+function updateCoursesDropdown() {
+    console.log("updateCoursesDropdown")
+    const dropdown = document.getElementById("courseDropdown")
+    if (!dropdown) return
+    dropdown.innerHTML = ""
+
+    if (!window.courses || window.courses.length === 0) {
+        console.warn("אין קורסים להצגה ברשימה הנפתחת")
+        return
+    }
+
+    window.courses.forEach(course => {
+        let option = document.createElement("option")
+        option.value = course.id
+        option.textContent = course.name
+        dropdown.appendChild(option)
+    })
+}
 
 // Event listener for opening selection lists dynamically
 document.addEventListener("DOMContentLoaded", () => {
@@ -69,14 +135,23 @@ document.addEventListener("DOMContentLoaded", () => {
                 li.classList.add("listItem")
                 li.textContent = course.name
                 li.setAttribute("data-value", course.id)
-                // Selecting a course
+                li.setAttribute("data-credits", course.credits)
+                // Selecting a course:
                 li.addEventListener("click", (e) => {
                     const selectedText = e.target.textContent
                     const selectedValue = e.target.getAttribute("data-value")
+                    const defaultCredits = e.target.getAttribute("data-credits")
                     const btnSpan = btn.querySelector("span")
                     const hiddenInput = container.querySelector('input[type="hidden"]')
                     if (btnSpan) btnSpan.textContent = selectedText
                     if (hiddenInput) hiddenInput.value = selectedValue
+                    // Update creditsInput field:
+                    const row = container.closest("tr")
+                    const creditsInput = row.querySelector('input[type="number"][step="0.5"]')
+                    if (creditsInput) {
+                        creditsInput.value = defaultCredits
+                    }
+
                     // Close dropdown
                     choiceLists.classList.add("hiddenList")
                     choiceLists.classList.remove("openList")

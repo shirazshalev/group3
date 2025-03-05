@@ -17,7 +17,7 @@ function insertCoursesDataToDB() {
                 components[componentName] = parseFloat(input.value) || 0
             })
 
-            let courseID = 999
+            let courseID = 999 // Temporary ID
 
             if (courseName && !isNaN(credits) && !isNaN(grade)) {
                 let courseData = {
@@ -36,12 +36,12 @@ function insertCoursesDataToDB() {
         console.log("Courses Data:", coursesData) // debugging check
 
         // Send data to the server
-        fetch("/gpa-calculator", {
+        fetch(`/gpa-calculator/${selectedYear}/${selectedSemester}`, {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify({
-                year: selectedYear,
-                semester: selectedSemester,
+                // year: selectedYear,
+                // semester: selectedSemester,
                 courses: coursesData
             })
         })
@@ -52,16 +52,8 @@ function insertCoursesDataToDB() {
                     showCustomAlert("הקורסים נשמרו בהצלחה")
                     resolve(true)
                 } else if (data.conflict) {
-                    const yearMapping = {
-                        yearA: "שנה א׳",
-                        yearB: "שנה ב׳",
-                        yearC: "שנה ג׳"
-                    }
-                    const semesterMapping = {
-                        semesterA: "סמסטר א׳",
-                        semesterB: "סמסטר ב׳",
-                        semesterC: "סמסטר קיץ"
-                    }
+                    const yearMapping = { yearA: "שנה א׳", yearB: "שנה ב׳", yearC: "שנה ג׳" }
+                    const semesterMapping = { semesterA: "סמסטר א׳", semesterB: "סמסטר ב׳", semesterC: "סמסטר קיץ" }
                     const yearText = yearMapping[data.existing_year] || "שנה לא מזוהה"
                     const semesterText = semesterMapping[data.existing_semester] || "סמסטר לא מזוהה"
                     showCustomAlert(`הקורס "${data.existing_course}" כבר הוזן עבור ${yearText} ${semesterText}. מחק או בחר קורס אחר`)

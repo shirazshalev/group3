@@ -24,6 +24,16 @@ def login():
                 session['email'] = email
                 session['firstName'] = user['FirstName']
                 session['loggedIn'] = True
+
+                session['studyTemplateName'] = user.get('StudyTemplate')
+                study_template = StudyTemplatesCol.find_one({"_id": session['studyTemplateName']})
+                if study_template:
+                    session['studyTemplate'] = study_template
+                else:
+                    session['studyTemplate'] = {}
+
+                session['enrollments'] = user.get('Enrollments', {})
+
                 return jsonify({'success': True, 'redirect': url_for('Index.index')})
             else:
                 return jsonify({'success': False, 'message': 'מספר ת.ז או סיסמה שגויים, אנא נסה שנית :)'})
