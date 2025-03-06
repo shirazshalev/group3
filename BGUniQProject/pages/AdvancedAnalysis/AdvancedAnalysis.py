@@ -20,7 +20,11 @@ def advanced_analysis():
         return jsonify({"success": False, "message": "User not found in database"}), 404
     enrollments = user.get("Enrollments", {})
     has_courses = not is_enrollments_empty(enrollments)
-    return render_template('AdvancedAnalysis.html', has_courses=has_courses)
+    return render_template('AdvancedAnalysis.html',
+                           has_courses=has_courses,
+                           totalCredits=session.get("totalCredits", 0),
+                           GPAIndicator="{:.2f}".format(session.get("GPAIndicator", 0)),
+                           targetGPA="{:.2f}".format(session.get("targetGPA", 85.00)))
 
 @advancedAnalysisBP.route('/get-enrollments-to-advanced-analysis', methods=['GET'])
 def get_enrollments_to_advanced_analysis():

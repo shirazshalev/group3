@@ -30,34 +30,34 @@
         <div class="indicatorsContainer">
             <div class="indicator">
                 <h4>ממוצע תואר</h4>
-                <h3 class="indicatorValue">84.92</h3>
+                <h3 class="indicatorValue" id="gpa">{{ GPAIndicator }}</h3>
             </div>
             <div class="indicator">
                 <h4>נק״ז מצטבר</h4>
-                <h3 class="indicatorValue">127</h3>
+                <h3 class="indicatorValue" id="credits">{{ totalCredits }}</h3>
                 <h5>מתוך 162.5</h5>
             </div>
             <div class="indicator">
                 <h4>מס׳ קורסים</h4>
-                <h3 class="indicatorValue">38</h3>
+                <h3 class="indicatorValue" id="courses">{{ numberOfCourses }}</h3>
             </div>
             <div class="indicator">
                 <h4>ממוצע היעד</h4>
-                <h3 class="indicatorValue">85.00</h3>
+                <h3 class="indicatorValue" id="target">{{ targetGPA }}</h3>
             </div>
         </div>
     </section>
 
     {% if not has_courses %}
          <div class="PerformanceGraphsContainer">
-            <p>
-                <span>
+            <div class="ifEnrollmentsIsEmpty">
+                <div class="enrollmentsIsEmpty">
                     אין קורסים שמורים במערכת - ניתן להזין את הנתונים דרך
-                    <span class="linkToGPA">
+                    <div class="linkToGPA">
                         <a href="{{ url_for('GPACalculator.gpa_calculator_page') }}">עמוד מחשבון נק״ז</a>
-                    </span>
-                </span>>
-            </p>
+                    </div>
+                </div>
+            </div>
          </div>
     {% else %}
         <div class="PerformanceGraphsContainer">

@@ -30,7 +30,12 @@ def academic_performance_analysis():
     enrollments = user.get("Enrollments", {})
     has_courses = not is_enrollments_empty(enrollments)
     student_target_gpa = get_target_gpa(email)
-    return render_template('AcademicPerformanceAnalysis.html', has_courses=has_courses)
+    return render_template('AcademicPerformanceAnalysis.html',
+                           has_courses=has_courses,
+                           totalCredits=session.get("totalCredits", 0),
+                           GPAIndicator="{:.2f}".format(session.get("GPAIndicator", 0)),
+                           targetGPA="{:.2f}".format(session.get("targetGPA", 85.00)),
+                           numberOfCourses=session.get("numberOfCourses", 0))
 
 # using mongoDB
 @academicPerformanceAnalysisBP.route('/get-enrollments', methods=['GET'])

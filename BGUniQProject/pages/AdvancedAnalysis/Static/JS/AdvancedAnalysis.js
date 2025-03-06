@@ -316,7 +316,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // updateDegreeMetricsFromGraph();
     setTimeout(() => {
         updateDegreeMetricsFromGraph();
-    }, 150);
+    }, 200);
 
     const button = document.querySelector("#SemesterAvgButton");
     if (button) {

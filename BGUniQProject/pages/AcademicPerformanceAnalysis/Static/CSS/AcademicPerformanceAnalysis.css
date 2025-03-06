@@ -47,6 +47,28 @@
     cursor: pointer;
 }
 
+.enrollmentsIsEmpty {
+    background-color: #FFE2B2;
+    font-weight: 300;
+    font-size: 13px;
+    padding: 10px;
+
+}
+
+.linkToGPA a {
+    text-decoration: none;
+    color: #000000;
+}
+
+.linkToGPA a:hover {
+    text-decoration: underline;
+}
+
+.linkToGPA {
+    display: inline;
+    cursor: pointer;
+}
+
 /* ------------------------Media Query------------------------ */
 
 @media screen and (max-width: 1075px) {
