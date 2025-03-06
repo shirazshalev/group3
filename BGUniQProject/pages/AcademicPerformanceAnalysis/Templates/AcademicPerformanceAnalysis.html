@@ -1,4 +1,3 @@
-
 {% extends ('Base.html') %}
 
 {# head >> metaTags #}
@@ -49,26 +48,39 @@
         </div>
     </section>
 
-    <div class="PerformanceGraphsContainer">
-        <section class="YearsAnalysis">
-            <div id="YearAverageGraph">
-                <!-- Plotly chart will be drawn inside this DIV -->
-            </div>
-        </section>
-        <section class="SemestersAnalysis">
-            <div id="SemesterAverageGraph">
-                <!-- Plotly chart will be drawn inside this DIV -->
-            </div>
-        </section>
-        <section class="CoursesAnalysis">
-            <div id="CoursesGradesGraph">
-                <!-- Plotly chart will be drawn inside this DIV -->
-            </div>
-        </section>
-        <button id="BackButton" class="BackIcon">
-            <img src="{{ url_for('static', filename='SVG/backBtn.svg') }}" alt="חזור" class="backBtn">
-        </button>
-    </div>
+    {% if not has_courses %}
+         <div class="PerformanceGraphsContainer">
+            <p>
+                <span>
+                    אין קורסים שמורים במערכת - ניתן להזין את הנתונים דרך
+                    <span class="linkToGPA">
+                        <a href="{{ url_for('GPACalculator.gpa_calculator_page') }}">עמוד מחשבון נק״ז</a>
+                    </span>
+                </span>>
+            </p>
+         </div>
+    {% else %}
+        <div class="PerformanceGraphsContainer">
+            <section class="YearsAnalysis">
+                <div id="YearAverageGraph">
+                    <!-- Plotly chart will be drawn inside this DIV -->
+                </div>
+            </section>
+            <section class="SemestersAnalysis">
+                <div id="SemesterAverageGraph">
+                    <!-- Plotly chart will be drawn inside this DIV -->
+                </div>
+            </section>
+            <section class="CoursesAnalysis">
+                <div id="CoursesGradesGraph">
+                    <!-- Plotly chart will be drawn inside this DIV -->
+                </div>
+            </section>
+            <button id="BackButton" class="BackIcon">
+                <img src="{{ url_for('static', filename='SVG/backBtn.svg') }}" alt="חזור" class="backBtn">
+            </button>
+        </div>
+    {% endif %}
 {% endblock %}
 
 {# JS links #}

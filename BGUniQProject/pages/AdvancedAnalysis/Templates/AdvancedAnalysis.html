@@ -326,51 +326,65 @@
         </div>
     </section>
 
-    <section class="DegreeAvgAnalysisGraph"> <!-- השתנות ממוצע התואר לאורך הזמן + הטבלת מדדים בצד-->
+    {% if not has_courses %}
         <div class="AnalysisGraphsContainer">
-            <div id="DegreeAvgGraphContainer">
-                <!-- Plotly chart will be drawn inside this DIV -->
-            </div>
-            <div id="AnalyticsContent">
-                <table>
-                    <tbody>
-                    <tr>
-                        <th class="AnalyticsText">ממוצע תואר:</th>
-                        <th class="AnalyticsNumber">
-                            <span class="Arrow">↑</span>
-                            <span>84.20</span>
-                        </th>
-                    </tr>
-                    <tr>
-                        <th class="AnalyticsText">ממוצע תואר סמסטר קודם:</th>
-                        <th class="AnalyticsNumber">82.83</th>
-                    </tr>
-                    <tr>
-                        <th class="AnalyticsText">אחוז שינוי:</th>
-                        <th class="AnalyticsNumber">0.01</th>
-                    </tr>
-                    <tr>
-                        <th class="AnalyticsText">תוספת:</th>
-                        <th class="AnalyticsNumber">2.09+</th>
-                    </tr>
-                    <tr>
-                        <th class="AnalyticsText">ממוצע סמסטר נוכחי:</th>
-                        <th class="AnalyticsNumber">89.71</th>
-                    </tr>
-                    <tr>
-                        <th class="AnalyticsText">ממוצע סמסטר קודם:</th>
-                        <th class="AnalyticsNumber">87.8</th>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="ButtonContainer">
-                <button id="SemesterAvgButton" class="ButtonInContainer">
-                    לצפייה בהשפעת ממוצע הסמסטר על ממוצע התואר לחץ כאן
-                </button>
-            </div>
+            <p class="ifEnrollmentsIsEmpty">
+                <span>
+                    אין קורסים שמורים במערכת - ניתן להזין את הנתונים דרך
+                    <span class="linkToGPA">
+                        <a href="{{ url_for('GPACalculator.gpa_calculator_page') }}">עמוד מחשבון נק״ז</a>
+                    </span>
+                </span>>
+            </p>
         </div>
-    </section>
+    {% else %}
+
+        <section class="DegreeAvgAnalysisGraph"> <!-- השתנות ממוצע התואר לאורך הזמן + הטבלת מדדים בצד-->
+            <div class="AnalysisGraphsContainer">
+                <div id="DegreeAvgGraphContainer">
+                    <!-- Plotly chart will be drawn inside this DIV -->
+                </div>
+                <div id="AnalyticsContent">
+                    <table>
+                        <tbody>
+                        <tr>
+                            <th class="AnalyticsText">ממוצע תואר:</th>
+                            <th class="AnalyticsNumber">
+                                <span class="Arrow">↑</span>
+                                <span>84.20</span>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th class="AnalyticsText">ממוצע תואר סמסטר קודם:</th>
+                            <th class="AnalyticsNumber">82.83</th>
+                        </tr>
+                        <tr>
+                            <th class="AnalyticsText">אחוז שינוי:</th>
+                            <th class="AnalyticsNumber">0.01</th>
+                        </tr>
+                        <tr>
+                            <th class="AnalyticsText">תוספת:</th>
+                            <th class="AnalyticsNumber">2.09+</th>
+                        </tr>
+                        <tr>
+                            <th class="AnalyticsText">ממוצע סמסטר נוכחי:</th>
+                            <th class="AnalyticsNumber">89.71</th>
+                        </tr>
+                        <tr>
+                            <th class="AnalyticsText">ממוצע סמסטר קודם:</th>
+                            <th class="AnalyticsNumber">87.8</th>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="ButtonContainer">
+                    <button id="SemesterAvgButton" class="ButtonInContainer">
+                        לצפייה בהשפעת ממוצע הסמסטר על ממוצע התואר לחץ כאן
+                    </button>
+                </div>
+            </div>
+        </section>
+    {% endif %}
 
 {% endblock %}
 

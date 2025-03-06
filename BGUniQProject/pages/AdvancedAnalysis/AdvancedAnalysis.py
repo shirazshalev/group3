@@ -12,7 +12,15 @@ advancedAnalysisBP = Blueprint(
 
 @advancedAnalysisBP.route('/advanced-analysis')
 def advanced_analysis():
-    return render_template('AdvancedAnalysis.html')
+    email = session.get("email")
+    if not email:
+        return jsonify({"success": False, "message": "No email found in session"}), 400
+    user = get_user_by_email(email)
+    if not user:
+        return jsonify({"success": False, "message": "User not found in database"}), 404
+    enrollments = user.get("Enrollments", {})
+    has_courses = not is_enrollments_empty(enrollments)
+    return render_template('AdvancedAnalysis.html', has_courses=has_courses)
 
 @advancedAnalysisBP.route('/get-enrollments-to-advanced-analysis', methods=['GET'])
 def get_enrollments_to_advanced_analysis():

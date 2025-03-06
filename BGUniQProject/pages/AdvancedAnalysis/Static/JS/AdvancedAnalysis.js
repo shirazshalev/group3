@@ -108,7 +108,10 @@ function createAvgGraph(withTrendLine = false) {
 
         semesterKeys.forEach((semester, semesterIndex) => {
             let courses = semesters[semester];
-            let avgGrade = courses.reduce((sum, course) => sum + course.grade, 0) / courses.length;
+            // let avgGrade = courses.reduce((sum, course) => sum + course.grade, 0) / courses.length;
+            let total_Weighted_Grades = courses.reduce((sum, course) => sum + (course.grade * course.credits), 0);
+            let total_Credits = courses.reduce((sum, course) => sum + course.credits, 0);
+            let avgGrade = total_Credits > 0 ? total_Weighted_Grades / total_Credits : 0;
             semesterAverages.push(avgGrade); // Store semester average for trend line
 
             let xPosition = yearIndex + (semesterIndex - (numSemesters - 1) / 2) * 0.3;
@@ -204,8 +207,8 @@ function createAvgGraph(withTrendLine = false) {
 
 function calculateCumulativeDegreeAverage(studentAcademicData, currentYear, currentSemesters) {
     let cumulativeData = {};
-    let totalGrades = 0;
-    let totalCourses = 0;
+    let totalWeighedGrades = 0;
+    let totalCreditsCourses = 0;
     let years = Object.keys(studentAcademicData);
 
     for (const year of years) {
@@ -214,11 +217,12 @@ function calculateCumulativeDegreeAverage(studentAcademicData, currentYear, curr
             if (years.indexOf(year) < years.indexOf(currentYear) ||
                 (years.indexOf(year) === years.indexOf(currentYear) && currentSemesters.indexOf(semester) >= 0)) {
                 semesters[semester].forEach(course => {
-                    totalGrades += course.grade;
-                    totalCourses += 1;
+                    totalWeighedGrades += course.grade * course.credits;
+                    totalCreditsCourses += course.credits;
+
                 });
                 if (years.indexOf(year) === years.indexOf(currentYear)) {
-                    cumulativeData[semester] = {avg: totalCourses > 0 ? totalGrades / totalCourses : 0};
+                    cumulativeData[semester] = {avg: totalCreditsCourses > 0 ? totalWeighedGrades / totalCreditsCourses : 0};
                 }
             }
         }
@@ -309,7 +313,10 @@ function updateSemesterMetricsFromGraph() {
 // Listener
 document.addEventListener("DOMContentLoaded", () => {
     createAvgGraph(false);
-    updateDegreeMetricsFromGraph();
+    // updateDegreeMetricsFromGraph();
+    setTimeout(() => {
+        updateDegreeMetricsFromGraph();
+    }, 150);
 
     const button = document.querySelector("#SemesterAvgButton");
     if (button) {
