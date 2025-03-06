@@ -1,8 +1,9 @@
 import traceback
-from flask import Flask, request, jsonify, session, Blueprint, render_template
-from BGUniQProject.DBconnector import StudentsCol, StudyTemplatesCol
+from flask import Flask, request, jsonify, session, Blueprint, render_template, sessions
+from BGUniQProject.DBconnector import StudentsCol, StudyTemplatesCol, update_student_enrollments
 import random
 import string
+
 
 gpaCalculatorBP = Blueprint(
     'GPACalculator',
@@ -231,6 +232,8 @@ def gpa_calculator(selectedYear, selectedSemester):
                     {"Email": student_email},
                     {"$set": {"Enrollments": enrollments}}
                 )
+                update_student_enrollments(student_email)  # update the session enrollments of the student
+                print("new session after update:", session.get('enrollments', "No enrollments found"))  # Debugging check
                 print("הכנסת נתונים לבסיס נתונים ישששש")
                 return jsonify({"success": True, "message": "Courses saved/updated successfully!"})
 
@@ -277,11 +280,14 @@ def delete_course(selectedYear, selectedSemester):
         if not enrollments[selectedYear][selectedSemester]:
             enrollments[selectedYear][selectedSemester] = []
 
+        print("old session before delete:", session.get('enrollments', "No enrollments found"))  # Debugging check
+
         StudentsCol.update_one(
             {"Email": student_email},
             {"$set": {"Enrollments": enrollments}}
         )
-
+        update_student_enrollments(student_email) #update the session enrollments of the student
+        print("new session after delete:", session.get('enrollments', "No enrollments found"))  # Debugging check
         return jsonify({"success": True, "message": f"Course '{course_name}' deleted successfully from {selectedYear} {selectedSemester}."})
 
     except Exception as e:
