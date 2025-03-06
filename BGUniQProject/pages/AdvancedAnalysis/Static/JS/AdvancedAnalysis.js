@@ -1,5 +1,6 @@
 // student Academic data
-let studentAcademicData = {
+let studentAcademicData = {}
+let studentAcademicData2 = {
     'שנה א׳': {
         'סמסטר א׳': [
             {name: "מערכות בינה עסקית", grade: 85, credits: 3},
@@ -305,7 +306,7 @@ function updateSemesterMetricsFromGraph() {
 
 }
 
-// // Listener
+// Listener
 document.addEventListener("DOMContentLoaded", () => {
     createAvgGraph(false);
     updateDegreeMetricsFromGraph();
@@ -323,3 +324,69 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
+// on loading page - get the data from the server flask
+document.addEventListener("DOMContentLoaded", function () {
+    fetch('/get-enrollments-to-advanced-analysis')
+        .then(response => response.json())
+        .then(data => {
+            console.log("message:", data.message) // debugging check
+            if (data.success) {
+                console.log(" נתוני הקורסים מהשרת:", data.enrollments_advanced);
+                studentAcademicData = transformEnrollmentsToGraphData(data.enrollments_advanced);
+                createAvgGraph();
+            } else {
+                console.error(" שגיאה בקבלת הנתונים:", data.message);
+            }
+        })
+        .catch(error => console.error("שגיאה ב-Fetch:", error));
+
+    function transformEnrollmentsToGraphData(enrollments_from_session) {
+        let transformedData = {};
+
+        for (let year in enrollments_from_session) {
+            let yearLabel = convertYearLabel(year);
+            let yearData = {};
+
+            for (let semester in enrollments_from_session[year]) {
+                let semesterLabel = convertSemesterLabel(semester);
+                let courses = enrollments_from_session[year][semester]
+                    .map(course => ({
+                        name: course.courseName,
+                        grade: course.finalGrade,
+                        credits: course.courseCredits
+                    }))
+                    .filter(course => course.name && course.grade !== undefined && course.credits);
+
+                if (courses.length > 0) {
+                    yearData[semesterLabel] = courses;
+                }
+            }
+
+            if (Object.keys(yearData).length > 0) {
+                transformedData[yearLabel] = yearData;
+            }
+        }
+
+        console.log(transformedData); // debugging check
+        return transformedData;
+    }
+
+    function convertYearLabel(year) {
+        let yearMap = {
+            "yearA": "שנה א׳",
+            "yearB": "שנה ב׳",
+            "yearC": "שנה ג׳",
+            "yearD": "שנה ד׳"
+        };
+        return yearMap[year] || year;
+    }
+
+    function convertSemesterLabel(semester) {
+        let semesterMap = {
+            "semesterA": "סמסטר א׳",
+            "semesterB": "סמסטר ב׳",
+            "semesterC": "סמסטר קיץ"
+        };
+        return semesterMap[semester] || semester;
+    }
+});

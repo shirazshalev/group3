@@ -1,5 +1,6 @@
 // student Academic data
-let studentAcademicData = {
+let studentAcademicData = {}
+let studentAcademicData2 = {
     'שנה א׳': {
         'סמסטר א׳': [
             {name: "מערכות בינה עסקית", grade: 85, credits: 3},
@@ -128,7 +129,7 @@ function calculateYearlyAverages(studentData) {
 // default visible graphs style
 semesterGraph.style.display = 'none';
 coursesGraph.style.display = 'none';
-createYearGraph();
+//createYearGraph();
 
 // Creating the YearAverageGraph using Plotly javascript
 function createYearGraph() {
@@ -158,17 +159,12 @@ function createYearGraph() {
             let aboveTarget = semesters.reduce((sum, semester) => {
                 return sum + studentAcademicData[year][semester].filter(course => course.grade > 85).length;
             }, 0);
-            return ''+
-                // `סך נק״ז: ${yearCredits[index]}<br>` +
-                // `סך סמסטרים: ${totalSemesters}<br>` +
-                // `סך קורסים: ${totalCourses}<br>` +
-                // `ציונים מעל היעד: ${aboveTarget}<br>` +
-                // `<extra></extra>`;
+            return '' +
                 `${year}<br>` +
-                ` <span >סך נק"ז:</span> ${yearCredits[index]}<br>` +
+                ` <span >סך נק"ז:</span> ${yearCredits[index].toFixed(1)}<br>` +
                 ` <span >סך סמסטרים:</span> ${totalSemesters}<br>` +
                 ` <span >סך קורסים:</span> ${totalCourses}<br>` +
-                 ` <span >ציונים מעל היעד:</span> ${aboveTarget}<br>` +
+                ` <span >ציונים מעל היעד:</span> ${aboveTarget}<br>` +
                 `<extra></extra>`;
         }),
         opacity: 0.75,
@@ -223,7 +219,7 @@ function createSemesterGraph(year) {
             let weightedSum = courses.reduce((sum, course) => sum + (course.grade * course.credits), 0);
 
             yValue.push(totalCredits > 0 ? (weightedSum / totalCredits).toFixed(2) : 0);
-            semesterCredits.push(totalCredits);
+            semesterCredits.push(Number(totalCredits.toFixed(1)));
         });
 
         let semesterTrace = {
@@ -238,7 +234,7 @@ function createSemesterGraph(year) {
                 let courses = studentAcademicData[year][semester] || [];
                 let aboveTarget = courses.filter(course => course.grade > 85).length;
                 return `${semester}<br>` +
-                    `סך נק״ז: ${semesterCredits[index]}<br>` +
+                    `סך נק״ז: ${semesterCredits[index].toFixed(1)}<br>` +
                     `סך קורסים: ${courses.length}<br>` +
                     `קורסים מעל יעד: ${aboveTarget}<br>` +
                     `<extra></extra>`;
@@ -298,7 +294,7 @@ function updateCoursesGraph() {
             },
             hovertemplate: xValue.map((course, index) =>
                 `:${course}<br>` +
-                `נק״ז: ${credits[index]}<br>` +
+                `נק״ז: ${credits[index].toFixed(1)}<br>` +
                 `ציון: ${yValue[index]}<br>` +
                 `<extra></extra>`
             ),
@@ -316,8 +312,19 @@ function updateCoursesGraph() {
         let coursesLayout = {
             ...sharedLayout,
             title: {text: `ציוני קורסים ב${selectedYear}, ${selectedSemester}`},
-            xaxis: {...sharedLayout.xaxis, title: 'קורס'},
-            yaxis: {...sharedLayout.yaxis, title: 'ציון ממוצע'}
+            xaxis: {
+                ...sharedLayout.xaxis,
+                title: 'קורס',
+                automargin: true,
+                tickangle: -45,
+                // tickmode: "array",
+                // tickvals: xValue,
+                tickfont: {size: 9},
+                // ticktext: xValue.map(name => name.split(" ").join("<br>")),
+                // tickson: "boundaries"
+            },
+            yaxis: {...sharedLayout.yaxis, title: 'ציון ממוצע'},
+            bargap: 0.2
         };
 
         coursesGraph.style.display = 'block';
@@ -343,4 +350,56 @@ backButton.addEventListener('click', () => {
     }
 })
 
+// on loading page - get the data from the server flask
+document.addEventListener("DOMContentLoaded", function () {
+    fetch('/get-enrollments')
+        .then(response => response.json())
+        .then(data => {
+            console.log("message:", data.message) // debugging check
+            if (data.success) {
+                console.log(" נתוני הקורסים מהשרת:", data.enrollments);
+                studentAcademicData = transformEnrollmentsToGraphData(data.enrollments);
+                createYearGraph();
+            } else {
+                console.error(" שגיאה בקבלת הנתונים:", data.message);
+            }
+        })
+        .catch(error => console.error("שגיאה ב-Fetch:", error));
+
+    function transformEnrollmentsToGraphData(enrollments_from_session) {
+        let transformedData = {};
+        for (let year in enrollments_from_session) {
+            let yearLabel = convertYearLabel(year);
+            transformedData[yearLabel] = {};
+            for (let semester in enrollments_from_session[year]) {
+                let semesterLabel = convertSemesterLabel(semester);
+                transformedData[yearLabel][semesterLabel] = enrollments_from_session[year][semester].map(course => ({
+                    name: course.courseName,
+                    grade: course.finalGrade,
+                    credits: course.courseCredits
+                }));
+            }
+        }
+        return transformedData;
+    }
+
+    function convertYearLabel(year) {
+        let yearMap = {
+            "yearA": "שנה א׳",
+            "yearB": "שנה ב׳",
+            "yearC": "שנה ג׳",
+            "yearD": "שנה ד׳"
+        };
+        return yearMap[year] || year;
+    }
+
+    function convertSemesterLabel(semester) {
+        let semesterMap = {
+            "semesterA": "סמסטר א׳",
+            "semesterB": "סמסטר ב׳",
+            "semesterC": "סמסטר קיץ"
+        };
+        return semesterMap[semester] || semester;
+    }
+});
 
