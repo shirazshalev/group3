@@ -47,6 +47,12 @@
     cursor: pointer;
 }
 
+.PerformanceGraphsContainerIfEmpty {
+    background-color: #FFE2B2;
+    padding: 5px;
+    direction: rtl;
+}
+
 .enrollmentsIsEmpty {
     background-color: #FFE2B2;
     font-weight: 300;
@@ -68,10 +74,8 @@
     display: inline;
     cursor: pointer;
 }
-
 /* ------------------------Media Query------------------------ */
-
-@media screen and (max-width: 1075px) {
+@media screen and (max-width: 900px) {
     .PerformanceGraphsContainer {
         display: grid;
         grid-template-columns: auto;
@@ -90,7 +94,7 @@
     }
 }
 
-@media screen and (max-width: 835px) {
+@media screen and (max-width: 600px) {
     main {
         margin-right: 20px;
         margin-left: 20px;
