@@ -1,6 +1,7 @@
 import os
 import certifi  # SHIRAZ
 import pymongo
+from flask import session
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
 from dotenv import load_dotenv
@@ -144,20 +145,25 @@ def check_if_signed(email):
     return get_user_by_email(email) is not None
 
 
-def delete_user_by_email(email):
-    try:
-        user = StudentsCol.find_one({'Email': email})
-        if not user:
-            print("User doesn't exist")
-            return False
-        result = StudentsCol.delete_one({'Email': email})
-        if result.deleted_count > 0:
-            print("User deleted successfully")
-            return True
-        else:
-            return False
-    except Exception as e:
-        print(f"error during deletion: {e}")
-        return False
+# def delete_user_by_email(email):
+#     try:
+#         user = StudentsCol.find_one({'Email': email})
+#         if not user:
+#             print("User doesn't exist")
+#             return False
+#         result = StudentsCol.delete_one({'Email': email})
+#         if result.deleted_count > 0:
+#             print("User deleted successfully")
+#             return True
+#         else:
+#             return False
+#     except Exception as e:
+#         print(f"error during deletion: {e}")
+#         return False
 
-delete_user_by_email("shirazh@post.bgu.ac.il")
+# function for update user's enrollments session
+def update_student_enrollments(email):
+    user = get_user_by_email(email)
+    if user:
+        session['enrollments'] = user.get('Enrollments', {})
+
