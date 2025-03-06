@@ -23,16 +23,16 @@
     <section class="indicatorsSection">
         <div class="indicator">
             <h4>ממוצע תואר</h4>
-            <h3 class="indicatorValue">84.20</h3>
+            <h3 class="indicatorValue" id="gpa">{{ GPAIndicator }}</h3>
         </div>
         <div class="indicator">
             <h4>נק״ז מצטבר</h4>
-            <h3 class="indicatorValue">107.5</h3>
+            <h3 class="indicatorValue" id="credits">{{ totalCredits }}</h3>
             <h5>מתוך 162.5</h5>
         </div>
         <div class="indicator">
             <h4>מס׳ קורסים</h4>
-            <h3 class="indicatorValue">38</h3>
+            <h3 class="indicatorValue" id="courses">{{ numberOfCourses }}</h3>
         </div>
     </section>
 
@@ -52,227 +52,41 @@
                 <th class="gradeCol">ציון סופי</th>
             </tr>
             </thead>
-            <tbody data-year="שנה א׳">
-            <tr class="yearHeader">
-                <td class="yearCol" colspan="4">
-                    <img src="{{ url_for('static', filename='SVG/angle-down.svg') }}" class="collapseIcon">
-                    שנה א'
-                </td>
-            </tr>
-            <tr>
-                <td class="emptyCell"></td>
-                <td class="courseName">מבוא לכלכלה</td>
-                <td>3.5</td>
-                <td class="courseGrade">87</td>
-            </tr>
-            <tr>
-                <td class="emptyCell"></td>
-                <td class="courseName">מבוא למערכות מידע</td>
-                <td>3.0</td>
-                <td class="courseGrade">91</td>
-            </tr>
-            <tr>
-                <td class="emptyCell"></td>
-                <td class="courseName">מבוא לחשבונאות פיננסית</td>
-                <td>3.5</td>
-                <td class="courseGrade">100</td>
-            </tr>
-            <tr>
-                <td class="emptyCell"></td>
-                <td class="courseName">מבוא להנדסת תעשיה וניהול</td>
-                <td>1.0</td>
-                <td class="courseGrade">96</td>
-            </tr>
-            <tr>
-                <td class="emptyCell"></td>
-                <td class="courseName">חדו״א 1 להנדסה</td>
-                <td>5.0</td>
-                <td class="courseGrade">74</td>
-            </tr>
-            <tr>
-                <td class="emptyCell"></td>
-                <td class="courseName">מבוא למתמטיקה דיסקרטית</td>
-                <td>3.5</td>
-                <td class="courseGrade">79</td>
-            </tr>
-            <tr>
-                <td class="emptyCell"></td>
-                <td class="courseName">אלגברה ליניארית להנדסה</td>
-                <td>4.5</td>
-                <td class="courseGrade">61</td>
-            </tr>
-            <tr>
-                <td class="emptyCell"></td>
-                <td class="courseName">חקר ביצועים 1</td>
-                <td>3.5</td>
-                <td class="courseGrade">89</td>
-            </tr>
-            <tr>
-                <td class="emptyCell"></td>
-                <td class="courseName">גרפיקה הנדסית וממוחשבת</td>
-                <td>1.5</td>
-                <td class="courseGrade">95</td>
-            </tr>
-            <tr>
-                <td class="emptyCell"></td>
-                <td class="courseName">מבוא לתכנות</td>
-                <td>4.0</td>
-                <td class="courseGrade">82</td>
-            </tr>
-            <tr>
-                <td class="emptyCell"></td>
-                <td class="courseName">מבוא להסתברות</td>
-                <td>3.5</td>
-                <td class="courseGrade">80</td>
-            </tr>
-            <tr>
-                <td class="emptyCell"></td>
-                <td class="courseName">חדו״א להנדסת תעשיה וניהול 2</td>
-                <td>4.0</td>
-                <td class="courseGrade">68</td>
-            </tr>
-            <tr>
-                <td class="emptyCell"></td>
-                <td class="courseName">משוואות דיפרנציאליות רגילות</td>
-                <td>3.5</td>
-                <td class="courseGrade">93</td>
-            </tr>
-            </tbody>
-            <tbody data-year="שנה ב׳">
-            <tr class="yearHeader">
-                <td class="yearCol" colspan="4">
-                    <img src="{{ url_for('static', filename='SVG/angle-down.svg') }}" class="collapseIcon">
-                    שנה ב'
-                </td>
-            </tr>
-            <tr>
-                <td class="emptyCell"></td>
-                <td class="courseName">סדנת כתיבה מדעית</td>
-                <td>0.5</td>
-                <td class="courseGrade">95</td>
-            </tr>
-            <tr>
-                <td class="emptyCell"></td>
-                <td class="courseName">חקר ביצועים 2</td>
-                <td>3.5</td>
-                <td class="courseGrade">81</td>
-            </tr>
-            <tr>
-                <td class="emptyCell"></td>
-                <td class="courseName">תכנון ופקוח על היצור 1</td>
-                <td>4.0</td>
-                <td class="courseGrade">94</td>
-            </tr>
-            <tr>
-                <td class="emptyCell"></td>
-                <td class="courseName">פיתוח תוכנה מונחה עצמים</td>
-                <td>3.5</td>
-                <td class="courseGrade">84</td>
-            </tr>
-            <tr>
-                <td class="emptyCell"></td>
-                <td class="courseName">אמידה ומבחני השערות</td>
-                <td>3.5</td>
-                <td class="courseGrade">87</td>
-            </tr>
-            <tr>
-                <td class="emptyCell"></td>
-                <td class="courseName">יסודות האלגוריתמים והסיבוכיות</td>
-                <td>3.5</td>
-                <td class="courseGrade">82</td>
-            </tr>
-            <tr>
-                <td class="emptyCell"></td>
-                <td class="courseName">פיסיקה 1ב</td>
-                <td>3.5</td>
-                <td class="courseGrade">90</td>
-            </tr>
-            <tr>
-                <td class="emptyCell"></td>
-                <td class="courseName">תכנון ופקוח על היצור 2</td>
-                <td>4.0</td>
-                <td class="courseGrade">86</td>
-            </tr>
-            <tr>
-                <td class="emptyCell"></td>
-                <td class="courseName">בסיסי נתונים</td>
-                <td>3.5</td>
-                <td class="courseGrade">83</td>
-            </tr>
-            <tr>
-                <td class="emptyCell"></td>
-                <td class="courseName">הנדסת שיטות ותהליכים ארגוניים</td>
-                <td>4.0</td>
-                <td class="courseGrade">98</td>
-            </tr>
-            <tr>
-                <td class="emptyCell"></td>
-                <td class="courseName">מבוא להנ׳ מכונות ותהליכי ייצור</td>
-                <td>3.5</td>
-                <td class="courseGrade">76</td>
-            </tr>
-            <tr>
-                <td class="emptyCell"></td>
-                <td class="courseName">פיסיקה 2ב</td>
-                <td>3.5</td>
-                <td class="courseGrade">56</td>
-            </tr>
-            </tbody>
-            <tbody data-year="שנה ג׳">
-            <tr class="yearHeader">
-                <td class="yearCol" colspan="4">
-                    <img src="{{ url_for('static', filename='SVG/angle-down.svg') }}" class="collapseIcon">
-                    שנה ג'
-                </td>
-            </tr>
-            <tr>
-                <td class="emptyCell"></td>
-                <td class="courseName">אנגלית מתקדמים ב׳</td>
-                <td>2.0</td>
-                <td class="courseGrade">87</td>
-            </tr>
-            <tr>
-                <td class="emptyCell"></td>
-                <td class="courseName">מבוא להנדסת גורמי אנוש</td>
-                <td>3.0</td>
-                <td class="courseGrade">89</td>
-            </tr>
-            <tr>
-                <td class="emptyCell"></td>
-                <td class="courseName">מבוא לקבלת החלטות</td>
-                <td>3.0</td>
-                <td class="courseGrade">90</td>
-            </tr>
-            <tr>
-                <td class="emptyCell"></td>
-                <td class="courseName">מבוא להנדסת חשמל</td>
-                <td>3.5</td>
-                <td class="courseGrade">84</td>
-            </tr>
-            <tr>
-                <td class="emptyCell"></td>
-                <td class="courseName">סימולציה</td>
-                <td>4.0</td>
-                <td class="courseGrade">92</td>
-            </tr>
-            <tr>
-                <td class="emptyCell"></td>
-                <td class="courseName">סדנת מיומנויות בתקשורת בינאישית</td>
-                <td>0.5</td>
-                <td class="courseGrade">90</td>
-            </tr>
-            <tr>
-                <td class="emptyCell"></td>
-                <td class="courseName">ניתוח ועיצוב מע׳-מידע</td>
-                <td>3.5</td>
-                <td class="courseGrade">88</td>
-            </tr>
-            <tr>
-                <td class="emptyCell"></td>
-                <td class="courseName">מודלים של רגרסיה ליניארית</td>
-                <td>3.5</td>
-                <td class="courseGrade">93</td>
-            </tr>
+            {# Table body #}
+            <tbody>
+            {% if not has_courses %}
+                <tr class="ifEnrollmentsIsEmpty">
+                    <td colspan="4" class="enrollmentsIsEmpty">
+                        אין קורסים שמורים במערכת - ניתן להזין את הנתונים דרך
+                        <div class="linkToGPA">
+                            <a href="{{ url_for('GPACalculator.gpa_calculator_page') }}">עמוד מחשבון נק״ז</a>
+                        </div>
+                    </td>
+                </tr>
+            {% else %}
+                {% for year, semesters in enrollments.items() %}
+                    <tbody data-year="{{ year }}">
+                    <tr class="yearHeader">
+                        <td class="yearCol" colspan="4">
+                            <img src="{{ url_for('static', filename='SVG/angle-down.svg') }}" class="collapseIcon">
+                            שנה
+                            {% set year_mapping = {"yearA": "א'", "yearB": "ב'", "yearC": "ג'", "yearD": "ד'"} %}
+                            {{ year_mapping.get(year, "לא ידוע") }}
+                        </td>
+                    </tr>
+                    {% for semester, courses in semesters.items() %}
+                        {% for course in courses %}
+                            <tr>
+                                <td class="emptyCell"></td>
+                                <td class="courseName">{{ course.courseName }}</td>
+                                <td>{{ course.courseCredits }}</td>
+                                <td class="courseGrade">{{ course.finalGrade }}</td>
+                            </tr>
+                        {% endfor %}
+                    {% endfor %}
+                    </tbody>
+                {% endfor %}
+            {% endif %}
             </tbody>
         </table>
     </div>

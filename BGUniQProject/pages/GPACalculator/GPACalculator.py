@@ -1,6 +1,7 @@
 import traceback
 from flask import Flask, request, jsonify, session, Blueprint, render_template, sessions
-from BGUniQProject.DBconnector import StudentsCol, StudyTemplatesCol, update_student_enrollments
+# from BGUniQProject.DBconnector import StudentsCol, StudyTemplatesCol, update_student_enrollments
+from BGUniQProject.DBconnector import *
 import random
 import string
 
@@ -232,8 +233,15 @@ def gpa_calculator(selectedYear, selectedSemester):
                     {"Email": student_email},
                     {"$set": {"Enrollments": enrollments}}
                 )
-                update_student_enrollments(student_email)  # update the session enrollments of the student
+                update_student_enrollments(student_email)  # Update the session enrollments of the student
                 print("new session after update:", session.get('enrollments', "No enrollments found"))  # Debugging check
+                update_student_metrics(student_email)
+                print("new session Indicators:") # Debugging check
+                print("Total Credits:", session.get("totalCredits"))
+                print("GPA Indicator:", session.get("GPAIndicator"))
+                print("Target GPA:", session.get("targetGPA"))
+                print("Number of Courses:", session.get("numberOfCourses"))
+
                 print("הכנסת נתונים לבסיס נתונים ישששש")
                 return jsonify({"success": True, "message": "Courses saved/updated successfully!"})
 
@@ -286,8 +294,15 @@ def delete_course(selectedYear, selectedSemester):
             {"Email": student_email},
             {"$set": {"Enrollments": enrollments}}
         )
-        update_student_enrollments(student_email) #update the session enrollments of the student
+        update_student_enrollments(student_email) # Update the session enrollments of the student
         print("new session after delete:", session.get('enrollments', "No enrollments found"))  # Debugging check
+        update_student_metrics(student_email)
+        print("new session Indicators:")  # Debugging check
+        print("Total Credits:", session.get("totalCredits"))
+        print("GPA Indicator:", session.get("GPAIndicator"))
+        print("Target GPA:", session.get("targetGPA"))
+        print("Number of Courses:", session.get("numberOfCourses"))
+
         return jsonify({"success": True, "message": f"Course '{course_name}' deleted successfully from {selectedYear} {selectedSemester}."})
 
     except Exception as e:

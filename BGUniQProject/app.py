@@ -80,5 +80,10 @@ app.register_blueprint(yearSemesterSelectionBP)
 from pages.Logout.Logout import logoutBP
 app.register_blueprint(logoutBP)
 
+# Metrics
+from pages.pages import metricsBP
+app.register_blueprint(metricsBP)
+
+
 if __name__ == '__main__':
    app.run(debug = True)

@@ -161,9 +161,74 @@ def check_if_signed(email):
 #         print(f"error during deletion: {e}")
 #         return False
 
-# function for update user's enrollments session
+# Function for update user's enrollments session:
 def update_student_enrollments(email):
     user = get_user_by_email(email)
     if user:
         session['enrollments'] = user.get('Enrollments', {})
 
+# Indicators Calculations:
+# Calculating totalCredits (by sum of all credits):
+def calculate_total_credits(email):
+    user = get_user_by_email(email)
+    if not user:
+        return 0
+    enrollments = user.get("Enrollments", {})
+    total_credits = sum(
+        course["courseCredits"]
+        for year in enrollments.values()
+        for semester in year.values()
+        for course in semester
+        if "courseCredits" in course
+    )
+    return total_credits
+
+# Calculating GPAIndicator (Grade Average):
+def calculate_gpa_indicator(email):
+    user = get_user_by_email(email)
+    if not user:
+        return 0
+    enrollments = user.get("Enrollments", {})
+
+    total_weighted_grades = 0
+    total_credits = 0
+
+    for year in enrollments.values():
+        for semester in year.values():
+            for course in semester:
+                if "courseCredits" in course and "finalGrade" in course:
+                    credits = course["courseCredits"]
+                    grade = course["finalGrade"]
+                    total_weighted_grades += credits * grade
+                    total_credits += credits
+
+    return round(total_weighted_grades / total_credits, 2) if total_credits > 0 else 0
+
+# Retrieving the student's targetGPA:
+def get_target_gpa(email):
+    user = get_user_by_email(email)
+    if not user:
+        return None
+    personal_goals = user.get("PersonalGoals", [])
+
+    return personal_goals[0].get("TargetGPA") if personal_goals else None
+
+# Calculating numberOfCourses (Counting all existing courses):
+def count_courses(email):
+    user = get_user_by_email(email)
+    if not user:
+        return 0
+    enrollments = user.get("Enrollments", {})
+
+    return sum(
+        len(semester)
+        for year in enrollments.values()
+        for semester in year.values()
+    )
+
+# Updates all data in a session:
+def update_student_metrics(email):
+    session["totalCredits"] = calculate_total_credits(email)
+    session["GPAIndicator"] = calculate_gpa_indicator(email)
+    session["targetGPA"] = get_target_gpa(email)
+    session["numberOfCourses"] = count_courses(email)

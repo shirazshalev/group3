@@ -1,3 +1,16 @@
+const yearMapping = {
+    "yearA": "שנה א׳",
+    "yearB": "שנה ב׳",
+    "yearC": "שנה ג׳",
+    "yearD": "שנה ד׳"
+}
+
+const semesterMapping = {
+    "semesterA": "סמסטר א׳",
+    "semesterB": "סמסטר ב׳",
+    "semesterC": "סמסטר קיץ"
+}
+
 const hideBtn = document.querySelectorAll('.collapseIcon')
 hideBtn.forEach(icon => {
     icon.addEventListener('click', (e) => {
@@ -38,7 +51,8 @@ courseNames.forEach(course => {
     course.addEventListener('mouseover', (e) => {
         e.preventDefault()
         //const courseName = e.target.textContent
-        const year = e.target.parentElement.closest('tbody').getAttribute('data-year')
+        const yearKey = e.target.parentElement.closest('tbody').getAttribute('data-year')
+        const year = yearMapping[yearKey] || "שנה לא ידועה"
         const infoText =
             `${year}, ${courseInfo.semester}\n` +
             `תרגילי בית (${courseInfo.exerciseWeight}): ${courseInfo.exerciseGrade}\n` +
@@ -87,10 +101,18 @@ const courseFinalGrade = document.querySelectorAll('.courseGrade')
 courseFinalGrade.forEach(grade => {
     grade.addEventListener('mouseover', (e) => {
         e.preventDefault()
-        const theGrade = parseFloat(e.target.textContent.trim())
-        const theCredits = parseFloat(e.target.previousElementSibling.textContent.trim())
-        const theGPA = parseFloat(indicatorValues[0].textContent.trim())
-        const theTotalCredits = parseFloat(indicatorValues[1].textContent.trim())
+
+        const theGrade = parseFloat(e.target.textContent.trim()) || 0
+        const theCredits = parseFloat(e.target.previousElementSibling.textContent.trim()) || 0
+        const theGPA = parseFloat(indicatorValues[0]?.textContent.trim()) || 0
+        const theTotalCredits = parseFloat(indicatorValues[1]?.textContent.trim()) || 0
+
+        if (theTotalCredits === 0 || theTotalCredits - theCredits === 0) {
+            impactGPA.style.opacity = '0'
+            impactGPA.style.visibility = 'hidden'
+            return
+        }
+
         const theGPABefore = (theGPA * theTotalCredits - theGrade * theCredits) / (theTotalCredits - theCredits)
         //console.log('Grade:', theGrade, 'Credits:', theCredits, 'GPA:', theGPA, 'Total Credits:', theTotalCredits)
         //const theImpact = (theGPA / theGPABefore).toFixed(3) // %
@@ -119,14 +141,17 @@ courseFinalGrade.forEach(grade => {
         impactGPA.style.top = (e.pageY + 10) + 'px'
         impactGPA.style.left = (e.pageX + 10) + 'px'
     })
+
     grade.addEventListener('mousemove', (e) => {
         e.preventDefault()
         impactGPA.style.top = (e.pageY + 10) + 'px'
         impactGPA.style.left = (e.pageX + 10) + 'px'
     })
+
     grade.addEventListener('mouseout', (e) => {
         e.preventDefault()
         impactGPA.style.opacity = '0'
         impactGPA.style.visibility = 'hidden'
     })
+
 })

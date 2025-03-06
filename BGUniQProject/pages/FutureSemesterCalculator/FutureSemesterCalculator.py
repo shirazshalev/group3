@@ -1,4 +1,5 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, session, request, jsonify, url_for
+from BGUniQProject.DBconnector import *
 
 futureSemesterCalculatorBP = Blueprint(
     'FutureSemesterCalculator',
@@ -10,4 +11,6 @@ futureSemesterCalculatorBP = Blueprint(
 
 @futureSemesterCalculatorBP.route('/future-semester-calculator')
 def future_semester_calculator():
-    return render_template('FutureSemesterCalculator.html')
+    return render_template('FutureSemesterCalculator.html',
+                           GPAIndicator="{:.2f}".format(session.get("GPAIndicator", 0)),
+                           targetGPA="{:.2f}".format(session.get("targetGPA", 85.00)))

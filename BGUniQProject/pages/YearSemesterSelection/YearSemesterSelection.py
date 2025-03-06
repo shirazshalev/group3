@@ -34,6 +34,8 @@ def year_semester_selection():
                 session['studyTemplate'] = {}
 
             session['enrollments'] = user.get('Enrollments', {})
+            # Updating the student's metrics in session:
+            update_student_metrics(session.get('email'))
 
             # session.clear() CLEAR everything except the user's email and the first name:
             keys_to_remove = ['studentID', 'lastName', 'password', 'degree', 'department', 'contractYear', 'currentSemester', 'academicYear']

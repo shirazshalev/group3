@@ -1,4 +1,5 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, session, request, jsonify, url_for
+from BGUniQProject.DBconnector import *
 
 whatIfCalculatorBP = Blueprint(
     'WhatIfCalculator',
@@ -10,6 +11,6 @@ whatIfCalculatorBP = Blueprint(
 
 @whatIfCalculatorBP.route('/what-if-calculator')
 def what_if_calculator():
-    return render_template('WhatIfCalculator.html')
-
+    return render_template('WhatIfCalculator.html',
+                           GPAIndicator="{:.2f}".format(session.get("GPAIndicator", 0)))
 

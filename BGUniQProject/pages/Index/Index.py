@@ -1,4 +1,5 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, session, request, jsonify, url_for
+from BGUniQProject.DBconnector import *
 
 indexBP = Blueprint(
     'Index',
@@ -11,4 +12,8 @@ indexBP = Blueprint(
 @indexBP.route('/home')
 @indexBP.route('/index')
 def index():
-    return render_template('Index.html')
+    return render_template('Index.html',
+                           totalCredits=session.get("totalCredits", 0),
+                           GPAIndicator="{:.2f}".format(session.get("GPAIndicator", 0)),
+                           targetGPA="{:.2f}".format(session.get("targetGPA", 85.00)),
+                           numberOfCourses=session.get("numberOfCourses", 0))

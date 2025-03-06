@@ -29,3 +29,10 @@ document.getElementById("btnSetGoals").addEventListener("click", (e) => {
     e.preventDefault()
     window.location.href = "/personal-goals"
 })
+
+// trying Fetch
+document.addEventListener("DOMContentLoaded", function () {
+    if (document.getElementById("gpa")) {
+        fetchStudentMetrics()
+    }
+})

@@ -1,4 +1,5 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, session, request, jsonify, url_for
+from BGUniQProject.DBconnector import *
 
 binaryPassCalculatorBP = Blueprint(
     'BinaryPassCalculator',
@@ -10,4 +11,5 @@ binaryPassCalculatorBP = Blueprint(
 
 @binaryPassCalculatorBP.route('/binary-pass-calculator')
 def binary_pass_calculator():
-    return render_template('BinaryPassCalculator.html')
+    return render_template('BinaryPassCalculator.html',
+                           GPAIndicator="{:.2f}".format(session.get("GPAIndicator", 0)))

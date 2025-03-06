@@ -63,6 +63,30 @@ button {
     font-weight: 300;
 }
 
+.enrollmentsIsEmpty {
+    background-color: #FFE2B2;
+    text-align: center;
+    vertical-align: middle;
+    font-weight: 300;
+    font-size: 13px;
+    padding: 10px;
+
+}
+
+.linkToGPA a {
+    text-decoration: none;
+    color: #000000;
+}
+
+.linkToGPA a:hover {
+    text-decoration: underline;
+}
+
+.linkToGPA {
+    display: inline;
+    cursor: pointer;
+}
+
 #academicRecordTable th {
     background-color: #FFE2B2;
     color: #000000;
@@ -78,40 +102,12 @@ button {
     visibility: hidden;
 }
 
-#academicRecordTable td:not(.emptyCell) {
+#academicRecordTable td:not(.emptyCell), td:not(.enrollmentsIsEmpty) {
     background-color: #FFFFFF;
     color: #000000;
     border: none;
     font-size: 12px;
     text-align: right;
-}
-
-#academicRecordTable tr.yearHeader td {
-    background-color: #FFA68D;
-    color: #FFFFFF;
-    /*writing-mode: vertical-rl;*/
-    vertical-align: middle;
-    text-align: right;
-    font-size: 14px;
-    font-weight: 400;
-    border-top-right-radius: 15px;
-    border-bottom-right-radius: 15px;
-    padding-right: 35px;
-}
-
-.collapseIcon {
-    width: 10px;
-    height: 10px;
-    cursor: pointer;
-    margin-left: 10px;
-}
-
-img.collapseIcon {
-    filter: invert(1);
-}
-
-#academicRecordTable td.emptyCell {
-    background-color: transparent;
 }
 
 #academicRecordTable colgroup col.yearCol {
@@ -151,6 +147,34 @@ tr[data-year] td:first-child {
 #academicRecordTable td:nth-child(3), #academicRecordTable td:nth-child(4) {
     text-align: center;
     cursor: default;
+}
+
+#academicRecordTable tr.yearHeader td {
+    background-color: #FFA68D;
+    color: #FFFFFF;
+    /*writing-mode: vertical-rl;*/
+    vertical-align: middle;
+    text-align: right;
+    font-size: 14px;
+    font-weight: 400;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    padding-right: 35px;
+}
+
+.collapseIcon {
+    width: 10px;
+    height: 10px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+img.collapseIcon {
+    filter: invert(1);
+}
+
+#academicRecordTable td.emptyCell {
+    background-color: transparent;
 }
 
 .detailsWindow {

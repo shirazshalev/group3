@@ -18,14 +18,15 @@ def login():
         email = data.get('email')
         password = data.get('password')
         studentID = data.get('studentID')
+
         if check_if_signed(email):
             user = get_user_by_email(email)
             if user['StudentID'] == studentID and user['Password'] == password:
                 session['email'] = email
                 session['firstName'] = user['FirstName']
                 session['loggedIn'] = True
-
                 session['studyTemplateName'] = user.get('StudyTemplate')
+
                 study_template = StudyTemplatesCol.find_one({"_id": session['studyTemplateName']})
                 if study_template:
                     session['studyTemplate'] = study_template
@@ -33,6 +34,13 @@ def login():
                     session['studyTemplate'] = {}
 
                 session['enrollments'] = user.get('Enrollments', {})
+                # Updating the student's metrics in session:
+                update_student_metrics(email)
+                print("new session Indicators:")  # Debugging check
+                print("Total Credits:", session.get("totalCredits"))
+                print("GPA Indicator:", session.get("GPAIndicator"))
+                print("Target GPA:", session.get("targetGPA"))
+                print("Number of Courses:", session.get("numberOfCourses"))
 
                 return jsonify({'success': True, 'redirect': url_for('Index.index')})
             else:
