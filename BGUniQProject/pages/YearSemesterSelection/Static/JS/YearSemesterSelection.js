@@ -85,20 +85,16 @@ function showCustomAlert(message) {
     const alertBox = document.getElementById('Alert')
     const alertMessage = document.getElementById('alertMessage')
     const closeButton = document.getElementById('alertCloseButton')
-
     if (!alertBox || !alertMessage || !closeButton) {
         console.error("Custom alert elements are not properly defined.")
         return
     }
-
     // Set the message
     alertMessage.textContent = message
-
     // Show the alert
-    alertBox.classList.remove('Hidden')
-
+    alertBox.classList.remove('hidden')
     // Close the alert when the button is clicked
     closeButton.addEventListener('click', () => {
-        alertBox.classList.add('Hidden')
+        alertBox.classList.add('hidden')
     })
 }
