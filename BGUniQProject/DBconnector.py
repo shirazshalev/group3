@@ -1,5 +1,5 @@
 import os
-# import certifi  # SHIRAZ
+import certifi  # SHIRAZ
 import pymongo
 from flask import session
 from pymongo.mongo_client import MongoClient
@@ -23,9 +23,9 @@ uri = os.getenv("DB_URI")
 
 # Create a new client (cluster) and connect to the server
 # YUVAL
-cluster = MongoClient(uri, server_api=ServerApi('1'))
+# cluster = MongoClient(uri, server_api=ServerApi('1'))
 # SHIRAZ
-# cluster = MongoClient(uri, server_api=ServerApi('1'), tlsCAFile=certifi.where())
+cluster = MongoClient(uri, server_api=ServerApi('1'), tlsCAFile=certifi.where())
 BGUniQDB = cluster['BGUniQDB']
 
 # Define Collections
@@ -167,6 +167,7 @@ def update_student_enrollments(email):
     if user:
         session['enrollments'] = user.get('Enrollments', {})
 
+
 # Indicators Calculations:
 # Calculating totalCredits (by sum of all credits):
 def calculate_total_credits(email):
@@ -182,6 +183,7 @@ def calculate_total_credits(email):
         if "courseCredits" in course
     )
     return total_credits
+
 
 # Calculating GPAIndicator (Grade Average):
 def calculate_gpa_indicator(email):
@@ -204,6 +206,7 @@ def calculate_gpa_indicator(email):
 
     return round(total_weighted_grades / total_credits, 2) if total_credits > 0 else 0
 
+
 # Retrieving the student's targetGPA:
 def get_target_gpa(email):
     user = get_user_by_email(email)
@@ -212,6 +215,7 @@ def get_target_gpa(email):
     personal_goals = user.get("PersonalGoals", [])
 
     return personal_goals[0].get("TargetGPA") if personal_goals else None
+
 
 # Calculating numberOfCourses (Counting all existing courses):
 def count_courses(email):
@@ -226,9 +230,67 @@ def count_courses(email):
         for semester in year.values()
     )
 
+
 # Updates all data in a session:
 def update_student_metrics(email):
     session["totalCredits"] = calculate_total_credits(email)
     session["GPAIndicator"] = calculate_gpa_indicator(email)
     session["targetGPA"] = get_target_gpa(email)
     session["numberOfCourses"] = count_courses(email)
+
+
+def get_remaining_courses_for_future_semester(email):
+    user = get_user_by_email(email)
+    if not user:
+        return None
+
+    study_template_name = user.get("StudyTemplate")
+    if not study_template_name:
+        return None
+
+    # template courses
+    study_template_doc = StudyTemplatesCol.find_one({"_id": study_template_name})
+    if not study_template_doc:
+        return None
+    template_courses = []
+    for year_name, year_data in study_template_doc.get("years", {}).items():
+        for semester_name, courses in year_data.items():
+            for course in courses:
+                template_courses.append({
+                    "id": course.get("courseID"),
+                    "name": course.get("courseName"),
+                    "credits": course.get("credits"),
+                    "grade": 85
+                })
+
+    # student courses
+    student_current_enrollments = user.get("Enrollments", {})
+    student_courses = []
+    for year_data in student_current_enrollments.values():
+        for semester_courses in year_data.values():
+            for course in semester_courses:
+                student_courses.append({
+                    "courseID": course.get("courseID"),
+                    "courseName": course.get("courseName"),
+                    "courseCredits": course.get("courseCredits"),
+                    "courseGrade" : course.get("finalGrade")
+                })
+
+    future_remaining_courses = []
+
+    for template_course in template_courses:
+        course_exists = any(
+            student_course["courseID"] == template_course["id"] and
+            student_course["courseName"] == template_course["name"] and
+            student_course["courseCredits"] == template_course["credits"]
+            for student_course in student_courses
+        )
+        if not course_exists:
+            future_remaining_courses.append(template_course)
+
+    print("number of template courses:" , len(template_courses)) #debugging check
+    print("number of student done courses:" , len(student_courses)) #debugging check
+    print("number of remaining courses:" , len(future_remaining_courses)) #debugging check
+    print("remaining courses for future semester:" , future_remaining_courses) #debugging check
+    return future_remaining_courses
+
