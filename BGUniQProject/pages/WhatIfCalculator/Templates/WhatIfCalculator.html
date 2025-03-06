@@ -30,7 +30,13 @@
             </div>
             <div class="indicator">
                 <h4>ממוצע תואר אחרי השינוי</h4>
-                <h3 class="indicatorValue">85.00</h3>
+                <h3 class="indicatorValue" id="newGpaIndicator">
+                    {% if courses %}
+                        {{ GPAIndicator }}
+                    {% else %}
+                        0.00
+                    {% endif %}
+                </h3>
             </div>
         </div>
     </section>
@@ -39,142 +45,21 @@
         <p>בחר.י קורס מתוך הרשימה</p>
         <div class="btnSelect">
             <span>קורסים</span>
-            <img src="{{url_for('static', filename='SVG/triangle-down.svg')}}" class="selectIcon">
+            <img src="{{ url_for('static', filename='SVG/triangle-down.svg') }}" class="selectIcon">
         </div>
         <div class="popupCoursesList hiddenList">
             <ul class="coursesList">
-                <li class="courseItem">
-                    <span class="checkbox"></span>
-                    מבוא לכלכלה
-                </li>
-                <li class="courseItem">
-                    <span class="checkbox"></span>
-                    מבוא למערכות מידע
-                </li>
-                <li class="courseItem">
-                    <span class="checkbox"></span>
-                    מבוא לחשבונאות פיננסית
-                </li>
-                <li class="courseItem">
-                    <span class="checkbox"></span>
-                    מבוא להנדסת תעשיה וניהול
-                </li>
-                <li class="courseItem">
-                    <span class="checkbox"></span>
-                    חדו״א 1 להנדסה
-                </li>
-                <li class="courseItem">
-                    <span class="checkbox"></span>
-                    מבוא למתמטיקה דיסקרטית
-                </li>
-                <li class="courseItem">
-                    <span class="checkbox"></span>
-                    אלגברה ליניארית להנדסה
-                </li>
-                <li class="courseItem">
-                    <span class="checkbox"></span>
-                    חקר ביצועים 1
-                </li>
-                <li class="courseItem">
-                    <span class="checkbox"></span>
-                    גרפיקה הנדסית וממוחשבת
-                </li>
-                <li class="courseItem">
-                    <span class="checkbox"></span>
-                    מבוא לתכנות
-                </li>
-                <li class="courseItem">
-                    <span class="checkbox"></span>
-                    מבוא להסתברות
-                </li>
-                <li class="courseItem">
-                    <span class="checkbox"></span>
-                    חדו״א להנדסת תעשיה וניהול 2
-                </li>
-                <li class="courseItem">
-                    <span class="checkbox"></span>
-                    משוואות דיפרנציאליות רגילות
-                </li>
-                <li class="courseItem">
-                    <span class="checkbox"></span>
-                    סדנת כתיבה מדעית
-                </li>
-                <li class="courseItem">
-                    <span class="checkbox"></span>
-                    חקר ביצועים 2
-                </li>
-                <li class="courseItem">
-                    <span class="checkbox"></span>
-                    תכנון ופקוח על היצור 1
-                </li>
-                <li class="courseItem">
-                    <span class="checkbox"></span>
-                    פיתוח תוכנה מונחה עצמים
-                </li>
-                <li class="courseItem">
-                    <span class="checkbox"></span>
-                    אמידה ומבחני השערות
-                </li>
-                <li class="courseItem">
-                    <span class="checkbox"></span>
-                    יסודות האלגוריתמים והסיבוכיות
-                </li>
-                <li class="courseItem">
-                    <span class="checkbox"></span>
-                    פיסיקה 1ב
-                </li>
-                <li class="courseItem">
-                    <span class="checkbox"></span>
-                    תכנון ופקוח על היצור 2
-                </li>
-                <li class="courseItem">
-                    <span class="checkbox"></span>
-                    בסיסי נתונים
-                </li>
-                <li class="courseItem">
-                    <span class="checkbox"></span>
-                    הנדסת שיטות ותהליכים ארגוניים
-                </li>
-                <li class="courseItem">
-                    <span class="checkbox"></span>
-                    מבוא להנ׳ מכונות ותהליכי ייצור
-                </li>
-                <li class="courseItem">
-                    <span class="checkbox"></span>
-                    פיסיקה 2ב
-                </li>
-                <li class="courseItem">
-                    <span class="checkbox"></span>
-                    אנגלית מתקדמים ב׳
-                </li>
-                <li class="courseItem">
-                    <span class="checkbox"></span>
-                    מבוא להנדסת גורמי אנוש
-                </li>
-                <li class="courseItem">
-                    <span class="checkbox"></span>
-                    מבוא לקבלת החלטות
-                </li>
-                <li class="courseItem">
-                    <span class="checkbox"></span>
-                    מבוא להנדסת חשמל
-                </li>
-                <li class="courseItem">
-                    <span class="checkbox"></span>
-                    סימולציה
-                </li>
-                <li class="courseItem">
-                    <span class="checkbox"></span>
-                    סדנת מיומנויות בתקשורת בינאישית
-                </li>
-                <li class="courseItem">
-                    <span class="checkbox"></span>
-                    ניתוח ועיצוב מע׳-מידע
-                </li>
-                <li class="courseItem">
-                    <span class="checkbox"></span>
-                    מודלים של רגרסיה ליניארית
-                </li>
+                {% if studentCourses %}
+                    {% for course in studentCourses %}
+                        <li class="courseItem" data-course-id="{{ course.id }}"
+                            data-course-credits="{{ course.credits }}" data-course-grade="{{ course.grade }}">
+                            <span class="checkbox"></span>
+                            {{ course.name }}
+                        </li>
+                    {% endfor %}
+                {% else %}
+                    <li class="noCourses">אין קורסים שמורים במערכת</li>
+                {% endif %}
             </ul>
         </div>
     </section>
