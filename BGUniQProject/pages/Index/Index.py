@@ -13,6 +13,7 @@ indexBP = Blueprint(
 @indexBP.route('/index')
 def index():
     return render_template('Index.html',
+                           firstName=session.get("firstName", ""),
                            totalCredits=session.get("totalCredits", 0),
                            GPAIndicator="{:.2f}".format(session.get("GPAIndicator", 0)),
                            targetGPA="{:.2f}".format(session.get("targetGPA", 85.00)),

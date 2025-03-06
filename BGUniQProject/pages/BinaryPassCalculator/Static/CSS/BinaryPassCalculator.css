@@ -55,6 +55,30 @@
     text-align: right;
 }
 
+.enrollmentsIsEmpty {
+    background-color: #FFE2B2;
+    text-align: center;
+    vertical-align: middle;
+    font-weight: 300;
+    font-size: 13px;
+    padding: 10px;
+
+}
+
+.linkToGPA a {
+    text-decoration: none;
+    color: #000000;
+}
+
+.linkToGPA a:hover {
+    text-decoration: underline;
+}
+
+.linkToGPA {
+    display: inline;
+    cursor: pointer;
+}
+
 #academicRecordTable td.emptyCell {
     background-color: transparent;
     padding-right: 0;

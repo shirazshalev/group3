@@ -30,7 +30,13 @@
             </div>
             <div class="indicator">
                 <h4>ממוצע תואר אחרי השינוי</h4>
-                <h3 class="indicatorValue">84.20</h3>
+                <h3 class="indicatorValue">
+                    {% if courses %}
+                        84.20
+                    {% else %}
+                        0.00
+                    {% endif %}
+                </h3>
             </div>
         </div>
         <p class="recommendation">מומלץ לעיין בתנאים שנקבעו על ידי האוניברסיטה והמחלקה*</p>
@@ -56,275 +62,28 @@
                     <th class="gradeCol">ציון סופי</th>
                 </tr>
                 </thead>
-                <tbody data-year="שנה א׳">
-                <tr>
-                    <td class="emptyCell">
-                        <div class="checkbox"></div>
-                    </td>
-                    <td class="courseName">מבוא לכלכלה</td>
-                    <td>3.5</td>
-                    <td>87</td>
-                </tr>
-                <tr>
-                    <td class="emptyCell">
-                        <div class="checkbox"></div>
-                    </td>
-                    <td class="courseName">מבוא למערכות מידע</td>
-                    <td>3.0</td>
-                    <td>91</td>
-                </tr>
-                <tr>
-                    <td class="emptyCell">
-                        <div class="checkbox"></div>
-                    </td>
-                    <td class="courseName">מבוא לחשבונאות פיננסית</td>
-                    <td>3.5</td>
-                    <td>100</td>
-                </tr>
-                <tr>
-                    <td class="emptyCell">
-                        <div class="checkbox"></div>
-                    </td>
-                    <td class="courseName">מבוא להנדסת תעשיה וניהול</td>
-                    <td>1.0</td>
-                    <td>96</td>
-                </tr>
-                <tr>
-                    <td class="emptyCell">
-                        <div class="checkbox"></div>
-                    </td>
-                    <td class="courseName">חדו״א 1 להנדסה</td>
-                    <td>5.0</td>
-                    <td>74</td>
-                </tr>
-                <tr>
-                    <td class="emptyCell">
-                        <div class="checkbox"></div>
-                    </td>
-                    <td class="courseName">מבוא למתמטיקה דיסקרטית</td>
-                    <td>3.5</td>
-                    <td>79</td>
-                </tr>
-                <tr>
-                    <td class="emptyCell">
-                        <div class="checkbox"></div>
-                    </td>
-                    <td class="courseName">אלגברה ליניארית להנדסה</td>
-                    <td>4.5</td>
-                    <td>61</td>
-                </tr>
-                <tr>
-                    <td class="emptyCell">
-                        <div class="checkbox"></div>
-                    </td>
-                    <td class="courseName">חקר ביצועים 1</td>
-                    <td>3.5</td>
-                    <td>89</td>
-                </tr>
-                <tr>
-                    <td class="emptyCell">
-                        <div class="checkbox"></div>
-                    </td>
-                    <td class="courseName">גרפיקה הנדסית וממוחשבת</td>
-                    <td>1.5</td>
-                    <td>95</td>
-                </tr>
-                <tr>
-                    <td class="emptyCell">
-                        <div class="checkbox"></div>
-                    </td>
-                    <td class="courseName">מבוא לתכנות</td>
-                    <td>4.0</td>
-                    <td>82</td>
-                </tr>
-                <tr>
-                    <td class="emptyCell">
-                        <div class="checkbox"></div>
-                    </td>
-                    <td class="courseName">מבוא להסתברות</td>
-                    <td>3.5</td>
-                    <td>80</td>
-                </tr>
-                <tr>
-                    <td class="emptyCell">
-                        <div class="checkbox"></div>
-                    </td>
-                    <td class="courseName">חדו״א להנדסת תעשיה וניהול 2</td>
-                    <td>4.0</td>
-                    <td>68</td>
-                </tr>
-                <tr>
-                    <td class="emptyCell">
-                        <div class="checkbox"></div>
-                    </td>
-                    <td class="courseName">משוואות דיפרנציאליות רגילות</td>
-                    <td>3.5</td>
-                    <td>93</td>
-                </tr>
-                </tbody>
-                <tbody data-year="שנה ב׳">
-                <tr>
-                    <td class="emptyCell">
-                        <div class="checkbox"></div>
-                    </td>
-                    <td class="courseName">סדנת כתיבה מדעית</td>
-                    <td>0.5</td>
-                    <td>95</td>
-                </tr>
-                <tr>
-                    <td class="emptyCell">
-                        <div class="checkbox"></div>
-                    </td>
-                    <td class="courseName">חקר ביצועים 2</td>
-                    <td>3.5</td>
-                    <td>81</td>
-                </tr>
-                <tr>
-                    <td class="emptyCell">
-                        <div class="checkbox"></div>
-                    </td>
-                    <td class="courseName">תכנון ופקוח על היצור 1</td>
-                    <td>4.0</td>
-                    <td>94</td>
-                </tr>
-                <tr>
-                    <td class="emptyCell">
-                        <div class="checkbox"></div>
-                    </td>
-                    <td class="courseName">פיתוח תוכנה מונחה עצמים</td>
-                    <td>3.5</td>
-                    <td>84</td>
-                </tr>
-                <tr>
-                    <td class="emptyCell">
-                        <div class="checkbox"></div>
-                    </td>
-                    <td class="courseName">אמידה ומבחני השערות</td>
-                    <td>3.5</td>
-                    <td>87</td>
-                </tr>
-                <tr>
-                    <td class="emptyCell">
-                        <div class="checkbox"></div>
-                    </td>
-                    <td class="courseName">יסודות האלגוריתמים והסיבוכיות</td>
-                    <td>3.5</td>
-                    <td>82</td>
-                </tr>
-                <tr>
-                    <td class="emptyCell">
-                        <div class="checkbox"></div>
-                    </td>
-                    <td class="courseName">פיסיקה 1ב</td>
-                    <td>3.5</td>
-                    <td>90</td>
-                </tr>
-                <tr>
-                    <td class="emptyCell">
-                        <div class="checkbox"></div>
-                    </td>
-                    <td class="courseName">תכנון ופקוח על היצור 2</td>
-                    <td>4.0</td>
-                    <td>86</td>
-                </tr>
-                <tr>
-                    <td class="emptyCell">
-                        <div class="checkbox"></div>
-                    </td>
-                    <td class="courseName">בסיסי נתונים</td>
-                    <td>3.5</td>
-                    <td>83</td>
-                </tr>
-                <tr>
-                    <td class="emptyCell">
-                        <div class="checkbox"></div>
-                    </td>
-                    <td class="courseName">הנדסת שיטות ותהליכים ארגוניים</td>
-                    <td>4.0</td>
-                    <td>98</td>
-                </tr>
-                <tr>
-                    <td class="emptyCell">
-                        <div class="checkbox"></div>
-                    </td>
-                    <td class="courseName">מבוא להנ׳ מכונות ותהליכי ייצור</td>
-                    <td>3.5</td>
-                    <td>76</td>
-                </tr>
-                <tr>
-                    <td class="emptyCell">
-                        <div class="checkbox"></div>
-                    </td>
-                    <td class="courseName">פיסיקה 2ב</td>
-                    <td>3.5</td>
-                    <td>56</td>
-                </tr>
-                </tbody>
-                <tbody data-year="שנה ג׳">
-                <tr>
-                    <td class="emptyCell">
-                        <div class="checkbox"></div>
-                    </td>
-                    <td class="courseName">אנגלית מתקדמים ב׳</td>
-                    <td>2.0</td>
-                    <td>87</td>
-                </tr>
-                <tr>
-                    <td class="emptyCell">
-                        <div class="checkbox"></div>
-                    </td>
-                    <td class="courseName">מבוא להנדסת גורמי אנוש</td>
-                    <td>3.0</td>
-                    <td>89</td>
-                </tr>
-                <tr>
-                    <td class="emptyCell">
-                        <div class="checkbox"></div>
-                    </td>
-                    <td class="courseName">מבוא לקבלת החלטות</td>
-                    <td>3.0</td>
-                    <td>90</td>
-                </tr>
-                <tr>
-                    <td class="emptyCell">
-                        <div class="checkbox"></div>
-                    </td>
-                    <td class="courseName">מבוא להנדסת חשמל</td>
-                    <td>3.5</td>
-                    <td>84</td>
-                </tr>
-                <tr>
-                    <td class="emptyCell">
-                        <div class="checkbox"></div>
-                    </td>
-                    <td class="courseName">סימולציה</td>
-                    <td>4.0</td>
-                    <td>92</td>
-                </tr>
-                <tr>
-                    <td class="emptyCell">
-                        <div class="checkbox"></div>
-                    </td>
-                    <td class="courseName">סדנת מיומנויות בתקשורת בינאישית</td>
-                    <td>0.5</td>
-                    <td>90</td>
-                </tr>
-                <tr>
-                    <td class="emptyCell">
-                        <div class="checkbox"></div>
-                    </td>
-                    <td class="courseName">ניתוח ועיצוב מע׳-מידע</td>
-                    <td>3.5</td>
-                    <td>88</td>
-                </tr>
-                <tr>
-                    <td class="emptyCell">
-                        <div class="checkbox"></div>
-                    </td>
-                    <td class="courseName">מודלים של רגרסיה ליניארית</td>
-                    <td>3.5</td>
-                    <td>93</td>
-                </tr>
+                <tbody>
+                {% if courses %}
+                    {% for course in courses %}
+                        <tr data-year="{{ course.year }}">
+                            <td class="emptyCell">
+                                <div class="checkbox"></div>
+                            </td>
+                            <td class="courseName">{{ course.courseName }}</td>
+                            <td>{{ course.courseCredits }}</td>
+                            <td>{{ course.finalGrade }}</td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr class="ifEnrollmentsIsEmpty">
+                        <td colspan="4" class="enrollmentsIsEmpty">
+                            אין קורסים שמורים במערכת - ניתן להזין את הנתונים דרך
+                            <div class="linkToGPA">
+                                <a href="{{ url_for('GPACalculator.gpa_calculator_page') }}">עמוד מחשבון נק״ז</a>
+                            </div>
+                        </td>
+                    </tr>
+                {% endif %}
                 </tbody>
             </table>
         </div>

@@ -20,7 +20,13 @@
     <div class="pageContent">
         <section class="welcomeSection">
             <div class="welcomeText">
-                <h1 class="pageTitle" id="welcomeUser">שלום</h1>
+                <h1 class="pageTitle" id="welcomeUser">
+                    {% if session.get('firstName') %}
+                        שלום {{ session['firstName'] }},
+                    {% else %}
+                        שלום
+                    {% endif %}
+                </h1>
                 <p class="p2">איזה כיף שחזרת אלינו :)</p>
                 <p class="mainTitleBGUniQ">BGUniQ עושה לכם סדר</p>
                 <p class="secondTitleBGUniQ">בכל מה שחשוב למעקב, ניתוח ובקרה על ההישגים שלכם</p>
