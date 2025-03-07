@@ -1,0 +1,9 @@
+the libraries we import are:
+1)	Flask
+2)	Os
+3)	Pymongo
+4)	dotenv
+5)	certifi  # SHIRAZ
+6)  random
+7)  traceback
+
