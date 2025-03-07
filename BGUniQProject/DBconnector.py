@@ -60,9 +60,6 @@ def get_study_templates_col():
     return StudyTemplatesCol
 
 
-# Update collections:
-
-
 # Students' collection - all necessary functions
 def get_list_of_students():
     return list(StudentsCol.find())
@@ -239,6 +236,7 @@ def update_student_metrics(email):
     session["numberOfCourses"] = count_courses(email)
 
 
+# List of courses that the student has not yet taken:
 def get_remaining_courses_for_future_semester(email):
     user = get_user_by_email(email)
     if not user:
@@ -288,9 +286,9 @@ def get_remaining_courses_for_future_semester(email):
         if not course_exists:
             future_remaining_courses.append(template_course)
 
-    print("number of template courses:" , len(template_courses)) #debugging check
-    print("number of student done courses:" , len(student_courses)) #debugging check
-    print("number of remaining courses:" , len(future_remaining_courses)) #debugging check
-    print("remaining courses for future semester:" , future_remaining_courses) #debugging check
+    # print("number of template courses:" , len(template_courses)) # debugging check
+    # print("number of student done courses:" , len(student_courses)) # debugging check
+    # print("number of remaining courses:" , len(future_remaining_courses)) # debugging check
+    # print("remaining courses for future semester:" , future_remaining_courses) # debugging check
     return future_remaining_courses
 

@@ -8,7 +8,8 @@
 {% block title %}מחשבון סימולציה סמסטר עתידי{% endblock %}
 {# CSS links #}
 {% block extraStyles %}
-    <link rel="stylesheet" href="{{ url_for('FutureSemesterCalculator.static', filename='CSS/FutureSemesterCalculator.css') }}">
+    <link rel="stylesheet"
+          href="{{ url_for('FutureSemesterCalculator.static', filename='CSS/FutureSemesterCalculator.css') }}">
 {% endblock %}
 
 {# <body> #}
@@ -30,7 +31,13 @@
             </div>
             <div class="indicator">
                 <h4>ממוצע תואר עתידי</h4>
-                <h3 class="indicatorValue">84.92</h3>
+                <h3 class="indicatorValue" id="futureGPA">
+                    {% if courses %}
+                        {{ GPAIndicator }}
+                    {% else %}
+                        0.00
+                    {% endif %}
+                </h3>
             </div>
             <div class="indicator">
                 <h4>ממוצע היעד</h4>
@@ -38,7 +45,7 @@
             </div>
             <div class="indicator">
                 <h4>ממוצע סמסטר עתידי</h4>
-                <h3 class="indicatorValue">89.00</h3>
+                <h3 class="indicatorValue" id="semesterAVG">89.00</h3>
             </div>
         </div>
     </section>
@@ -46,39 +53,23 @@
         <p>בחר.י קורס מתוך הרשימה</p>
         <div class="btnSelect">
             <span>קורסים</span>
-            <img src="{{url_for('static', filename='SVG/triangle-down.svg')}}" class="selectIcon">
+            <img src="{{ url_for('static', filename='SVG/triangle-down.svg') }}" class="selectIcon">
         </div>
         <div class="popupCoursesList hiddenList">
             <ul class="coursesList">
-                <li class="courseItem">
-                    <span class="checkbox"></span>
-                    יסודות המימון לתעו״נ
-                </li>
-                <li class="courseItem">
-                    <span class="checkbox"></span>
-                    אוטומציה
-                </li>
-                <li class="courseItem">
-                    <span class="checkbox"></span>
-                    תשתית טכנולוגיות מידע
-                </li>
-                <li class="courseItem">
-                    <span class="checkbox"></span>
-                    ניהול פרוייקטים
-                </li>
-                <li class="courseItem">
-                    <span class="checkbox"></span>
-                    מערכות בינה עסקית (BI)
-                </li>
-                <li class="courseItem">
-                    <span class="checkbox"></span>
-                    הנדסת איכות
-                </li>
-                <li class="courseItem">
-                    <span class="checkbox"></span>
-                    בניית מערכות ממוחשבות מבוססות אינטרנט (WEB)
-                </li>
+                {% if remainingCourses %}
+                    {% for course in remainingCourses %}
+                        <li class="courseItem" data-course-id="{{ course.id }}" data-credits="{{ course.credits }}"
+                            data-grade="{{ course.grade }}">
+                            <span class="checkbox"></span>
+                            {{ course.name }}
+                        </li>
+                    {% endfor %}
+                {% else %}
+                    <li class="noCourses">אין מידע זמין במערכת</li>
+                {% endif %}
             </ul>
+
         </div>
     </section>
     <section id="simulationContainer">

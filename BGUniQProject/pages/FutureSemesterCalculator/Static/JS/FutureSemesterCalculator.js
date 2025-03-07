@@ -1,13 +1,23 @@
 // Next semester's courses Array:
-const courses = [
-    {id: 1, name: "יסודות המימון לתעו״נ", credits: 3.0, grade: 85},
-    {id: 2, name: "אוטומציה", credits: 4.0, grade: 85},
-    {id: 3, name: "תשתית טכנולוגיות מידע", credits: 3.0, grade: 85},
-    {id: 4, name: "ניהול פרוייקטים", credits: 3.0, grade: 85},
-    {id: 5, name: "מערכות בינה עסקית (BI)", credits: 3.0, grade: 85},
-    {id: 6, name: "הנדסת איכות", credits: 3.5, grade: 85},
-    {id: 7, name: "בניית מערכות ממוחשבות מבוססות אינטרנט (WEB)", credits: 3.0, grade: 85}
-]
+// const courses = [
+//     {id: 1, name: "יסודות המימון לתעו״נ", credits: 3.0, grade: 85},
+//     {id: 2, name: "אוטומציה", credits: 4.0, grade: 85},
+//     {id: 3, name: "תשתית טכנולוגיות מידע", credits: 3.0, grade: 85},
+//     {id: 4, name: "ניהול פרוייקטים", credits: 3.0, grade: 85},
+//     {id: 5, name: "מערכות בינה עסקית (BI)", credits: 3.0, grade: 85},
+//     {id: 6, name: "הנדסת איכות", credits: 3.5, grade: 85},
+//     {id: 7, name: "בניית מערכות ממוחשבות מבוססות אינטרנט (WEB)", credits: 3.0, grade: 85}
+// ]
+
+const courses = []
+document.querySelectorAll('.courseItem').forEach((courseItem) => {
+    courses.push({
+        id: courseItem.dataset.courseId,
+        name: courseItem.textContent.trim(),
+        credits: parseFloat(courseItem.dataset.credits),
+        grade: parseFloat(courseItem.dataset.grade)
+    })
+})
 
 // Side calculations:
 let totalCredits = 0
@@ -16,7 +26,6 @@ courses.forEach((course) => {
     sumOfGrades = sumOfGrades + (course.grade * course.credits)
     totalCredits = totalCredits + course.credits
 })
-
 
 // Creating a pop-up selection list:
 const btnSelect = document.querySelector('.btnSelect')
@@ -53,6 +62,7 @@ const newGPA = indicatorValues[1]
 const GPA = sumOfGrades / totalCredits
 let tempGPA = sumOfGrades / totalCredits
 newGPA.textContent = String(tempGPA.toFixed(2))
+const semesterAVG = document.getElementById('semesterAVG')
 
 const calculatedAverage = () => {
     let tempSum = 0
@@ -69,6 +79,8 @@ const calculatedAverage = () => {
     const updateGPA = tempSum / totalCredits
     newGPA.textContent = String(updateGPA.toFixed(2))
     tempGPA = updateGPA
+
+    calculateSemesterAVG()
 }
 
 // EventListener Slider's Value:
@@ -181,3 +193,32 @@ Array.from(coursesList.children).forEach((item) => {
     })
 })
 
+const calculateSemesterAVG = () => {
+    let semesterSum = 0
+    let semesterCredits = 0
+    Object.values(selectedCourses).forEach(courseSection => {
+        const slider = courseSection.querySelector('input[type="range"]')
+        const courseCreditsSpan = courseSection.querySelector('span:nth-child(2)')
+
+        if (!courseCreditsSpan) {
+            console.error("לא נמצא אלמנט המכיל נקודות זכות")
+            return
+        }
+        const courseCredits = parseFloat(courseCreditsSpan.textContent.replace(/\D/g, ''))
+        const newGrade = parseFloat(slider.value)
+        if (isNaN(courseCredits) || isNaN(newGrade)) {
+            console.error("שגיאה: נתוני קורס לא תקינים", { courseCredits, newGrade })
+            return
+        }
+
+        semesterSum += (newGrade * courseCredits);
+        semesterCredits += courseCredits;
+    })
+
+    if (semesterCredits > 0) {
+        const updateSemesterAVG = semesterSum / semesterCredits
+        semesterAVG.textContent = updateSemesterAVG.toFixed(2)
+    } else {
+        semesterAVG.textContent = "0.00"
+    }
+}

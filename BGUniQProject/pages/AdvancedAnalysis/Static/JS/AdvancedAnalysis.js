@@ -89,7 +89,8 @@ const sharedLayout = {
 
 const config = {
     displayModeBar: false,
-    responsive: true
+    responsive: true,
+    scrollZoom: false
 };
 
 // functions
@@ -181,6 +182,7 @@ function createAvgGraph(withTrendLine = false) {
         ...sharedLayout,
         barmode: 'group',
         showlegend: true,
+        dragmode: false,
         title: {
             text: 'השתנות ממוצע התואר לאורך זמן',
             y: 0.95
